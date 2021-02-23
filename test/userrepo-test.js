@@ -7,11 +7,12 @@ describe('User Repo', () => {
   let user2;
   let user3;
   let user4;
-  let user5;
   let users;
   let userRepo;
   let hydrationData;
   let sleepData;
+  let weeklySleepData;
+  let weeklyHydrationData;
 
   beforeEach( () => {
     user1 = new User({
@@ -99,7 +100,7 @@ describe('User Repo', () => {
         "date": "2016/08/22",
         "numOunces": 30
       }
-    ]
+    ];
 
     sleepData = [{
         "userID": 1,
@@ -156,6 +157,9 @@ describe('User Repo', () => {
         "sleepQuality": 1
       }
     ];
+
+    weeklySleepData = userRepo.chooseWeekDataForAllUsers(sleepData, "2017/06/15");
+    weeklyHydrationData = userRepo.chooseWeekDataForAllUsers(hydrationData, "2019/06/15");
   });
 
   it('should be a function', () => {
@@ -164,7 +168,7 @@ describe('User Repo', () => {
 
   it('takes an array of user data', () => {
     expect(userRepo.users).to.equal(users);
-    expect(userRepo.users).to.be.a('array')
+    expect(userRepo.users).to.be.a('array');
   });
 
   it('should have a parameter to take in user data', () => {
@@ -187,27 +191,27 @@ describe('User Repo', () => {
   });
 
   describe('UserRepo methods', () => {
-    it('should get a users data from its userID in any data set', function() {
+    it('should get a users data from its userID in any data set', () => {
       let hydrationStats = hydrationData.filter(data => data['userID'] === 1);
       let sleepStats = sleepData.filter(data => data['userID'] === 2);
       expect(userRepo.getDataFromUserID(1, hydrationData)).to.eql(hydrationStats);
       expect(userRepo.getDataFromUserID(2, sleepData)).to.eql(sleepStats);
     });
 
-    it('should get a users most recent date using the app', function() {
+    it('should get a users most recent date using the app', () => {
       expect(userRepo.getToday(3, hydrationData)).to.eql('2019/05/09');
     });
 
-    it('should sort data by date and extract its week', function() {
+    it('should sort data by date and extract its week', () => {
       expect(userRepo.getFirstWeek(3, hydrationData)[2].date).to.eql('2016/08/22');
     });
 
-    it('should get a sorted week of data for a single user from a date', function() {
+    it('should get a sorted week of data for a single user from a date', () => {
       expect(userRepo.getWeekFromDate('2019/06/15', 1, hydrationData)[2].date).to.eql('2018/03/30');
       expect(userRepo.getWeekFromDate('2018/07/15', 3, sleepData)[0].date).to.eql('2018/07/15');
     });
 
-    it('should get a week of data for all users in data set', function() {
+    it('should get a week of data for all users in data set', () => {
       let weeklyData = userRepo.chooseWeekDataForAllUsers(hydrationData, '2019/06/15')
       expect(weeklyData[1].date).to.eql("2019/06/15");
       expect(weeklyData[1].userID).to.eql(2);
@@ -215,7 +219,7 @@ describe('User Repo', () => {
       expect(weeklyData[0].userID).to.eql(1);
     });
 
-    it('should get a day of data for all users in data set', function() {
+    it('should get a day of data for all users in data set', () => {
       let dayData = userRepo.chooseDayDataForAllUsers(sleepData, '2017/06/15');
       expect(dayData[0].date).to.eql('2017/06/15');
       expect(dayData[0].hoursSlept).to.eql(6.1);
@@ -223,30 +227,26 @@ describe('User Repo', () => {
       expect(dayData[2].userID).to.eql(3);
     });
 
-    it('should isolate a user ID and its values of any relevant data', function() {
-      let weeklySleepData = userRepo.chooseWeekDataForAllUsers(sleepData, "2017/06/15");
-      let weeklyHydrationData = userRepo.chooseWeekDataForAllUsers(hydrationData, "2019/06/15");
+    it('should isolate a user ID and its values of any relevant data', () => {
       expect(userRepo.isolateUsernameAndRelevantData( 'sleepQuality', weeklySleepData)).to.eql({
         '1': [2.2],
         '2': [4.7],
         '3': [3]
-      })
+      });
       expect(userRepo.isolateUsernameAndRelevantData( 'numOunces', weeklyHydrationData)).to.eql({
         '1': [ 37 ],
         '2': [ 38 ] 
-      })
+      });
     });
 
-    it('should rank user ids according to relevant data value averages', function() {
-      const weeklySleepData = userRepo.chooseWeekDataForAllUsers(sleepData, "2017/06/15");
-      expect(userRepo.rankUserIDsbyRelevantDataValue(sleepData, "2017/06/15", 'sleepQuality', weeklySleepData)).to.eql(['2', '3', '1'])
+    it('should rank user ids according to relevant data value averages', () => {
+      expect(userRepo.rankUserIDsbyRelevantDataValue('sleepQuality', weeklySleepData)).to.eql(['2', '3', '1']);
     });
 
-    it('should show list in order of userID and average of relevant value', function() {
-      expect(userRepo.combineRankedUserIDsAndAveragedData(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))[0]).to.eql({
-        '5': 4
-      })
+    it('should show list in order of userID and average of relevant value', () => {
+      expect(userRepo.combineRankedUserIDsAndAveragedData('sleepQuality', weeklySleepData)[0]).to.eql({
+        '2': 4.7
+      });
     });
-
   });
 });

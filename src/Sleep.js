@@ -52,13 +52,13 @@ class Sleep {
   }
   determineSleepWinnerForWeek(date, userRepo) {
     let timeline = userRepo.chooseWeekDataForAllUsers(this.sleepData, date);
-    let sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData(this.sleepData, date, 'sleepQuality', timeline);
+    let sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData('sleepQuality', timeline);
 
     return this.getWinnerNamesFromList(sleepRankWithData, userRepo);
   }
   determineSleepHoursWinnerForDay(date, userRepo) {
     let timeline = userRepo.chooseDayDataForAllUsers(this.sleepData, date);
-    let sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData(this.sleepData, date, 'hoursSlept', timeline);
+    let sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData('hoursSlept', timeline);
 
     return this.getWinnerNamesFromList(sleepRankWithData, userRepo);
   }
