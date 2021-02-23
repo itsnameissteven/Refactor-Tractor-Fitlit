@@ -42,12 +42,12 @@ describe('User', function() {
     });
 
 
-  it('should be a function', function() {
+  it('should be a function', () => {
     expect(User).to.be.a('function');
     expect(user1).to.be.an.instanceof(User);
   });
 
-  it('should take a user data object', function() {
+  it('should take a user data object', () => {
     expect(user1.id).to.deep.equal(1);
     expect(user1.name).to.deep.equal("Alex Roth");
     expect(user1.address).to.deep.equal("1234 Turing Street, Denver CO 80301-1697");
@@ -62,11 +62,11 @@ describe('User', function() {
     expect(user2.name).to.equal("Allie McCarthy");
   });
 
-  it('should return users first name', function() {
+  it('should return users first name', () => {
     expect(user2.getFirstName()).to.equal("Allie");
   });
 
-  it('should return list of friend names from user repository', function() {
+  it('should return list of friend names from user repository', () => {
     const users = [user1, user2, user3, user4];
     const userRepo = new UserRepo(users);
     expect(user2.getFriendsNames(userRepo)).to.deep.equal(['Alex Roth', 'The Rock', 'Rainbow Dash']);

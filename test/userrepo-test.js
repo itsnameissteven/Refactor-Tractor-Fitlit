@@ -3,16 +3,7 @@ import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
 describe('User Repo', () => {
-  let user1;
-  let user2;
-  let user3;
-  let user4;
-  let users;
-  let userRepo;
-  let hydrationData;
-  let sleepData;
-  let weeklySleepData;
-  let weeklyHydrationData;
+  let user1, user2, user3, user4, users, userRepo, hydrationData, sleepData, weeklySleepData, weeklyHydrationData;
 
   beforeEach( () => {
     user1 = new User({
