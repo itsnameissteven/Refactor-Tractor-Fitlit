@@ -47,7 +47,7 @@ class Sleep {
         return sumSoFar;
       }, 0) / userSleepObject[key].length) > 3
     }).map(function(sleeper) {
-      return userRepo.getDataFromID(parseInt(sleeper)).name;
+      return userRepo.getUserFromID(parseInt(sleeper)).name;
     })
   }
   determineSleepWinnerForWeek(date, userRepo) {
@@ -72,7 +72,7 @@ class Sleep {
     });
 
     return bestSleeperIds.map(function(sleepNumber) {
-      return userRepo.getDataFromID(parseInt(sleepNumber)).name;
+      return userRepo.getUserFromID(parseInt(sleepNumber)).name;
     });
   }
 }

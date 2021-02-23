@@ -61,7 +61,7 @@ class Activity {
 
     return rankedList.map(function(listItem) {
       let userID = Object.keys(listItem)[0];
-      let userName = userRepo.getDataFromID(parseInt(userID)).name;
+      let userName = userRepo.getUserFromID(parseInt(userID)).name;
       return `${userName}: ${listItem[userID]}`
     })
   }

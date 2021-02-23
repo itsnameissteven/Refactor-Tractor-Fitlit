@@ -3,7 +3,7 @@ class UserRepo {
     this.users = users;
   };
 
-  getDataFromID(id) {
+  getUserFromID(id) {
     return this.users.find((user) => id === user.id);
   };
 
@@ -72,7 +72,7 @@ class UserRepo {
       }, 0) / sortedObjectKeys[b].length)
     });
   }
-  
+
   combineRankedUserIDsAndAveragedData(dataSet, date, relevantData, listFromMethod) {
     let sortedObjectKeys = this.isolateUsernameAndRelevantData(dataSet, date, relevantData, listFromMethod)
     let rankedUsersAndAverages = this.rankUserIDsbyRelevantDataValue(dataSet, date, relevantData, listFromMethod)
