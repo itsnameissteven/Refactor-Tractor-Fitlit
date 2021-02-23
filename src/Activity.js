@@ -54,14 +54,14 @@ class Activity {
   getFriendsAverageStepsForWeek(user, date, userRepo) {
     let friendsActivity = this.getFriendsActivity(user, userRepo);
     let timeline = userRepo.chooseWeekDataForAllUsers(friendsActivity, date);
-    return userRepo.combineRankedUserIDsAndAveragedData(friendsActivity, date, 'numSteps', timeline)
+    return userRepo.combineRankedUserIDsAndAveragedData('numSteps', timeline)
   }
   showChallengeListAndWinner(user, date, userRepo) {
     let rankedList = this.getFriendsAverageStepsForWeek(user, date, userRepo);
 
     return rankedList.map(function(listItem) {
       let userID = Object.keys(listItem)[0];
-      let userName = userRepo.getDataFromID(parseInt(userID)).name;
+      let userName = userRepo.getUserFromID(parseInt(userID)).name;
       return `${userName}: ${listItem[userID]}`
     })
   }

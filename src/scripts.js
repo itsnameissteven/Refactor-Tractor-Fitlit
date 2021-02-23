@@ -80,7 +80,7 @@ function pickUser() {
 }
 
 function getUserById(id, listRepo) {
-  return listRepo.getDataFromID(id);
+  return listRepo.getUserFromID(id);
 };
 
 
