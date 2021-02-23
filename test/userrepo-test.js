@@ -224,18 +224,22 @@ describe('User Repo', () => {
     });
 
     it('should isolate a user ID and its values of any relevant data', function() {
-      expect(userRepo.isolateUsernameAndRelevantData(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))).to.eql({
-        '2': [3.5, 4, 3.3, 3.6, 3.6, 4, 3.1],
-        '4': [3.5, 4, 1.3, 1.6, 1.6, 1, 3.1],
-        '5': [4, 4, 4, 4, 4, 4, 4]
+      let weeklySleepData = userRepo.chooseWeekDataForAllUsers(sleepData, "2017/06/15");
+      let weeklyHydrationData = userRepo.chooseWeekDataForAllUsers(hydrationData, "2019/06/15");
+      expect(userRepo.isolateUsernameAndRelevantData( 'sleepQuality', weeklySleepData)).to.eql({
+        '1': [2.2],
+        '2': [4.7],
+        '3': [3]
       })
-      expect(userRepo.isolateUsernameAndRelevantData(hydrationData, "2019/05/09", 'numOunces', userRepo.chooseWeekDataForAllUsers(hydrationData, "2019/05/09"))).to.eql({
-        '3': [1]
+      expect(userRepo.isolateUsernameAndRelevantData( 'numOunces', weeklyHydrationData)).to.eql({
+        '1': [ 37 ],
+        '2': [ 38 ] 
       })
     });
 
     it('should rank user ids according to relevant data value averages', function() {
-      expect(userRepo.rankUserIDsbyRelevantDataValue(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))).to.eql(['5', '2', '4'])
+      const weeklySleepData = userRepo.chooseWeekDataForAllUsers(sleepData, "2017/06/15");
+      expect(userRepo.rankUserIDsbyRelevantDataValue(sleepData, "2017/06/15", 'sleepQuality', weeklySleepData)).to.eql(['2', '3', '1'])
     });
 
     it('should show list in order of userID and average of relevant value', function() {

@@ -50,7 +50,7 @@ class UserRepo {
     });
   }
 
-  isolateUsernameAndRelevantData(dataSet, date, relevantData, listFromMethod) {
+  isolateUsernameAndRelevantData(relevantData, listFromMethod) {
     return listFromMethod.reduce(function(objectSoFar, dataItem) {
       if (!objectSoFar[dataItem.userID]) {
         objectSoFar[dataItem.userID] = [dataItem[relevantData]]
@@ -62,7 +62,7 @@ class UserRepo {
   }
 
   rankUserIDsbyRelevantDataValue(dataSet, date, relevantData, listFromMethod) {
-    let sortedObjectKeys = this.isolateUsernameAndRelevantData(dataSet, date, relevantData, listFromMethod)
+    let sortedObjectKeys = this.isolateUsernameAndRelevantData(relevantData, listFromMethod)
     return Object.keys(sortedObjectKeys).sort(function(b, a) {
       return (sortedObjectKeys[a].reduce(function(sumSoFar, sleepQualityValue) {
         sumSoFar += sleepQualityValue
@@ -75,7 +75,7 @@ class UserRepo {
   }
 
   combineRankedUserIDsAndAveragedData(dataSet, date, relevantData, listFromMethod) {
-    let sortedObjectKeys = this.isolateUsernameAndRelevantData(dataSet, date, relevantData, listFromMethod)
+    let sortedObjectKeys = this.isolateUsernameAndRelevantData(relevantData, listFromMethod)
     let rankedUsersAndAverages = this.rankUserIDsbyRelevantDataValue(dataSet, date, relevantData, listFromMethod)
     return rankedUsersAndAverages.map(function(rankedUser) {
       rankedUser = {

@@ -39,7 +39,7 @@ class Sleep {
   }
   determineBestSleepers(date, userRepo) {
     let timeline = userRepo.chooseWeekDataForAllUsers(this.sleepData, date);
-    let userSleepObject = userRepo.isolateUsernameAndRelevantData(this.sleepData, date, 'sleepQuality', timeline);
+    let userSleepObject = userRepo.isolateUsernameAndRelevantData('sleepQuality', timeline);
 
     return Object.keys(userSleepObject).filter(function(key) {
       return (userSleepObject[key].reduce(function(sumSoFar, sleepQualityValue) {
