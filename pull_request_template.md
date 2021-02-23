@@ -7,9 +7,12 @@
 * What outside features or research did you use to implement this fix?
 * How should this be tested?
 <br>
+### Relevent Screen Shots
 ***
 #### Please review considerations below:
 - [ ] Follows Turing Style Guidelines
 - [ ] Changes generate no new warnings or errors
 - [ ] Checked code for and corrected any spelling errors
 - [ ] README has been updated(if applicable)
+
+
