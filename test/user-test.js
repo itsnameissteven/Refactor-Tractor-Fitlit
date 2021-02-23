@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
-describe('User', function() {
+describe('User', () => {
     const user1 = new User({
       id: 1,
       name: "Alex Roth",
@@ -48,16 +48,18 @@ describe('User', function() {
   });
 
   it('should take a user data object', () => {
-    expect(user1.id).to.deep.equal(1);
-    expect(user1.name).to.deep.equal("Alex Roth");
-    expect(user1.address).to.deep.equal("1234 Turing Street, Denver CO 80301-1697");
-    expect(user1.strideLength).to.deep.equal(4.3);
-    expect(user1.dailyStepGoal).to.deep.equal(10000);
-    expect(user1.friends).to.deep.equal([2, 3, 4]); 
-    expect(user1.email).to.deep.equal("alex.roth1@hotmail.com");
+    expect(user1).to.deep.equal({
+      id: 1,
+      name: "Alex Roth",
+      address: "1234 Turing Street, Denver CO 80301-1697",
+      email: "alex.roth1@hotmail.com",
+      strideLength: 4.3,
+      dailyStepGoal: 10000,
+      friends: [2, 3, 4]
+    });
   });
 
-  it('should take a different user data object', function() {
+  it('should take a different user data object', () => {
     expect(user2.id).to.equal(2);
     expect(user2.name).to.equal("Allie McCarthy");
   });

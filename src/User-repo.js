@@ -46,13 +46,13 @@ class UserRepo {
   };
 
   chooseDayDataForAllUsers(dataSet, date) {
-    return dataSet.filter(function(dataItem) {
+    return dataSet.filter((dataItem) => {
       return dataItem.date === date;
     });
   }
 
   isolateUsernameAndRelevantData(relevantData, listFromMethod) {
-    return listFromMethod.reduce(function(objectSoFar, dataItem) {
+    return listFromMethod.reduce((objectSoFar, dataItem) => {
       if (!objectSoFar[dataItem.userID]) {
         objectSoFar[dataItem.userID] = [dataItem[relevantData]]
       } else {
