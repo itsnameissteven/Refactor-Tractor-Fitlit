@@ -63,25 +63,22 @@ class UserRepo {
   }
 
   rankUserIDsbyRelevantDataValue(relevantData, listFromMethod) {
-    let sortedObjectKeys = this.isolateUsernameAndRelevantData(relevantData, listFromMethod)
-    return Object.keys(sortedObjectKeys).sort(function(b, a) {
-      return (sortedObjectKeys[a].reduce(function(sumSoFar, sleepQualityValue) {
-        sumSoFar += sleepQualityValue
-        return sumSoFar;
-      }, 0) / sortedObjectKeys[a].length) - (sortedObjectKeys[b].reduce(function(sumSoFar, sleepQualityValue) {
-        sumSoFar += sleepQualityValue
-        return sumSoFar;
+    const sortedObjectKeys = this.isolateUsernameAndRelevantData(relevantData, listFromMethod)
+    return Object.keys(sortedObjectKeys).sort((b, a) => {
+      return (sortedObjectKeys[a].reduce((sum, dataValue) => {
+        return sum += dataValue
+      }, 0) / sortedObjectKeys[a].length) - (sortedObjectKeys[b].reduce((sum, dataValue) => {
+        return sum += dataValue
       }, 0) / sortedObjectKeys[b].length)
     });
   }
 
   combineRankedUserIDsAndAveragedData(relevantData, listFromMethod) {
-    let sortedObjectKeys = this.isolateUsernameAndRelevantData(relevantData, listFromMethod)
-    let rankedUsersAndAverages = this.rankUserIDsbyRelevantDataValue(relevantData, listFromMethod)
-    return rankedUsersAndAverages.map(function(rankedUser) {
+    const sortedObjectKeys = this.isolateUsernameAndRelevantData(relevantData, listFromMethod)
+    const rankedUsersAndAverages = this.rankUserIDsbyRelevantDataValue(relevantData, listFromMethod)
+    return rankedUsersAndAverages.map((rankedUser) => {
       rankedUser = {
-        [rankedUser]: sortedObjectKeys[rankedUser].reduce(
-          function(sumSoFar, sleepQualityValue) {
+        [rankedUser]: sortedObjectKeys[rankedUser].reduce( (sumSoFar, sleepQualityValue) => {
             sumSoFar += sleepQualityValue
             return sumSoFar;
           }, 0) / sortedObjectKeys[rankedUser].length
