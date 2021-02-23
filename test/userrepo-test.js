@@ -51,16 +51,7 @@ describe('User Repo', () => {
       friends: [1, 2, 3]
     });
 
-    user5 = new User({
-      id: 5,
-      name: "Bugs Bunny",
-      address: "1234 Looney Street, Denver CO 80301-1697",
-      email: "BugsB1@hotmail.com",
-      strideLength: 3.8,
-      dailyStepGoal: 7000,
-      friends: [1, 2, 3]
-    });
-    users = [user1, user2, user3, user4, user5];
+    users = [user1, user2, user3, user4];
     userRepo = new UserRepo(users);
 
     hydrationData = [{
@@ -79,7 +70,7 @@ describe('User Repo', () => {
         "numOunces": 1
       },
       {
-        "userID": 4,
+        "userID": 1,
         "date": "2019/04/15",
         "numOunces": 36
       },
@@ -89,73 +80,23 @@ describe('User Repo', () => {
         "numOunces": 34
       },
       {
-        "userID": 1,
+        "userID": 3,
         "date": "2018/06/16",
         "numOunces": 39
       },
       {
-        "userID": 3,
+        "userID": 1,
         "date": "2018/03/30",
         "numOunces": 2
       },
       {
-        "userID": 4,
+        "userID": 2,
         "date": "2018/02/01",
         "numOunces": 28
       },
       {
-        "userID": 1,
+        "userID": 3,
         "date": "2016/08/22",
-        "numOunces": 30
-      },
-      {
-        "userID": 3,
-        "date": "2016/05/14",
-        "numOunces": 3
-      },
-      {
-        "userID": 2,
-        "date": "2016/04/27",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/03/15",
-        "numOunces": 35
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/20",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/19",
-        "numOunces": 30
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/18",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/17",
-        "numOunces": 40
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/16",
-        "numOunces": 30
-      },
-      {
-        "userID": 4,
-        "date": "2019/09/15",
-        "numOunces": 30
-      },
-      {
-        "userID": 3,
-        "date": "2019/09/17",
         "numOunces": 30
       }
     ]
@@ -179,12 +120,6 @@ describe('User Repo', () => {
         "sleepQuality": 3
       },
       {
-        "userID": 4,
-        "date": "2017/06/15",
-        "hoursSlept": 5.4,
-        "sleepQuality": 3
-      },
-      {
         "userID": 1,
         "date": "2018/07/15",
         "hoursSlept": 4.1,
@@ -203,12 +138,6 @@ describe('User Repo', () => {
         "sleepQuality": 3
       },
       {
-        "userID": 4,
-        "date": "2018/07/23",
-        "hoursSlept": 8.1,
-        "sleepQuality": 3.5
-      },
-      {
         "userID": 1,
         "date": "2019/05/30",
         "hoursSlept": 8.9,
@@ -225,156 +154,6 @@ describe('User Repo', () => {
         "date": "2019/05/30",
         "hoursSlept": 4,
         "sleepQuality": 1
-      },
-      {
-        "userID": 4,
-        "date": "2019/05/30",
-        "hoursSlept": 8,
-        "sleepQuality": 3.4
-      },
-      {
-        "userID": 1,
-        "date": "2019/08/22",
-        "hoursSlept": 10.1,
-        "sleepQuality": 1.8
-      },
-      {
-        "userID": 2,
-        "date": "2019/08/22",
-        "hoursSlept": 6.9,
-        "sleepQuality": 1.2
-      },
-      {
-        "userID": 3,
-        "date": "2019/08/22",
-        "hoursSlept": 4,
-        "sleepQuality": 1
-      },
-      {
-        "userID": 4,
-        "date": "2019/06/21",
-        "hoursSlept": 6.1,
-        "sleepQuality": 3.5
-      },
-      {
-        "userID": 4,
-        "date": "2019/06/20",
-        "hoursSlept": 4.7,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 4,
-        "date": "2019/06/19",
-        "hoursSlept": 10.1,
-        "sleepQuality": 1.3
-      },
-      {
-        "userID": 4,
-        "date": "2019/06/18",
-        "hoursSlept": 7.9,
-        "sleepQuality": 1.6
-      },
-      {
-        "userID": 4,
-        "date": "2019/06/17",
-        "hoursSlept": 5.9,
-        "sleepQuality": 1.6
-      },
-      {
-        "userID": 4,
-        "date": "2019/06/16",
-        "hoursSlept": 9.6,
-        "sleepQuality": 1
-      },
-      {
-        "userID": 4,
-        "date": "2019/06/15",
-        "hoursSlept": 9,
-        "sleepQuality": 3.1
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/21",
-        "hoursSlept": 6.1,
-        "sleepQuality": 3.5
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/20",
-        "hoursSlept": 4.7,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/19",
-        "hoursSlept": 10.1,
-        "sleepQuality": 3.3
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/18",
-        "hoursSlept": 7.9,
-        "sleepQuality": 3.6
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/17",
-        "hoursSlept": 5.9,
-        "sleepQuality": 3.6
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/16",
-        "hoursSlept": 9.6,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 2,
-        "date": "2019/06/15",
-        "hoursSlept": 9,
-        "sleepQuality": 3.1
-      },
-      {
-        "userID": 5,
-        "date": "2019/06/21",
-        "hoursSlept": 9,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 5,
-        "date": "2019/06/20",
-        "hoursSlept": 8,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 5,
-        "date": "2019/06/19",
-        "hoursSlept": 10,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 5,
-        "date": "2019/06/18",
-        "hoursSlept": 9,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 5,
-        "date": "2019/06/17",
-        "hoursSlept": 8,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 5,
-        "date": "2019/06/16",
-        "hoursSlept": 10,
-        "sleepQuality": 4
-      },
-      {
-        "userID": 5,
-        "date": "2019/06/15",
-        "hoursSlept": 9,
-        "sleepQuality": 4
       }
     ];
   });
@@ -404,51 +183,46 @@ describe('User Repo', () => {
 
   it('should return the average of all users step goals', () => {
     userRepo.calculateAverageStepGoal();
-    expect(userRepo.calculateAverageStepGoal()).to.eql(18600);
+    expect(userRepo.calculateAverageStepGoal()).to.eql(21500);
   });
 
   describe('UserRepo methods', () => {
     it('should get a users data from its userID in any data set', function() {
-      expect(userRepo.getDataFromUserID(1, hydrationData)).to.eql([{
-          "userID": 1,
-          "date": "2019/06/15",
-          "numOunces": 37
-        },
-        {
-          "userID": 1,
-          "date": "2018/06/16",
-          "numOunces": 39
-        },
-        {
-          "userID": 1,
-          "date": "2016/08/22",
-          "numOunces": 30
-        }
-      ]);
+      let hydrationStats = hydrationData.filter(data => data['userID'] === 1);
+      let sleepStats = sleepData.filter(data => data['userID'] === 2);
+      expect(userRepo.getDataFromUserID(1, hydrationData)).to.eql(hydrationStats);
+      expect(userRepo.getDataFromUserID(2, sleepData)).to.eql(sleepStats);
     });
-    it('should get a users most recent date using the app', function() {
-      expect(userRepo.getToday(4, hydrationData)).to.eql("2019/09/20");
-    });
-    it('should sort data by date and extract its week', function() {
 
-      expect(userRepo.getFirstWeek(4, hydrationData)[3].date).to.eql("2019/09/17");
+    it('should get a users most recent date using the app', function() {
+      expect(userRepo.getToday(3, hydrationData)).to.eql('2019/05/09');
     });
+
+    it('should sort data by date and extract its week', function() {
+      expect(userRepo.getFirstWeek(3, hydrationData)[2].date).to.eql('2016/08/22');
+    });
+
     it('should get a sorted week of data for a single user from a date', function() {
-      expect(userRepo.getWeekFromDate('2019/09/17', 4, hydrationData)[3].date).to.eql("2019/04/15");
-      expect(userRepo.getWeekFromDate('2019/09/18', 4, hydrationData)[3].date).to.eql("2019/09/15");
+      expect(userRepo.getWeekFromDate('2019/06/15', 1, hydrationData)[2].date).to.eql('2018/03/30');
+      expect(userRepo.getWeekFromDate('2018/07/15', 3, sleepData)[0].date).to.eql('2018/07/15');
     });
+
     it('should get a week of data for all users in data set', function() {
-      expect(userRepo.chooseWeekDataForAllUsers(hydrationData, '2019/09/17')[2].date).to.eql("2019/09/15");
-      expect(userRepo.chooseWeekDataForAllUsers(hydrationData, '2019/09/17')[2].userID).to.eql(4);
-      expect(userRepo.chooseWeekDataForAllUsers(hydrationData, '2019/09/17')[3].date).to.eql("2019/09/17");
-      expect(userRepo.chooseWeekDataForAllUsers(hydrationData, '2019/09/17')[3].userID).to.eql(3);
+      let weeklyData = userRepo.chooseWeekDataForAllUsers(hydrationData, '2019/06/15')
+      expect(weeklyData[1].date).to.eql("2019/06/15");
+      expect(weeklyData[1].userID).to.eql(2);
+      expect(weeklyData[0].date).to.eql("2019/06/15");
+      expect(weeklyData[0].userID).to.eql(1);
     });
+
     it('should get a day of data for all users in data set', function() {
-      expect(userRepo.chooseDayDataForAllUsers(sleepData, '2019/06/15')[0].date).to.eql('2019/06/15');
-      expect(userRepo.chooseDayDataForAllUsers(sleepData, '2019/06/15')[0].hoursSlept).to.eql(9);
-      expect(userRepo.chooseDayDataForAllUsers(sleepData, '2019/06/15')[2].date).to.eql('2019/06/15');
-      expect(userRepo.chooseDayDataForAllUsers(sleepData, '2019/06/15')[2].userID).to.eql(5);
+      let dayData = userRepo.chooseDayDataForAllUsers(sleepData, '2017/06/15');
+      expect(dayData[0].date).to.eql('2017/06/15');
+      expect(dayData[0].hoursSlept).to.eql(6.1);
+      expect(dayData[2].date).to.eql('2017/06/15');
+      expect(dayData[2].userID).to.eql(3);
     });
+
     it('should isolate a user ID and its values of any relevant data', function() {
       expect(userRepo.isolateUsernameAndRelevantData(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))).to.eql({
         '2': [3.5, 4, 3.3, 3.6, 3.6, 4, 3.1],
@@ -459,9 +233,11 @@ describe('User Repo', () => {
         '3': [1]
       })
     });
+
     it('should rank user ids according to relevant data value averages', function() {
       expect(userRepo.rankUserIDsbyRelevantDataValue(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))).to.eql(['5', '2', '4'])
     });
+
     it('should show list in order of userID and average of relevant value', function() {
       expect(userRepo.combineRankedUserIDsAndAveragedData(sleepData, "2019/06/21", 'sleepQuality', userRepo.chooseWeekDataForAllUsers(sleepData, "2019/06/21"))[0]).to.eql({
         '5': 4
