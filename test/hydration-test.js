@@ -3,7 +3,7 @@ import Hydration from '../src/Hydration';
 import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
-describe('Hydration', () => {
+describe.only('Hydration', () => {
   let hydrationData, hydration, user1, user2, users, userRepo;
 
   beforeEach(() => {
@@ -76,22 +76,25 @@ describe('Hydration', () => {
 
   it('should be a function', () => {
     expect(Hydration).to.be.a('function');
+  });
+
+  it('should be an instance of Hydration', () => {
     expect(hydration).to.be.an.instanceof(Hydration);
   });
 
   it('should take in a list of data', () => {
-    expect(hydration.hydrationData[0].userID).to.equal(1);
-    expect(hydration.hydrationData[2].numOunces).to.equal(30);
-    expect(hydration.hydrationData[4].date).to.equal("2018/10/23");
+    expect(hydration.dataSet[0].userID).to.equal(1);
+    expect(hydration.dataSet[2].numOunces).to.equal(30);
+    expect(hydration.dataSet[4].date).to.equal("2018/10/23");
   });
 
   it('should find the average water intake per day for a user', () => {
-    expect(hydration.calculateAverageOunces(1)).to.equal(35);
+    expect(hydration.calculateAverage(1, 'numOunces')).to.equal(35);
   });
 
   it('should find the water intake for a user on a specified date', () => {
-    expect(hydration.calculateDailyOunces(1, "2019/06/15")).to.equal(37);
-    expect(hydration.calculateDailyOunces(2, "2018/10/24")).to.equal(40);
+    expect(hydration.calculateDailyData(1, "2019/06/15", 'numOunces')).to.equal(37);
+    expect(hydration.calculateDailyData(2, "2018/10/24", 'numOunces')).to.equal(40);
   });
 
   //these last two functions aren't working properly
@@ -101,6 +104,6 @@ describe('Hydration', () => {
   });
 
   it('should find water intake by day for that days week', () => {
-    expect(hydration.calculateRandomWeekOunces('2018/10/24', 2, userRepo)).to.eql(['2018/10/24: 40', '2018/10/23: 34'])
+    expect(hydration.calculateWeek('2018/10/24', 2, userRepo, 'numOunces')).to.eql(['2018/10/24: 40', '2018/10/23: 34'])
   });
 });
