@@ -3,7 +3,8 @@ import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
 describe('User Repo', () => {
-  let user1, user2, user3, user4, users, userRepo, hydrationData, sleepData, weeklySleepData, weeklyHydrationData;
+  let user1, user2, user3, user4, users, userRepo, hydrationData, 
+    sleepData, weeklySleepData, weeklyHydrationData;
 
   beforeEach( () => {
     user1 = new User({
@@ -46,7 +47,8 @@ describe('User Repo', () => {
     users = [user1, user2, user3, user4];
     userRepo = new UserRepo(users);
 
-    hydrationData = [{
+    hydrationData = [
+      {
         "userID": 1,
         "date": "2019/06/15",
         "numOunces": 37
@@ -93,7 +95,8 @@ describe('User Repo', () => {
       }
     ];
 
-    sleepData = [{
+    sleepData = [
+      {
         "userID": 1,
         "date": "2017/06/15",
         "hoursSlept": 6.1,
