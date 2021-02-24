@@ -49,6 +49,13 @@ describe('Activity', () => {
         "minutesActive": 45,
         "flightsOfStairs": 9
       },
+      {
+        "userID": 1,
+        "date": "2019/06/18",
+        "numSteps": 12002,
+        "minutesActive": 66,
+        "flightsOfStairs": 12
+      }
     ];
 
     user1 = new User({
@@ -127,7 +134,7 @@ describe('Activity', () => {
   });
 
   it('should return all days that a given user exceeded their step goal', () => {
-    const daysAchievedGoals = ["2019/06/17"];
+    const daysAchievedGoals = ['2019/06/17', '2019/06/18'];
     expect(activity.getDaysGoalExceeded(1, userRepo.users[0])).to.eql(daysAchievedGoals);
   });
 
@@ -188,15 +195,15 @@ describe('Activity', () => {
     });
 
     it('should know the ID of the winning friend', () => {
-      expect(activity.getWinnerId(user4, "2019/06/15", userRepo)).to.eql(2)
+      expect(activity.getWinnerId(user4, "2019/06/15", userRepo)).to.eql(2);
     });
 
     it('should show a 3-day increasing streak for a users step count', () => {
-      expect(activity.getStreak(userRepo, 1, 'numSteps')).to.eql(['2019/06/17', '2019/06/18'])
+      expect(activity.getStreak(userRepo, 1, 'numSteps')).to.eql(['2019/06/17', '2019/06/18']);
     });
     
     it('should show a 3-day increasing streak for a users minutes of activity', () => {
-      expect(activity.getStreak(userRepo, 1, 'minutesActive')).to.eql(['2019/06/18'])
+      expect(activity.getStreak(userRepo, 1, 'minutesActive')).to.eql(['2019/06/18']);
     });
   });
 });
