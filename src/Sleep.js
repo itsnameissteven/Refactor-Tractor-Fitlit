@@ -5,12 +5,12 @@ class Sleep extends Calculation {
     super(dataSet)
   }
 
-  calculateAllUserSleepQuality() {
-    var totalSleepQuality = this.sleepData.reduce(function (sumSoFar, dataItem) {
+  /**/calculateAllUserSleepQuality() {
+    var totalSleepQuality = this.dataSet.reduce(function (sumSoFar, dataItem) {
       sumSoFar += dataItem.sleepQuality;
       return sumSoFar;
     }, 0)
-    return totalSleepQuality / sleepData.length
+    return Math.round(totalSleepQuality / this.dataSet.length);
   }
   determineBestSleepers(date, userRepo) {
     let timeline = userRepo.chooseWeekDataForAllUsers(this.sleepData, date);
@@ -25,7 +25,7 @@ class Sleep extends Calculation {
       return userRepo.getUserFromID(parseInt(sleeper)).name;
     })
   }
-  determineSleepWinnerForWeek(date, userRepo) {
+  /**/determineSleepWinnerForWeek(date, userRepo) {
     let timeline = userRepo.chooseWeekDataForAllUsers(this.sleepData, date);
     let sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData('sleepQuality', timeline);
 
@@ -37,7 +37,7 @@ class Sleep extends Calculation {
 
     return this.getWinnerNamesFromList(sleepRankWithData, userRepo);
   }
-  getWinnerNamesFromList(sortedArray, userRepo) {
+  /**/getWinnerNamesFromList(sortedArray, userRepo) {
     let bestSleepers = sortedArray.filter(function (element) {
       return element[Object.keys(element)] === Object.values(sortedArray[0])[0]
     });
