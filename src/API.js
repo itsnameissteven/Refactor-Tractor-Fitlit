@@ -72,13 +72,15 @@ const addNewHydrationData = (newData) => {
 }
 
 // ADD NEW DATA REFACTORED POSSIBILITY
-const addNewData = (link, newData) => {
-  fetch(link, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(newData)
-  })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
-}
+// const addNewData = (link, newData) => {
+//   fetch(link, {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(newData)
+//   })
+//     .then(response => response.json())
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err))
+// }
+
+export default fetchAllData;
