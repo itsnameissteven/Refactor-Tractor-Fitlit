@@ -73,11 +73,13 @@ class Activity {
   getStreak(userRepo, id, relevantData) {
     let data = this.activityData;
     let sortedUserArray = (userRepo.makeSortedUserArray(id, data)).reverse();
+    // console.log(sortedUserArray)
     let streaks = sortedUserArray.filter(function(element, index) {
       if (index >= 2) {
         return (sortedUserArray[index - 2][relevantData] < sortedUserArray[index - 1][relevantData] && sortedUserArray[index - 1][relevantData] < sortedUserArray[index][relevantData])
       }
     });
+    console.log("streak",streaks)
     return streaks.map(function(streak) {
       return streak.date;
     })
