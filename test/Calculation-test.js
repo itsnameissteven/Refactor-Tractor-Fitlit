@@ -104,5 +104,9 @@ describe.only('Calculation', () => {
     expect(calculation.calculateAverage(3, 'hoursSlept')).to.equal(3);
   });
 
+  it('should be able to find information for a user on a specified date', () => {
+    expect(calculation.calculateDailyData(1, '2019/05/30', 'hoursSlept')).to.equal(8.9);
+  });
+
 
 })

@@ -10,6 +10,13 @@ class Calculation {
     return Math.round(sum / perDay.length)
   }
 
+  calculateDailyData(id, date, property) {
+    const findDataByDate = this.dataSet.find(data => id === data.userID && date === data.date);
+    return findDataByDate[property];
+  }
+
+
+
 }
 
 export default Calculation;
