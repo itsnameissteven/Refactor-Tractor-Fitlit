@@ -14,7 +14,7 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
-import fetchAllData from './API';
+// import fetchAllData from './API';
 
 var sidebarName = document.getElementById('sidebarName');
 var stepGoalCard = document.getElementById('stepGoalCard');
@@ -50,7 +50,7 @@ var streakList = document.getElementById('streakList');
 var streakListMinutes = document.getElementById('streakListMinutes')
 
 function startApp() {
-  fetchAllData();
+  // fetchAllData();
   let userList = [];
   makeUsers(userList);
   let userRepo = new UserRepo(userList);
