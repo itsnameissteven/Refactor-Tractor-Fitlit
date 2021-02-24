@@ -3,7 +3,7 @@ import Hydration from '../src/Hydration';
 import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
-describe.only('Hydration', () => {
+describe('Hydration', () => {
   let hydrationData, hydration, user1, user2, users, userRepo;
 
   beforeEach(() => {
