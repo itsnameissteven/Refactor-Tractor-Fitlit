@@ -5,11 +5,6 @@ class Sleep extends Calculation {
     super(dataSet)
   }
 
-  calculateDailySleepQuality(id, date) {
-    let findSleepQualityByDate = this.dataSet.find((data) => id === data.userID && date === data.date);
-    return findSleepQualityByDate.sleepQuality;
-  }
-
   calculateAllUserSleepQuality() {
     var totalSleepQuality = this.sleepData.reduce(function (sumSoFar, dataItem) {
       sumSoFar += dataItem.sleepQuality;

@@ -302,8 +302,8 @@ describe.only('Sleep', function () {
   });
 
   it('should find the sleep quality for a user on a specified date', function () {
-    expect(sleep.calculateDailySleepQuality(2, "2017/06/15")).to.equal(4.7);
-    expect(sleep.calculateDailySleepQuality(4, "2019/06/21")).to.equal(3.5);
+    expect(sleep.calculateDailyData(2, "2017/06/15", 'sleepQuality')).to.equal(4.7);
+    expect(sleep.calculateDailyData(4, "2019/06/21", 'sleepQuality')).to.equal(3.5);
   });
 
   it('should find sleep by day for that days week', function () {
