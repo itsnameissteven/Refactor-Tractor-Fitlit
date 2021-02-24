@@ -46,7 +46,7 @@ describe('Hydration', () => {
       "userID": 2,
       "date": "2018/10/26",
       "numOunces": 40
-    },
+    }
     ]
 
     user1 = new User({
@@ -68,6 +68,7 @@ describe('Hydration', () => {
       dailyStepGoal: 7000,
       friends: [1, 2, 3]
     });
+
     users = [user1, user2];
     userRepo = new UserRepo(users);
     hydration = new Hydration(hydrationData);
@@ -93,9 +94,10 @@ describe('Hydration', () => {
     expect(hydration.calculateDailyOunces(2, "2018/10/24")).to.equal(40);
   });
 
+  //these last two functions aren't working properly
   it('should find water intake by day for first week', () => {
     expect(hydration.calculateFirstWeekOunces(userRepo, 1)).to.eql(['2019/06/15: 37', '2018/06/16: 39', '2016/08/22: 30']);
-    //this function needs the date
+    //this function needs the date as a parameter
   });
 
   it('should find water intake by day for that days week', () => {
