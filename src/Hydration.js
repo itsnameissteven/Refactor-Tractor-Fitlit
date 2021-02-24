@@ -18,7 +18,7 @@ class Hydration extends Calculation {
   // }
 
   calculateFirstWeekOunces(userRepo, id) {
-    return userRepo.getFirstWeek(id, this.hydrationData).map((data) => `${data.date}: ${data.numOunces}`);
+    return userRepo.getFirstWeek(id, this.dataSet).map((data) => `${data.date}: ${data.numOunces}`);
   }
 
   //   calculateRandomWeekOunces(date, id, userRepo) {
