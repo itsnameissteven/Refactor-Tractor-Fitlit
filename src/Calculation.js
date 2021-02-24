@@ -1,6 +1,6 @@
 class Calculation {
   constructor(dataSet) {
-    this.dataSet;
+    this.dataSet = dataSet;
   }
   calculateAverage(id, property) {
     const perDay = this.dataSet.filter(data => id === data.userID);

@@ -5,7 +5,7 @@ import Sleep from '../src/Sleep';
 import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
-describe('Calculation', () => {
+describe.only('Calculation', () => {
   let sleepData, sleep, calculation;
 
 
@@ -94,6 +94,14 @@ describe('Calculation', () => {
 
   it('should be an instance of Calculation', () => {
     expect(calculation).to.be.an.instanceof(Calculation);
+  });
+
+  it('should be able to take in an argument of data', () => {
+    expect(calculation.dataSet).to.deep.equal(sleepData);
+  });
+
+  it('should be able to calculate an average per day', () => {
+    expect(calculation.calculateAverage(3, 'hoursSlept')).to.equal(3);
   });
 
 
