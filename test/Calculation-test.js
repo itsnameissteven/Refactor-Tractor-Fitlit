@@ -86,7 +86,15 @@ describe('Calculation', () => {
 
     sleep = new Sleep(sleepData);
     calculation = new Calculation(sleepData);
-  })
+  });
+
+  it('should be a function', () => {
+    expect(Calculation).to.be.a('function');
+  });
+
+  it('should be an instance of Calculation', () => {
+    expect(calculation).to.be.an.instanceof(Calculation);
+  });
 
 
 })
