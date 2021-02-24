@@ -104,6 +104,6 @@ describe.only('Hydration', () => {
   });
 
   it('should find water intake by day for that days week', () => {
-    expect(hydration.calculateWeek('2018/10/24', 2, userRepo, 'numOunces')).to.eql(['2018/10/24: 40', '2018/10/23: 34'])
+    expect(hydration.calculateWeeklyData('2018/10/24', 2, userRepo, 'numOunces')).to.eql(['2018/10/24: 40', '2018/10/23: 34'])
   });
 });

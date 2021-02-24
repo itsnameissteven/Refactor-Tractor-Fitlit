@@ -1,8 +1,8 @@
 import Calculation from './Calculation';
 
 class Hydration extends Calculation {
-  constructor(hydrationData) {
-    super(hydrationData)
+  constructor(dataSet) {
+    super(dataSet)
   }
 
   // calculateAverageOunces(id) {

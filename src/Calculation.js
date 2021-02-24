@@ -7,7 +7,7 @@ class Calculation {
     const sum = perDay.reduce((sumSoFar, data) => {
       return sumSoFar += data[property];
     }, 0);
-    return Math.round(sum / perDay.length)
+    return Math.round(sum / perDay.length);
   }
 
   calculateDailyData(id, date, property) {
@@ -15,7 +15,7 @@ class Calculation {
     return findDataByDate[property];
   }
 
-  calculateWeek(date, id, userRepo, property) {
+  calculateWeeklyData(date, id, userRepo, property) {
     const weekFromDay = userRepo.getWeekFromDate(date, id, this.dataSet);
     return weekFromDay.map(data => `${data.date}: ${data[property]}`);
   }
