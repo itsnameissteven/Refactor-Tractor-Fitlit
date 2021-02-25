@@ -60,6 +60,9 @@
         <ul class="sleep-stats__this-week-list" id="sleepThisWeek"></ul>
         <p class="sleep-stats__earlier-week"></p>
         <ul class="sleep-stats__earlier-week-list" id="sleepEarlierWeek"></ul>
+        <p class="sleep-stats__sleep-today" id="sleepToday"></p>
+        <p class="sleep-stats__sleep-quality-today" id="sleepQualityToday"></p>
+        <p class="sleep-stats__avg-user-sleep" id="avUserSleepQuality"></p>
       </section>
 
       <section class="user-activity">
@@ -69,8 +72,21 @@
           <p class="user-activity__stairs-all-avg" id="avgStairsToday"></p>
           <p class="user-activity__minutes-today" id="userMinutesToday"></p>
           <p class="user-activity__minutes-all-avg" id="avgMinutesToday"></p>
+          <p class="thisWeek">Your steps this week</p>
+          <ul class="card-vertical-list" id="userStepsThisWeek"></ul>
+          <p class="thisWeek">Your stair count this week</p>
+          <ul class="card-vertical-list" id="userStairsThisWeek"></ul>
+          <p class="thisWeek">Your minutes of activity this week</p>
+          <ul class="card-vertical-list" id="userMinutesThisWeek"></ul>
+            
+          <p class="thisWeek">Winner's steps this week</p>
+          <ul class="card-vertical-list" id="bestUserSteps"></ul>
       </section>
       
+
+
+
+
 
 
       <!-- <section class="infoContainer-cardContainer-card-horizontal">
@@ -152,52 +168,10 @@
 
 
           <section class="infoContainer-cardContainer-card-horizontal">
-            <section class="horizontalCard-activity-container">
-              <div class="card-history-activity">
-                <p class="thisWeek">Your steps this week</p>
-                <div class="sidebar-header-line"></div>
-                <ul class="card-vertical-list" id="userStepsThisWeek">
-                  <!-- Activity week list goes here -->
-                </ul>
-              </div>
-              <div class="card-history-activity">
-                <p class="thisWeek">Your stair count this week</p>
-                <div class="sidebar-header-line"></div>
-                <ul class="card-vertical-list" id="userStairsThisWeek">
-                  <!-- Activity week list goes here -->
-                </ul>
-              </div>
-            </section>
-            <section class="horizontalCard-activity-container">
-              <div class="card-history-activity">
-                <p class="thisWeek">Your minutes of activity this week</p>
-                <div class="sidebar-header-line"></div>
-                <ul class="card-vertical-list" id="userMinutesThisWeek">
-                  <!-- Activity week list goes here -->
-                </ul>
-              </div>
-              <div class="card-history-activity">
-                <p class="thisWeek">Winner's steps this week</p>
-                <div class="sidebar-header-line"></div>
-                <ul class="card-vertical-list" id="bestUserSteps">
-                  <!-- Activity week list goes here -->
-                </ul>
-              </div>
-            </section>
-          </section>
+            
         </section>
-        <section class="main-column-sleep">
-          <section class="infoContainer-cardContainer-card-horizontal">
-            <div class="card-today-sleep">
-              <p id="sleepToday"></p>
-            </div>
-            <div class="card-today-sleep">
-              <p id="sleepQualityToday"></p>
-            </div>
-            <div class="card-today-sleep">
-              <p id="avUserSleepQuality"></p>
-            </div>
-          </section>
+        <!-- <section class="main-column-sleep"> -->
+        
           <!-- <section class="infoContainer-cardContainer-card-vertical">
             <div class="card-history-sleep">
               <p class="thisWeek">Hours of sleep this week</p>
@@ -214,7 +188,7 @@
               </ul>
             </div>
           </section> -->
-        </section>
+        <!-- </section> -->
       </section>
       <section class="main-sidebar-body">
         <section class="body-sidebar-sidebarContainer">
@@ -240,10 +214,10 @@
               </ul>
               <div class="sidebar-header-line"></div>
             </section>
-            <p class="thisWeek">You had 3 DAY STEP STREAKS on these days:</p>
+            <!-- <p class="thisWeek">You had 3 DAY STEP STREAKS on these days:</p>
             <ul class="card-vertical-list" id="streakList">
-              <!-- friend list goes here -->
-            </ul>
+              friend list goes here
+            </ul> -->
           </section>
         </section>
       </section>
