@@ -164,26 +164,26 @@ describe('Activity', () => {
     });
 
     it('should return steps for given user on given date', () => {
-      expect(activity.userDataForToday(2, "2019/06/15", userRepo, 'numSteps')).to.eql(4294);
+      expect(activity.calculateDailyData(2, "2019/06/15", 'numSteps')).to.eql(4294);
     });
 
     it('should return minutes active for given user on given date', () => {
-      expect(activity.userDataForToday(3, "2019/06/15", userRepo, 'minutesActive')).to.eql(116);
+      expect(activity.calculateDailyData(3, "2019/06/15", 'minutesActive')).to.eql(116);
     });
 
     it('should return a weeks worth steps for a given user', () => {
       const weeklyData = ['2019/06/17: 9303', '2019/06/16: 5000', '2019/06/15: 3577'];
-      expect(activity.userDataForWeek(1, "2019/06/17", userRepo, 'numSteps')).to.eql(weeklyData);
+      expect(activity.calculateWeeklyData("2019/06/17", 1, userRepo, 'numSteps')).to.eql(weeklyData);
     });
 
     it('should return a weeks worth active minutes for a given user', () => {
       const weeklyData = ['2019/06/17: 45', '2019/06/16: 12', '2019/06/15: 140']
-      expect(activity.userDataForWeek(1, "2019/06/17", userRepo, 'minutesActive')).to.eql(weeklyData);
+      expect(activity.calculateWeeklyData("2019/06/17", 1, userRepo, 'minutesActive')).to.eql(weeklyData);
     });
 
     it('should return a weeks worth stairs for a given user', () => {
       const weeklyData = ['2019/06/17: 9', '2019/06/16: 14', '2019/06/15: 16']
-      expect(activity.userDataForWeek(1, "2019/06/17", userRepo, 'flightsOfStairs')).to.eql(weeklyData);
+      expect(activity.calculateWeeklyData("2019/06/17", 1, userRepo, 'flightsOfStairs')).to.eql(weeklyData);
     });
   });
   describe('Friend Activity', () => {

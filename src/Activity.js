@@ -10,19 +10,19 @@ class Activity extends Calculation {
     return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength) / 5280).toFixed(1));
   }
 
-  getActiveMinutesByDate(id, date) {
-    const userActivityByDate = this.dataSet.find(data => id === data.userID && date === data.date);
-    return userActivityByDate.minutesActive;
-  }
+  // getActiveMinutesByDate(id, date) {
+  //   const userActivityByDate = this.dataSet.find(data => id === data.userID && date === data.date);
+  //   return userActivityByDate.minutesActive;
+  // }
 
   calculateActiveAverageForWeek(id, date, userRepo) {
-    return parseFloat((userRepo.getWeekFromDate(date, id, this.activityData).reduce((acc, elem) => {
+    return parseFloat((userRepo.getWeekFromDate(date, id, this.dataSet).reduce((acc, elem) => {
       return acc += elem.minutesActive;
     }, 0) / 7).toFixed(1));
   }
 
   accomplishStepGoal(id, date, userRepo) {
-    const userStepsByDate = this.activityData.find(data => id === data.userID && date === data.date);
+    const userStepsByDate = this.dataSet.find(data => id === data.userID && date === data.date);
     if (userStepsByDate.numSteps === userRepo.dailyStepGoal) {
       return true;
     }
@@ -30,26 +30,26 @@ class Activity extends Calculation {
   }
 
   getDaysGoalExceeded(id, userRepo) {
-    return this.activityData.filter(data => id === data.userID && data.numSteps > userRepo.dailyStepGoal).map(data => data.date);
+    return this.dataSet.filter(data => id === data.userID && data.numSteps > userRepo.dailyStepGoal).map(data => data.date);
   }
 
   getStairRecord(id) {
-    return this.activityData.filter(data => id === data.userID).reduce((acc, elem) => (elem.flightsOfStairs > acc) ? elem.flightsOfStairs : acc, 0);
+    return this.dataSet.filter(data => id === data.userID).reduce((acc, elem) => (elem.flightsOfStairs > acc) ? elem.flightsOfStairs : acc, 0);
   }
 
   getAllUserAverageForDay(date, userRepo, relevantData) {
-    const selectedDayData = userRepo.chooseDayDataForAllUsers(this.activityData, date);
+    const selectedDayData = userRepo.chooseDayDataForAllUsers(this.dataSet, date);
     return parseFloat((selectedDayData.reduce((acc, elem) => acc += elem[relevantData], 0) / selectedDayData.length).toFixed(1));
   }
 
-  userDataForToday(id, date, userRepo, relevantData) {
-    const userData = userRepo.getDataFromUserID(id, this.activityData);
-    return userData.find(data => data.date === date)[relevantData];
-  }
+  // userDataForToday(id, date, userRepo, relevantData) {
+  //   const userData = userRepo.getDataFromUserID(id, this.activityData);
+  //   return userData.find(data => data.date === date)[relevantData];
+  // }
 
-  userDataForWeek(id, date, userRepo, releventData) {
-    return userRepo.getWeekFromDate(date, id, this.activityData).map((data) => `${data.date}: ${data[releventData]}`);
-  }
+  // userDataForWeek(id, date, userRepo, releventData) {
+  //   return userRepo.getWeekFromDate(date, id, this.activityData).map((data) => `${data.date}: ${data[releventData]}`);
+  // }
 
   // Friends
 
