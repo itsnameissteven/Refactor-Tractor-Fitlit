@@ -2,6 +2,7 @@
   position: relative;
   height: 100%;
   width:100%;
+  padding: 4rem;
   border: $border-grey;
   border-radius: 5px;
 }
@@ -15,4 +16,14 @@
   height: 10rem;
   width: 10rem;
   border: $border-grey;
+}
+
+@mixin flex ($flex-direction: false) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  @if $flex-direction {
+    flex-direction: $flex-direction;
+  } 
 }

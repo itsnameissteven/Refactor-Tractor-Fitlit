@@ -14,9 +14,9 @@
 }
 
 .user-info {
+  @include dataBox;
   position: relative;
   grid-row: 1;
-  @include dataBox;
 
   &__croper {
     @include circle;
@@ -28,11 +28,20 @@
       height:10rem;
     }
   }
+
+  &__name {
+    margin-top: 3rem;
+    text-align: center;
+  }
+
+  &__address {
+    margin-top: 3rem;
+  }
 }
 
 .icon{
  @include circle;
- background-color: $color-black;
+ background-color: $primary-background;
  display: flex;
  justify-content: center;
  align-items: center;
@@ -45,6 +54,7 @@
 
 .walking-stats {
   @include dataBox;
+  @include flex;
   grid-row: 2;
   grid-column: 1;
   // height: 50rem;
@@ -52,8 +62,15 @@
 
 .hydration-stats {
   @include dataBox;
+  @include flex;
   grid-row: 1;
   grid-column: 2/4;
+  
+  &__chart {
+    border: $border-test;
+    height:100%;
+    width: 50%;
+  }
 }
 
 .friends {
@@ -63,8 +80,18 @@
 
 .sleep-stats {
   @include dataBox;
+  @include flex(column);
   grid-row: 2/4;
   grid-column: 2/4;
+
+  &__data {
+    @include flex
+  }
+
+  &__chart {
+    border: $border-test;
+  }
+
 }
 
 .user-activity {
@@ -72,7 +99,21 @@
   grid-column: 1/4;
 }
 
+.step-challenge {
+  @include dataBox;
+  grid-column: 1/4;
+}
 
+
+
+
+
+
+
+
+.hidden {
+  display: none;
+}
 // * {
 //   margin: 0;
 // }
