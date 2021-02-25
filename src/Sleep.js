@@ -38,7 +38,6 @@ class Sleep extends Calculation {
   determineSleptMostonDate(date, userRepo) {
     const timeline = userRepo.chooseDayDataForAllUsers(this.dataSet, date);
     const sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData('hoursSlept', timeline);
-
     return this.getWinnerNamesFromList(sleepRankWithData, userRepo);
   }
 
