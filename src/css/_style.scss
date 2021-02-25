@@ -1,19 +1,54 @@
 
 .header {
+  grid-column: 1/4;
   position: relative;
   height: 9.5rem;
-  border-bottom: $border-test;
+  border-bottom: $border-grey;
 
   &__text {
     position: absolute;
     top:50%;
     left:50%;
-    transform: translate(-50%, -50%);
-    
+    transform: translate(-50%, -50%); 
   }
 }
 
+.user-info {
+  position: relative;
+  grid-row: 1;
+  @include dataBox;
 
+  &__croper {
+    @include circle;
+    overflow: hidden;
+    height: 10rem;
+    width: 10rem;
+    
+    &--pic {
+      height:10rem;
+    }
+  }
+}
+
+.icon{
+ @include circle;
+ background-color: $color-black;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+
+  img {
+    height: 5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+.walking-stats {
+  @include dataBox;
+  position: relative;
+  grid-row: 2;
+
+}
 // * {
 //   margin: 0;
 // }

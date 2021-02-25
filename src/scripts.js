@@ -3,6 +3,7 @@
 import './css/index.scss';
 import './images/person walking on path.jpg';
 import './images/The Rock.jpg';
+ import './images/walk.svg';
 
 import userData from './data/users';
 import hydrationData from './data/hydration';
