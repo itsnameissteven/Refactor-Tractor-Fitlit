@@ -46,11 +46,6 @@ const fetchAPIData = {
 
   // return Promise.all([fetchedUserData, fetchedSleepData, fetchedActivityData, fetchedHydrationData])
   //   .then(data => {
-  //     let allAPIData = {};
-  //     data[0] = allAPIData.fetchedUserData
-  //     data[1] = allAPIData.fetchedSleepData
-  //     data[2] = allAPIData.fetchedActivityData
-  //     data[3] = allAPIData.fetchedHydrationData
   //     console.log(allAPIData);
   //     return allAPIData;
   //   })
