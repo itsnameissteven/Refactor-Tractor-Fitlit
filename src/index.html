@@ -50,12 +50,12 @@
         </div> 
         <p class="walking-stats__stride-length" id="userStridelength"></p>
         <p class="walking-stats__step-goal" id="stepGoalCard"></p>
-        <p class="walking-stats__stride-length" id="avStepGoalCard"></p>
+        <!-- <p class="walking-stats__stride-length" id="avStepGoalCard"></p> -->
       </section>
 
       
       <section class="friends">
-        <h2 class="sidebar-header-userInfo">Friends</h2>
+        <h2 class="friends__header">Friends</h2>
         <ul class="friends__list" id="friendList"></ul>
       </section>
 
@@ -69,7 +69,6 @@
           <p class="sleep-stats__sleep-quality-today" id="sleepQualityToday"></p>
           <p class="sleep-stats__avg-user-sleep" id="avUserSleepQuality"></p>
         </div>
-        
         <div class="sleep-stats__chart">
           <p class="sleep-stats__this-week">Hours of sleep this week</p>
           <ul class="sleep-stats__this-week-list" id="sleepThisWeek"></ul>
@@ -79,26 +78,25 @@
       </section>
 
       <section class="user-activity">
+        <div class="user-activity__data">
           <p class="user-activity__steps-today" id="userStepsToday"></p>
           <p class="user-activity__steps-all-avg" id="avgStepsToday"></p>
           <p class="user-activity__stairs-today" id="userStairsToday"></p>
           <p class="user-activity__stairs-all-avg" id="avgStairsToday"></p>
           <p class="user-activity__minutes-today" id="userMinutesToday"></p>
           <p class="user-activity__minutes-all-avg" id="avgMinutesToday"></p>
+        </div>
+        <div class="user-activity__chart">
           <p class="thisWeek">Your steps this week</p>
           <ul class="card-vertical-list" id="userStepsThisWeek"></ul>
           <p class="thisWeek">Your stair count this week</p>
           <ul class="card-vertical-list" id="userStairsThisWeek"></ul>
           <p class="thisWeek">Your minutes of activity this week</p>
-          <ul class="card-vertical-list" id="userMinutesThisWeek"></ul>
-            
+          <ul class="card-vertical-list" id="userMinutesThisWeek"></ul> 
           <p class="thisWeek">Winner's steps this week</p>
           <ul class="card-vertical-list" id="bestUserSteps"></ul>
+        </div> 
       </section>
-
-
-
-
 
       <section class="step-challenge">
         <h2 class="step-challenge__header" id="sidebarName">FRIENDLY STEP CHALLENGE!</h2>
@@ -113,9 +111,6 @@
             <ul class="card-vertical-list" id="friendChallengeListHistory"></ul>
           </section>
       </section>
-
-
-
     </main>
   </body>
 </html>
