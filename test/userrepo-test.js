@@ -3,10 +3,10 @@ import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
 describe('User Repo', () => {
-  let user1, user2, user3, user4, users, userRepo, hydrationData, 
+  let user1, user2, user3, user4, users, userRepo, hydrationData,
     sleepData, weeklySleepData, weeklyHydrationData;
 
-  beforeEach( () => {
+  beforeEach(() => {
     user1 = new User({
       id: 1,
       name: "Alex Roth",
@@ -156,35 +156,41 @@ describe('User Repo', () => {
     weeklyHydrationData = userRepo.chooseWeekDataForAllUsers(hydrationData, "2019/06/15");
   });
 
-  it('should be a function', () => {
-    expect(UserRepo).to.be.a('function');
+  describe('Properties', () => {
+    it('should be a function', () => {
+      expect(UserRepo).to.be.a('function');
+    });
+
+    it('should be an instance of UserRepo', () => {
+      expect(userRepo).to.be.an.instanceof(UserRepo);
+    });
+
+    it('takes an array of user data', () => {
+      expect(userRepo.users).to.equal(users);
+      expect(userRepo.users).to.be.a('array');
+    });
+
+    it('should have a parameter to take in user data', () => {
+      expect(userRepo.users[0].id).to.deep.equal(1);
+      expect(userRepo.users[0].name).to.deep.equal("Alex Roth");
+      expect(userRepo.users[0].address).to.deep.equal("1234 Turing Street, Denver CO 80301-1697");
+      expect(userRepo.users[0].email).to.deep.equal("alex.roth1@hotmail.com");
+      expect(userRepo.users[0].strideLength).to.deep.equal(4.3);
+      expect(userRepo.users[0].dailyStepGoal).to.deep.equal(10000);
+      expect(userRepo.users[0].friends).to.deep.equal([2, 3, 4]);
+    });
   });
 
-  it('takes an array of user data', () => {
-    expect(userRepo.users).to.equal(users);
-    expect(userRepo.users).to.be.a('array');
-  });
+  describe('Methods', () => {
+    it('should return user data when given user ID', () => {
+      expect(userRepo.getUserFromID(1)).to.eql(user1);
+    });
 
-  it('should have a parameter to take in user data', () => {
-    expect(userRepo.users[0].id).to.deep.equal(1);
-    expect(userRepo.users[0].name).to.deep.equal("Alex Roth");
-    expect(userRepo.users[0].address).to.deep.equal("1234 Turing Street, Denver CO 80301-1697");
-    expect(userRepo.users[0].email).to.deep.equal("alex.roth1@hotmail.com");
-    expect(userRepo.users[0].strideLength).to.deep.equal(4.3);
-    expect(userRepo.users[0].dailyStepGoal).to.deep.equal(10000);
-    expect(userRepo.users[0].friends).to.deep.equal([2, 3, 4]);
-  });
+    it('should return the average of all users step goals', () => {
+      userRepo.calculateAverageStepGoal();
+      expect(userRepo.calculateAverageStepGoal()).to.eql(21500);
+    });
 
-  it('should return user data when given user ID', () => {
-    expect(userRepo.getUserFromID(1)).to.eql(user1);
-  });
-
-  it('should return the average of all users step goals', () => {
-    userRepo.calculateAverageStepGoal();
-    expect(userRepo.calculateAverageStepGoal()).to.eql(21500);
-  });
-
-  describe('UserRepo methods', () => {
     it('should get a users data from its userID in any data set', () => {
       let hydrationStats = hydrationData.filter(data => data['userID'] === 1);
       let sleepStats = sleepData.filter(data => data['userID'] === 2);
@@ -222,14 +228,14 @@ describe('User Repo', () => {
     });
 
     it('should isolate a user ID and its values of any relevant data', () => {
-      expect(userRepo.isolateUsernameAndRelevantData( 'sleepQuality', weeklySleepData)).to.eql({
+      expect(userRepo.isolateUsernameAndRelevantData('sleepQuality', weeklySleepData)).to.eql({
         '1': [2.2],
         '2': [4.7],
         '3': [3]
       });
-      expect(userRepo.isolateUsernameAndRelevantData( 'numOunces', weeklyHydrationData)).to.eql({
-        '1': [ 37 ],
-        '2': [ 38 ] 
+      expect(userRepo.isolateUsernameAndRelevantData('numOunces', weeklyHydrationData)).to.eql({
+        '1': [37],
+        '2': [38]
       });
     });
 
