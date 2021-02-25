@@ -45,10 +45,34 @@
 
 .walking-stats {
   @include dataBox;
-  position: relative;
   grid-row: 2;
-
+  grid-column: 1;
+  // height: 50rem;
 }
+
+.hydration-stats {
+  @include dataBox;
+  grid-row: 1;
+  grid-column: 2/4;
+}
+
+.friends {
+  @include dataBox;
+  grid-row: 3;
+}
+
+.sleep-stats {
+  @include dataBox;
+  grid-row: 2/4;
+  grid-column: 2/4;
+}
+
+.user-activity {
+  @include dataBox;
+  grid-column: 1/4;
+}
+
+
 // * {
 //   margin: 0;
 // }

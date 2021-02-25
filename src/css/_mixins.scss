@@ -1,7 +1,8 @@
 @mixin dataBox {
-  width:80%;
+  position: relative;
+  height: 100%;
+  width:100%;
   border: $border-grey;
-  height: 80%;
   border-radius: 5px;
 }
 
