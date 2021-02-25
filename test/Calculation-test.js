@@ -5,7 +5,7 @@ import Sleep from '../src/Sleep';
 import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
-describe.only('Calculation', () => {
+describe('Calculation', () => {
   let sleepData, sleep, calculation, user1, user2, users, userRepo;
 
 
@@ -112,29 +112,31 @@ describe.only('Calculation', () => {
     userRepo = new UserRepo(users);
   });
 
-  it('should be a function', () => {
-    expect(Calculation).to.be.a('function');
+  describe('Properties', () => {
+    it('should be a function', () => {
+      expect(Calculation).to.be.a('function');
+    });
+
+    it('should be an instance of Calculation', () => {
+      expect(calculation).to.be.an.instanceof(Calculation);
+    });
+
+    it('should be able to take in an argument of data', () => {
+      expect(calculation.dataSet).to.deep.equal(sleepData);
+    });
   });
 
-  it('should be an instance of Calculation', () => {
-    expect(calculation).to.be.an.instanceof(Calculation);
+  describe('Methods', () => {
+    it('should be able to calculate an average per day', () => {
+      expect(calculation.calculateAverage(3, 'hoursSlept')).to.equal(3);
+    });
+
+    it('should be able to find information for a user on a specified date', () => {
+      expect(calculation.calculateDailyData(1, '2019/05/30', 'hoursSlept')).to.equal(8.9);
+    });
+
+    it('should find information for a user by day for that days week', () => {
+      expect(calculation.calculateWeeklyData('2017/06/15', 1, userRepo, 'hoursSlept')[0]).to.equal('2017/06/15: 6.1');
+    });
   });
-
-  it('should be able to take in an argument of data', () => {
-    expect(calculation.dataSet).to.deep.equal(sleepData);
-  });
-
-  it('should be able to calculate an average per day', () => {
-    expect(calculation.calculateAverage(3, 'hoursSlept')).to.equal(3);
-  });
-
-  it('should be able to find information for a user on a specified date', () => {
-    expect(calculation.calculateDailyData(1, '2019/05/30', 'hoursSlept')).to.equal(8.9);
-  });
-
-  it('should find information for a user by day for that days week', () => {
-    expect(calculation.calculateWeeklyData('2017/06/15', 1, userRepo, 'hoursSlept')[0]).to.equal('2017/06/15: 6.1');
-  });
-
-
-})
+});

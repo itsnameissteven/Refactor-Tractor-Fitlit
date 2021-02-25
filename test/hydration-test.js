@@ -74,34 +74,38 @@ describe('Hydration', () => {
     hydration = new Hydration(hydrationData);
   });
 
-  it('should be a function', () => {
-    expect(Hydration).to.be.a('function');
+  describe('Properties', () => {
+    it('should be a function', () => {
+      expect(Hydration).to.be.a('function');
+    });
+
+    it('should be an instance of Hydration', () => {
+      expect(hydration).to.be.an.instanceof(Hydration);
+    });
+
+    it('should take in a list of data', () => {
+      expect(hydration.dataSet[0].userID).to.equal(1);
+      expect(hydration.dataSet[2].numOunces).to.equal(30);
+      expect(hydration.dataSet[4].date).to.equal("2018/10/23");
+    });
   });
 
-  it('should be an instance of Hydration', () => {
-    expect(hydration).to.be.an.instanceof(Hydration);
-  });
+  describe('Methods', () => {
+    it('should find the average water intake per day for a user', () => {
+      expect(hydration.calculateAverage(1, 'numOunces')).to.equal(35);
+    });
 
-  it('should take in a list of data', () => {
-    expect(hydration.dataSet[0].userID).to.equal(1);
-    expect(hydration.dataSet[2].numOunces).to.equal(30);
-    expect(hydration.dataSet[4].date).to.equal("2018/10/23");
-  });
+    it('should find the water intake for a user on a specified date', () => {
+      expect(hydration.calculateDailyData(1, "2019/06/15", 'numOunces')).to.equal(37);
+      expect(hydration.calculateDailyData(2, "2018/10/24", 'numOunces')).to.equal(40);
+    });
 
-  it('should find the average water intake per day for a user', () => {
-    expect(hydration.calculateAverage(1, 'numOunces')).to.equal(35);
-  });
+    it('should find water intake by day for first week', () => {
+      expect(hydration.calculateFirstWeekOunces(userRepo, 1)).to.eql(['2019/06/15: 37', '2018/06/16: 39', '2016/08/22: 30']);
+    });
 
-  it('should find the water intake for a user on a specified date', () => {
-    expect(hydration.calculateDailyData(1, "2019/06/15", 'numOunces')).to.equal(37);
-    expect(hydration.calculateDailyData(2, "2018/10/24", 'numOunces')).to.equal(40);
-  });
-
-  it('should find water intake by day for first week', () => {
-    expect(hydration.calculateFirstWeekOunces(userRepo, 1)).to.eql(['2019/06/15: 37', '2018/06/16: 39', '2016/08/22: 30']);
-  });
-
-  it('should find water intake by day for that days week', () => {
-    expect(hydration.calculateWeeklyData('2018/10/24', 2, userRepo, 'numOunces')).to.eql(['2018/10/24: 40', '2018/10/23: 34'])
+    it('should find water intake by day for that days week', () => {
+      expect(hydration.calculateWeeklyData('2018/10/24', 2, userRepo, 'numOunces')).to.eql(['2018/10/24: 40', '2018/10/23: 34'])
+    });
   });
 });

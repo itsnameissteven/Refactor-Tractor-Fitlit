@@ -4,7 +4,7 @@ import Sleep from '../src/Sleep';
 import UserRepo from '../src/User-repo';
 import User from '../src/User';
 
-describe.only('Sleep', () => {
+describe('Sleep', () => {
   let sleepData, sleep, user1, user2, user3, user4, user5, users, userRepo;
 
 
