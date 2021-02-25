@@ -10,11 +10,6 @@ class Activity extends Calculation {
     return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength) / 5280).toFixed(1));
   }
 
-  // getActiveMinutesByDate(id, date) {
-  //   const userActivityByDate = this.dataSet.find(data => id === data.userID && date === data.date);
-  //   return userActivityByDate.minutesActive;
-  // }
-
   calculateActiveAverageForWeek(id, date, userRepo) {
     return parseFloat((userRepo.getWeekFromDate(date, id, this.dataSet).reduce((acc, elem) => {
       return acc += elem.minutesActive;
@@ -42,19 +37,10 @@ class Activity extends Calculation {
     return parseFloat((selectedDayData.reduce((acc, elem) => acc += elem[relevantData], 0) / selectedDayData.length).toFixed(1));
   }
 
-  // userDataForToday(id, date, userRepo, relevantData) {
-  //   const userData = userRepo.getDataFromUserID(id, this.activityData);
-  //   return userData.find(data => data.date === date)[relevantData];
-  // }
-
-  // userDataForWeek(id, date, userRepo, releventData) {
-  //   return userRepo.getWeekFromDate(date, id, this.activityData).map((data) => `${data.date}: ${data[releventData]}`);
-  // }
-
   // Friends
 
   getFriendsActivity(user, userRepo) {
-    const data = this.activityData;
+    const data = this.dataSet;
     const userDatalist = user.friends.map(function (friend) {
       return userRepo.getDataFromUserID(friend, data)
     });
@@ -79,13 +65,13 @@ class Activity extends Calculation {
     })
   }
 
-  showcaseWinner(user, date, userRepo) {
-    return this.showChallengeListAndWinner(user, date, userRepo)[0];
-  }
+  // Is this function being used?
+  // showcaseWinner(user, date, userRepo) {
+  //   return this.showChallengeListAndWinner(user, date, userRepo)[0];
+  // }
 
   getStreak(userRepo, id, relevantData) {
-    const data = this.activityData;
-    const sortedUserArray = (userRepo.makeSortedUserArray(id, data)).reverse();
+    const sortedUserArray = (userRepo.makeSortedUserArray(id, this.dataSet)).reverse();
     const streaks = sortedUserArray.reduce((acc, userData, index, arr) => {
       if (index >= 2 &&
         userData[relevantData] > arr[index - 1][relevantData] &&

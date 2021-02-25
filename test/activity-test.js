@@ -122,7 +122,7 @@ describe('Activity', () => {
     });
   });
 
-  describe.only('Methods', () => {
+  describe('Methods', () => {
     it('should return the miles a given user has walked on a given date', () => {
       const milesWalked = activity.getMilesFromStepsByDate(1, "2019/06/15", userRepo.users[0]);
       expect(milesWalked).to.eql(2.9);
