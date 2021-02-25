@@ -4,10 +4,10 @@ import './css/style.scss';
 import './images/person walking on path.jpg';
 import './images/The Rock.jpg';
 
-import userData from './data/users';
-import hydrationData from './data/hydration';
-import sleepData from './data/sleep';
-import activityData from './data/activity';
+// import userData from './data/users';
+// import hydrationData from './data/hydration';
+// import sleepData from './data/sleep';
+// import activityData from './data/activity';
 
 import User from './User';
 import Activity from './Activity';
@@ -54,9 +54,9 @@ function startApp() {
   let userList = [];
   makeUsers(userList);
   let userRepo = new UserRepo(userList);
-  let hydrationRepo = new Hydration(hydrationData);
-  let sleepRepo = new Sleep(sleepData);
-  let activityRepo = new Activity(activityData);
+  // let hydrationRepo = new Hydration(hydrationData);
+  // let sleepRepo = new Sleep(sleepData);
+  // let activityRepo = new Activity(activityData);
   var userNowId = pickUser();
   let userNow = getUserById(userNowId, userRepo);
   let today = makeToday(userRepo, userNowId, hydrationData);
@@ -70,32 +70,19 @@ function startApp() {
   addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
 }
 
-fetchAPIData()
-importedData.forEach(data => {
+const fetchedUserData = fetchAPIData.fetchUserData();
+const fetchedSleepData = fetchAPIData.fetchSleepData();
+const fetchedActivityData = fetchAPIData.fetchActivityData();
+const fetchedHydrationData = fetchAPIData.fetchHydrationData();
 
-})
+Promise.all([fetchedUserData, fetchedSleepData, fetchedActivityData, fetchedHydrationData])
+  .then(data => {
+    makeUsers(data[0])
 
-// function showHydrationAPIData() {
-//   const hydrationData = new Hydration(dataFromAPI)
-// }
-
-
-// ______________
-
-// const addAnimalsToPage = animals => {
-//   animals.forEach(animal => {
-//     addAnimalToPage(animal);
-//   });
-// }
-
-// const addAnimalToPage = animal => {
-//   const animalsSection = document.querySelector('.js-collection');
-//   animalsSection.innerHTML += `<p>${animal.name}</p>`;
-// }
-
-// ______________
-
-
+    let sleepRepo(data[1])
+    let activityRepo(data[2])
+    let hydrationRepo(data[3])
+  })
 
 function makeUsers(array) {
   userData.forEach(function (dataItem) {
