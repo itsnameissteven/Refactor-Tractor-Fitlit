@@ -1,6 +1,6 @@
-import './css/base.scss';
-import './css/style.scss';
-
+// import './css/base.scss';
+// import './css/style.scss';
+import './css/index.scss';
 import './images/person walking on path.jpg';
 import './images/The Rock.jpg';
 
