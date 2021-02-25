@@ -322,14 +322,15 @@ describe.only('Sleep', function () {
     expect(sleep.calculateAllUserSleepQuality()).to.eql(3);
   })
 
-  it('should determine the best quality sleepers for a week', function () {
+  it('should find all users who\'s sleep quaility is greater than 3 for a given week', function () {
+    expect(sleep.determineSleepQualityOver3("2019/06/21", userRepo)).to.eql(["Allie McCarthy", "Bugs Bunny"]);
+  });
 
-    expect(sleep.determineBestSleepers("2019/06/21", userRepo)).to.eql(["Allie McCarthy", "Bugs Bunny"]);
-  })
   it('should return person with best quality sleep for the week', function () {
 
     expect(sleep.determineSleepWinnerForWeek("2019/06/21", userRepo)).to.eql(["Bugs Bunny"]);
-  })
+  });
+
   it('should return all qualifying users if best quality sleep is a tie', function () {
     sleepData = sleepData.push({
       "userID": 6,
