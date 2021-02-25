@@ -4,36 +4,48 @@
 const fetchedUserData = () => {
   fetch("http://localhost:3001/api/v1/users")
     .then(response => response.json())
-    .then(userData => console.log(userData))
+    .then(userData => {
+      console.log(userData)
+      return userData
+    })
     .catch(err => console.log(err))
 }
 
 const fetchedSleepData = () => {
   fetch("http://localhost:3001/api/v1/sleep")
     .then(response => response.json())
-    .then(sleepData => console.log(sleepData))
+    .then(sleepData => {
+      console.log(sleepData)
+      return sleepData
+    })
     .catch(err => console.log(err))
 }
 
 const fetchedActivityData = () => {
   fetch("http://localhost:3001/api/v1/activity")
     .then(response => response.json())
-    .then(activityData => console.log(activityData))
+    .then(activityData => {
+      console.log(activityData)
+      return activityData
+    })
     .catch(err => console.log(err))
 }
 
 const fetchedHydrationData = () => {
   fetch("http://localhost:3001/api/v1/hydration")
     .then(response => response.json())
-    .then(hydrationData => console.log(hydrationData))
+    .then(hydrationData => {
+      console.log(hydrationData)
+      return hydrationData
+    })
     .catch(err => console.log(err))
 }
 
-const fetchAllData = () => {
-  fetchedUserData()
-  fetchedSleepData()
-  fetchedActivityData()
-  fetchedHydrationData()
+const fetchAPIData = () => {
+  fetchedUserData();
+  fetchedSleepData();
+  fetchedActivityData();
+  fetchedHydrationData();
 }
 
 // ADD NEW DATA
@@ -83,4 +95,4 @@ const addNewHydrationData = (newData) => {
 //     .catch(err => console.log(err))
 // }
 
-export default fetchAllData;
+export default fetchAPIData;

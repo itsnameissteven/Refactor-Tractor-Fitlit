@@ -14,7 +14,7 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
-// import fetchAllData from './API';
+import fetchAPIData from './API';
 
 var sidebarName = document.getElementById('sidebarName');
 var stepGoalCard = document.getElementById('stepGoalCard');
@@ -50,7 +50,7 @@ var streakList = document.getElementById('streakList');
 var streakListMinutes = document.getElementById('streakListMinutes')
 
 function startApp() {
-  // fetchAllData();
+  fetchAPIData();
   let userList = [];
   makeUsers(userList);
   let userRepo = new UserRepo(userList);
@@ -70,6 +70,33 @@ function startApp() {
   addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
 }
 
+fetchAPIData()
+importedData.forEach(data => {
+
+})
+
+// function showHydrationAPIData() {
+//   const hydrationData = new Hydration(dataFromAPI)
+// }
+
+
+// ______________
+
+// const addAnimalsToPage = animals => {
+//   animals.forEach(animal => {
+//     addAnimalToPage(animal);
+//   });
+// }
+
+// const addAnimalToPage = animal => {
+//   const animalsSection = document.querySelector('.js-collection');
+//   animalsSection.innerHTML += `<p>${animal.name}</p>`;
+// }
+
+// ______________
+
+
+
 function makeUsers(array) {
   userData.forEach(function (dataItem) {
     let user = new User(dataItem);
@@ -83,7 +110,7 @@ function pickUser() {
 
 function getUserById(id, listRepo) {
   return listRepo.getUserFromID(id);
-};
+}
 
 
 function addInfoToSidebar(user, userStorage) {
@@ -95,7 +122,7 @@ function addInfoToSidebar(user, userStorage) {
   userEmail.innerText = user.email;
   userStridelength.innerText = `Your stridelength is ${user.strideLength} meters.`;
   friendList.insertAdjacentHTML('afterBegin', makeFriendHTML(user, userStorage))
-};
+}
 
 function makeFriendHTML(user, userStorage) {
   return user.getFriendsNames(userStorage).map(friendName => `<li class='historical-list-listItem'>${friendName}</li>`).join('');
@@ -115,6 +142,10 @@ function makeRandomDate(userStorage, id, dataSet) {
   return sortedArray[Math.floor(Math.random() * sortedArray.length + 1)].date
 
 }
+
+// function showHydrationInformation(location, activity, method) {
+//   location.insertAdjacentHTML('afterBegin', `<p>${activity}</p><p><span class="number">${method}</span></p><p>oz water today.</p>`);
+// }
 
 function addHydrationInfo(id, hydrationInfo, dateString, userStorage, laterDateString) {
   hydrationToday.insertAdjacentHTML('afterBegin', `<p>You drank</p><p><span class="number">${hydrationInfo.calculateDailyOunces(id, dateString)}</span></p><p>oz water today.</p>`);
