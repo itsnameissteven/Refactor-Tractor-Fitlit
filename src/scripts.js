@@ -1,21 +1,13 @@
 import './css/base.scss';
 import './css/style.scss';
-
 import './images/person walking on path.jpg';
 import './images/The Rock.jpg';
-
-// import userData from './data/users';
-// import hydrationData from './data/hydration';
-// import sleepData from './data/sleep';
-// import activityData from './data/activity';
-
 import User from './User';
 import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
 import fetchAPIData from './API';
-
 var sidebarName = document.getElementById('sidebarName');
 var stepGoalCard = document.getElementById('stepGoalCard');
 var headerText = document.getElementById('headerText');
@@ -48,43 +40,40 @@ var userMinutesThisWeek = document.getElementById('userMinutesThisWeek');
 var bestUserSteps = document.getElementById('bestUserSteps');
 var streakList = document.getElementById('streakList');
 var streakListMinutes = document.getElementById('streakListMinutes')
+let dataSet = []
 
-const fetchedUserData = fetchAPIData.fetchUserData();
-const fetchedSleepData = fetchAPIData.fetchSleepData();
-const fetchedActivityData = fetchAPIData.fetchActivityData();
-const fetchedHydrationData = fetchAPIData.fetchHydrationData();
+fetchAPIData.fetchLifeData()
+  .then(data => handleLifeData(data[0], data[1], data[2]))
 
+function handleLifeData(sleepData, activityData, hydrationData) {
+  const hydration = new Hydration(hydrationData);
+  console.log(hydration);
+  const sleep = new Sleep(sleepData);
+  const activity = new Activity(activityData);
+  startApp(sleep, activity, hydration)
+}
 
-Promise.all([fetchedUserData, fetchedSleepData, fetchedActivityData, fetchedHydrationData])
-  .then(data => {
-    let theRock = newUser(data.userData.userData)
-    console.log('promise data', theRock)
-  })
+function startApp(sleepRepo, activityRepo, hydrationRepo) {
+  console.log(hydrationRepo.hydrationData);
+  let userList = [];
+  fetchAPIData.fetchUserData()
+    .then(data => {
+      data.forEach(dataItem => {
+        let user = new User(dataItem);
+        userList.push(user);
+      })
+    })
 
-
-// console.log('fetchedUser', fetchedUserData)
-// let userList = [];
-// let allUsers = data[0]
-// console.log('users', allUsers)
-// makeUsers(data[0])
-// let sleepRepo = new Sleep(data[1])
-// let activityRepo = new Activity(data[2])
-// let hydrationRepo = new Hydration(data[3])
-// let userRepo = new UserRepo(userList);
-// })
-
-function startApp() {
-  // fetchAPIData();
-  // let userList = [];
+  console.log(userList);
   // makeUsers(userList);
-  // let userRepo = new UserRepo(userList);
+  const userRepo = new UserRepo(userList);
   // let hydrationRepo = new Hydration(hydrationData);
   // let sleepRepo = new Sleep(sleepData);
   // let activityRepo = new Activity(activityData);
   var userNowId = pickUser();
   let userNow = getUserById(userNowId, userRepo);
-  let today = makeToday(userRepo, userNowId, hydrationData);
-  let randomHistory = makeRandomDate(userRepo, userNowId, hydrationData);
+  let today = makeToday(userRepo, userNowId, hydrationRepo.hydrationData);
+  let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.hydrationData);
   historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
   addInfoToSidebar(userNow, userRepo);
   addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
@@ -92,13 +81,6 @@ function startApp() {
   let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
   addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
   addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
-}
-
-function makeUsers(array) {
-  userData.forEach(function (dataItem) {
-    let user = new User(dataItem);
-    array.push(user);
-  })
 }
 
 function pickUser() {
@@ -109,8 +91,8 @@ function getUserById(id, listRepo) {
   return listRepo.getUserFromID(id);
 }
 
-
 function addInfoToSidebar(user, userStorage) {
+  console.log(user);
   sidebarName.innerText = user.name;
   headerText.innerText = `${user.getFirstName()}'s Activity Tracker`;
   stepGoalCard.innerText = `Your daily step goal is ${user.dailyStepGoal}.`
@@ -137,7 +119,6 @@ function makeToday(userStorage, id, dataSet) {
 function makeRandomDate(userStorage, id, dataSet) {
   var sortedArray = userStorage.makeSortedUserArray(id, dataSet);
   return sortedArray[Math.floor(Math.random() * sortedArray.length + 1)].date
-
 }
 
 // function showHydrationInformation(location, activity, method) {
@@ -211,5 +192,3 @@ function makeFriendChallengeHTML(id, activityInfo, userStorage, method) {
 function makeStepStreakHTML(id, activityInfo, userStorage, method) {
   return method.map(streakData => `<li class="historical-list-listItem">${streakData}!</li>`).join('');
 }
-
-startApp();
