@@ -13,6 +13,19 @@ const fetchAPIData = {
     return userSet
   },
 
+  // fetchUserData() {
+  //   let userSet;
+  //   let userData = fetch("http://localhost:3001/api/v1/users")
+  //     .then(response => response.json())
+  //     .then(data => data.userData)
+  //     .catch(err => console.log(err))
+  //   userSet = Promise.resolve(userData).then(data => {
+  //     // console.log(userSet);
+  //     return data;
+  //   })
+  //   return userSet
+  // },
+
   fetchLifeData() {
     let dataSet;
     let sleepData = fetch("http://localhost:3001/api/v1/sleep")

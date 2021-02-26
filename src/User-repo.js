@@ -8,7 +8,7 @@ class UserRepo {
   };
 
   getDataFromUserID(id, dataSet) {
-    return dataSet.filter((userData) => id === userData.userID);
+    return dataSet.filter((dataSet) => id === dataSet.userID);
   };
 
   calculateAverageStepGoal() {

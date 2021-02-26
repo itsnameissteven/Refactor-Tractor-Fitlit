@@ -59,49 +59,65 @@ fetchAPIData.fetchLifeData()
 
 function handleLifeData(sleepData, activityData, hydrationData) {
   const hydration = new Hydration(hydrationData);
-  console.log(hydration);
+  // console.log(hydration);
   const sleep = new Sleep(sleepData);
   const activity = new Activity(activityData);
   startApp(sleep, activity, hydration)
 }
 
 function startApp(sleepRepo, activityRepo, hydrationRepo) {
-  console.log(hydrationRepo.hydrationData);
+  // console.log(hydrationRepo.hydrationData);
   let userList = [];
+  let userRepo;
+
   fetchAPIData.fetchUserData()
     .then(data => {
-      console.log('user data', data)
       data.forEach(dataItem => {
         let user = new User(dataItem);
-        userList.push(user);
-        console.log('userList', userList)
+        // console.log('I am a user', user)
+        userList.push(dataItem);
+        // userList.length = 50;
+        // console.log('userlist at 0', userList[0])
+        return userList
       })
-    })
+      // console.log('userList length just inside', userList.length)
+      userRepo = new UserRepo(userList)
+      // console.log('this is the full user repo', userRepo)
+      var userNowId = pickUser();
+      let userNow = getUserById(userRepo, userNowId);
+      // console.log('userNow', userNow)
+      console.log('hydration repo', hydrationRepo.dataSet)
+      let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
 
-  console.log(userList);
+      let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
+      historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
+      addInfoToSidebar(userNow, userRepo);
+      addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
+      addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
+      let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
+      addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
+      addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
+    })
+  // console.log('userList length after', userList.length)
+
+  // return userList
+
   // makeUsers(userList);
-  const userRepo = new UserRepo(userList);
+
+  // console.log('userRepo', userRepo[id])
   // let hydrationRepo = new Hydration(hydrationData);
   // let sleepRepo = new Sleep(sleepData);
   // let activityRepo = new Activity(activityData);
-  var userNowId = pickUser();
-  let userNow = getUserById(userNowId, userRepo);
-  let today = makeToday(userRepo, userNowId, hydrationRepo.hydrationData);
-  let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.hydrationData);
-  historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
-  addInfoToSidebar(userNow, userRepo);
-  addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
-  addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
-  let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
-  addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
-  addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
+
+
 }
 
 function pickUser() {
   return Math.floor(Math.random() * 50);
 }
 
-function getUserById(id, listRepo) {
+function getUserById(listRepo, id) {
+  // function getUserById(id, listRepo) {
   return listRepo.getUserFromID(id);
 }
 
@@ -206,3 +222,11 @@ function makeFriendChallengeHTML(id, activityInfo, userStorage, method) {
 function makeStepStreakHTML(id, activityInfo, userStorage, method) {
   return method.map(streakData => `<li class="historical-list-listItem">${streakData}!</li>`).join('');
 }
+
+// function handleLifeData(sleepData, activityData, hydrationData) {
+//   const hydration = new Hydration(hydrationData);
+//   // console.log(hydration);
+//   const sleep = new Sleep(sleepData);
+//   const activity = new Activity(activityData);
+//   startApp(sleep, activity, hydration)
+// }
