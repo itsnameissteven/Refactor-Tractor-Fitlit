@@ -66,7 +66,7 @@ class UserRepo {
     const sortedObjectKeys = this.isolateUsernameAndRelevantData(relevantData, listFromMethod)
     return Object.keys(sortedObjectKeys).sort((b, a) => {
       const calculateAverage = (value) => {
-        return sortedObjectKeys[value].reduce((sum, dataValue) => sum += dataValue, 0) 
+        return sortedObjectKeys[value].reduce((sum, dataValue) => sum += dataValue, 0)
           / sortedObjectKeys[value].length;
       };
       return calculateAverage(a) - calculateAverage(b);
@@ -78,10 +78,10 @@ class UserRepo {
     const rankedUsersAndAverages = this.rankUserIDsbyRelevantDataValue(relevantData, listFromMethod)
     return rankedUsersAndAverages.map((rankedUser) => {
       rankedUser = {
-        [rankedUser]: sortedObjectKeys[rankedUser].reduce( (sumSoFar, sleepQualityValue) => {
-            sumSoFar += sleepQualityValue
-            return sumSoFar;
-          }, 0) / sortedObjectKeys[rankedUser].length
+        [rankedUser]: sortedObjectKeys[rankedUser].reduce((sumSoFar, sleepQualityValue) => {
+          sumSoFar += sleepQualityValue
+          return sumSoFar;
+        }, 0) / sortedObjectKeys[rankedUser].length
       };
       return rankedUser;
     });
