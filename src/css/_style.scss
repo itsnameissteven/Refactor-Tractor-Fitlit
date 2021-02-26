@@ -97,11 +97,12 @@
   &__data {
     @include flex;
     height:30%;
+    width:100%
   }
 
   &__chart {
-    // border: $border-test;
     height:70%;
+    width:100%
   }
 
 }

@@ -8,13 +8,13 @@ const chart = {
       type: 'line',
         data: {
             labels: dataSet.map(data => {
-              let dataArray = data[0].split("/")
+              let dataArray = data.date.split("/")
               dataArray.push(dataArray.shift())
               return dataArray.join("/")
-            }),
+            }).reverse(),
             datasets: [{
                 label: label,
-                data: dataSet.map(data => data[1]),
+                data: dataSet.map(data => data.data).reverse(),
                 borderColor: [
                     'rgba(255, 99, 132, 1)',
                 ],
@@ -33,6 +33,9 @@ const chart = {
         }
     });
   },
+
+
+
 }
 
 export default chart;

@@ -129,7 +129,7 @@ function getUserById(listRepo, id) {
 }
 
 function addInfoToSidebar(user, userStorage) {
-  console.log(user);
+  // console.log(user);
   sidebarName.innerText = user.name;
   headerText.innerText = `${user.getFirstName()}'s Activity Tracker`;
   stepGoalCard.innerText = `Your daily step goal is ${user.dailyStepGoal}.`
@@ -207,7 +207,7 @@ function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateStr
 }
 
 function makeStepsHTML(id, activityInfo, userStorage, method) {
-  console.log(method)
+  // console.log(method)
   return method.map(activityData => `<li class="historical-list-listItem">On ${activityData} steps</li>`).join('');
 }
 
