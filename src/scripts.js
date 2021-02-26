@@ -58,37 +58,6 @@ let hydroChart = document.getElementById("hydroChart")
 let sleepChart = document.getElementById("sleepChart")
 
 
-// function makeChart(dataSet) {
-//   let myChart = new Chart(hydroChart, {
-//   type: 'line',
-//     data: {
-//         labels: dataSet.map(data => {
-//           let dataArray = data[0].split("/")
-//           dataArray.push(dataArray.shift())
-//           return dataArray.join("/")
-//         }),
-//         datasets: [{
-//             label: 'Number of ounces',
-//             data: dataSet.map(data => data[1]),
-//             borderColor: [
-//                 'rgba(255, 99, 132, 1)',
-//             ],
-//             borderWidth: 2
-//         }]
-//     },
-//     options: {
-//         scales: {
-//             yAxes: [{
-//                 ticks: {
-//                     beginAtZero: false
-//                 }
-//             }]
-//         }
-//     }
-// });
-// };
-
-
 
 let dataSet = []
 
