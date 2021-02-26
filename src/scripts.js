@@ -73,11 +73,14 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
   fetchAPIData.fetchUserData()
     .then(data => {
       data.forEach(dataItem => {
+
         let user = new User(dataItem);
         // console.log('I am a user', user)
-        userList.push(dataItem);
+        // userList.push(dataItem);
+        userList.push(user);
+
         // userList.length = 50;
-        // console.log('userlist at 0', userList[0])
+        console.log('userlist at 0', userList[0])
         return userList
       })
       // console.log('userList length just inside', userList.length)
@@ -143,6 +146,7 @@ function makeWinnerID(activityInfo, user, dateString, userStorage) {
 
 function makeToday(userStorage, id, dataSet) {
   var sortedArray = userStorage.makeSortedUserArray(id, dataSet);
+  console.log('sorted array', sortedArray[0].date)
   return sortedArray[0].date;
 }
 
