@@ -1,0 +1,7 @@
+.main {
+  padding: 8rem 2rem;
+  display: grid;
+  grid-template-columns:  repeat(3, 1fr);
+  grid-template-rows: repeat( auto-fill, 30rem);
+  grid-gap:4rem;
+}
