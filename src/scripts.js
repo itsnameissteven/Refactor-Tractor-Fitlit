@@ -87,7 +87,6 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
         userList.push(user);
 
         // userList.length = 50;
-        console.log('userlist at 0', userList[0])
         return userList
       })
       // console.log('userList length just inside', userList.length)
@@ -95,8 +94,6 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
       // console.log('this is the full user repo', userRepo)
       var userNowId = pickUser();
       let userNow = getUserById(userRepo, userNowId);
-      // console.log('userNow', userNow)
-      console.log('hydration repo', hydrationRepo.dataSet)
       let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
 
       let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
@@ -106,7 +103,7 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
       addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
       let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
       addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
-      addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
+      // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
     })
   // console.log('userList length after', userList.length)
 
@@ -197,17 +194,16 @@ function makeSleepQualityHTML(id, sleepInfo, userStorage, method) {
 }
 
 function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {
-  userStairsToday.insertAdjacentHTML("afterBegin", `<p>Stair Count:</p><p>You</><p><span class="number">${activityInfo.calculateDailyData(id, dateString,'flightsOfStairs')}</span></p>`)
+  userStairsToday.insertAdjacentHTML("afterBegin", `<p>Stair Count:</p><p>You</><p><span class="number">${activityInfo.calculateDailyData(id, dateString, 'flightsOfStairs')}</span></p>`)
   avgStairsToday.insertAdjacentHTML("afterBegin", `<p>Stair Count: </p><p>All Users</p><p><span class="number">${activityInfo.getAllUserAverageForDay(dateString, userStorage, 'flightsOfStairs')}</span></p>`)
   userStepsToday.insertAdjacentHTML("afterBegin", `<p>Step Count:</p><p>You</p><p><span class="number">${activityInfo.calculateDailyData(id, dateString, 'numSteps')}</span></p>`)
   avgStepsToday.insertAdjacentHTML("afterBegin", `<p>Step Count:</p><p>All Users</p><p><span class="number">${activityInfo.getAllUserAverageForDay(dateString, userStorage, 'numSteps')}</span></p>`)
   userMinutesToday.insertAdjacentHTML("afterBegin", `<p>Active Minutes:</p><p>You</p><p><span class="number">${activityInfo.calculateDailyData(id, dateString, 'minutesActive')}</span></p>`)
   avgMinutesToday.insertAdjacentHTML("afterBegin", `<p>Active Minutes:</p><p>All Users</p><p><span class="number">${activityInfo.getAllUserAverageForDay(dateString, userStorage, 'minutesActive')}</span></p>`)
-  console.log(activityInfo.calculateWeeklyData(id, dateString, userStorage, "numSteps"), "test")
-  userStepsThisWeek.insertAdjacentHTML("afterBegin", makeStepsHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(id, dateString, userStorage, "numSteps")));
-  userStairsThisWeek.insertAdjacentHTML("afterBegin", makeStairsHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(id, dateString, userStorage, "flightsOfStairs")));
-  userMinutesThisWeek.insertAdjacentHTML("afterBegin", makeMinutesHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(id, dateString, userStorage, "minutesActive")));
-  bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(winnerId, dateString, userStorage, "numSteps")));
+  userStepsThisWeek.insertAdjacentHTML("afterBegin", makeStepsHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, id, userStorage, "numSteps")));
+  userStairsThisWeek.insertAdjacentHTML("afterBegin", makeStairsHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, id, userStorage, "flightsOfStairs")));
+  userMinutesThisWeek.insertAdjacentHTML("afterBegin", makeMinutesHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, id, userStorage, "minutesActive")));
+  bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, "numSteps")));
 }
 
 function makeStepsHTML(id, activityInfo, userStorage, method) {
@@ -223,13 +219,13 @@ function makeMinutesHTML(id, activityInfo, userStorage, method) {
   return method.map(data => `<li class="historical-list-listItem">On ${data} minutes</li>`).join('');
 }
 
-function addFriendGameInfo(id, activityInfo, userStorage, dateString, laterDateString, user) {
-  friendChallengeListToday.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
-  // streakList.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'numSteps')));
-  // streakListMinutes.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'minutesActive')));
-  friendChallengeListHistory.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
-  // bigWinner.insertAdjacentHTML('afterBegin', `THIS WEEK'S WINNER! ${activityInfo.showcaseWinner(user, dateString, userStorage)} steps`)
-}
+// function addFriendGameInfo(id, activityInfo, userStorage, dateString, laterDateString, user) {
+//   friendChallengeListToday.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
+//   streakList.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'numSteps')));
+//   streakListMinutes.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'minutesActive')));
+//   friendChallengeListHistory.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
+//   bigWinner.insertAdjacentHTML('afterBegin', `THIS WEEK'S WINNER! ${activityInfo.showcaseWinner(user, dateString, userStorage)} steps`)
+// }
 
 function makeFriendChallengeHTML(id, activityInfo, userStorage, method) {
   return method.map(friendChallengeData => `<li class="historical-list-listItem">Your friend ${friendChallengeData} average steps.</li>`).join('');
@@ -238,11 +234,3 @@ function makeFriendChallengeHTML(id, activityInfo, userStorage, method) {
 function makeStepStreakHTML(id, activityInfo, userStorage, method) {
   return method.map(streakData => `<li class="historical-list-listItem">${streakData}!</li>`).join('');
 }
-
-// function handleLifeData(sleepData, activityData, hydrationData) {
-//   const hydration = new Hydration(hydrationData);
-//   // console.log(hydration);
-//   const sleep = new Sleep(sleepData);
-//   const activity = new Activity(activityData);
-//   startApp(sleep, activity, hydration)
-// }
