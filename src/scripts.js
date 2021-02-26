@@ -49,11 +49,35 @@ var bestUserSteps = document.getElementById('bestUserSteps');
 var streakList = document.getElementById('streakList');
 var streakListMinutes = document.getElementById('streakListMinutes')
 
+const fetchedUserData = fetchAPIData.fetchUserData();
+const fetchedSleepData = fetchAPIData.fetchSleepData();
+const fetchedActivityData = fetchAPIData.fetchActivityData();
+const fetchedHydrationData = fetchAPIData.fetchHydrationData();
+
+
+Promise.all([fetchedUserData, fetchedSleepData, fetchedActivityData, fetchedHydrationData])
+  .then(data => {
+    let theRock = newUser(data.userData.userData)
+    console.log('promise data', theRock)
+  })
+
+
+// console.log('fetchedUser', fetchedUserData)
+// let userList = [];
+// let allUsers = data[0]
+// console.log('users', allUsers)
+// makeUsers(data[0])
+// let sleepRepo = new Sleep(data[1])
+// let activityRepo = new Activity(data[2])
+// let hydrationRepo = new Hydration(data[3])
+// let userRepo = new UserRepo(userList);
+// })
+
 function startApp() {
-  fetchAPIData();
-  let userList = [];
-  makeUsers(userList);
-  let userRepo = new UserRepo(userList);
+  // fetchAPIData();
+  // let userList = [];
+  // makeUsers(userList);
+  // let userRepo = new UserRepo(userList);
   // let hydrationRepo = new Hydration(hydrationData);
   // let sleepRepo = new Sleep(sleepData);
   // let activityRepo = new Activity(activityData);
@@ -69,20 +93,6 @@ function startApp() {
   addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
   addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
 }
-
-const fetchedUserData = fetchAPIData.fetchUserData();
-const fetchedSleepData = fetchAPIData.fetchSleepData();
-const fetchedActivityData = fetchAPIData.fetchActivityData();
-const fetchedHydrationData = fetchAPIData.fetchHydrationData();
-
-Promise.all([fetchedUserData, fetchedSleepData, fetchedActivityData, fetchedHydrationData])
-  .then(data => {
-    makeUsers(data[0])
-
-    let sleepRepo(data[1])
-    let activityRepo(data[2])
-    let hydrationRepo(data[3])
-  })
 
 function makeUsers(array) {
   userData.forEach(function (dataItem) {

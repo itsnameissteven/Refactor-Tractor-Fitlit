@@ -1,68 +1,49 @@
-
 // VIEW DATA
 const fetchAPIData = {
-
   fetchUserData() {
-    fetch("http://localhost:3001/api/v1/users")
+    let userSet;
+    let userData = fetch("http://localhost:3001/api/v1/users")
       .then(response => response.json())
-      .then(userData => {
-        console.log(userData)
-        return userData
-      })
+      .then(data => data.userData)
       .catch(err => console.log(err))
+    userSet = Promise.resolve(userData)
+    console.log(userSet);
+    return userSet;
   },
-
-  fetchSleepData() {
-    fetch("http://localhost:3001/api/v1/sleep")
+  fetchLifeData() {
+    let dataSet;
+    let sleepData = fetch("http://localhost:3001/api/v1/sleep")
       .then(response => response.json())
-      .then(sleepData => {
-        // console.log(sleepData)
-        return sleepData
-      })
+      .then(data => data.sleepData)
       .catch(err => console.log(err))
-  },
-
-  fetchActivityData() {
-    fetch("http://localhost:3001/api/v1/activity")
+    let activityData = fetch("http://localhost:3001/api/v1/activity")
       .then(response => response.json())
-      .then(activityData => {
-        // console.log(activityData)
-        return activityData
-      })
+      .then(data => data.activityData)
       .catch(err => console.log(err))
-  },
-
-  fetchHydrationData() {
-    fetch("http://localhost:3001/api/v1/hydration")
+    let hydrationData = fetch("http://localhost:3001/api/v1/hydration")
       .then(response => response.json())
-      .then(hydrationData => {
-        // console.log(hydrationData)
-        return hydrationData
-      })
+      .then(data => data.hydrationData)
       .catch(err => console.log(err))
+    dataSet = Promise.all([sleepData, activityData, hydrationData]).then(data => {
+      // console.log(data[0]);
+      return data;
+    })
+    // console.log(dataSet);
+    return dataSet;
   }
-
-
-
   // return Promise.all([fetchedUserData, fetchedSleepData, fetchedActivityData, fetchedHydrationData])
   //   .then(data => {
   //     console.log(allAPIData);
   //     return allAPIData;
   //   })
 }
-
-
-
-
 // const fetchAPIData = () => {
 //   fetchedUserData();
 //   fetchedSleepData();
 //   fetchedActivityData();
 //   fetchedHydrationData();
 // }
-
 // ADD NEW DATA
-
 // const addNewSleepData = (newData) => {
 //   fetch("http://localhost:3001/api/v1/sleep", {
 //     method: 'POST',
@@ -73,7 +54,6 @@ const fetchAPIData = {
 //     .then(sleepData => console.log(sleepData))
 //     .catch(err => console.log(err))
 // }
-
 // const addNewActivityData = (newData) => {
 //   fetch("http://localhost:3001/api/v1/activity", {
 //     method: 'POST',
@@ -84,7 +64,6 @@ const fetchAPIData = {
 //     .then(activityData => console.log(activityData))
 //     .catch(err => console.log(err))
 // }
-
 // const addNewHydrationData = (newData) => {
 //   fetch("http://localhost:3001/api/v1/hydration", {
 //     method: 'POST',
@@ -95,7 +74,6 @@ const fetchAPIData = {
 //     .then(hydrationData => console.log(hydrationData))
 //     .catch(err => console.log(err))
 // }
-
 // ADD NEW DATA REFACTORED POSSIBILITY
 // const addNewData = (link, newData) => {
 //   fetch(link, {
@@ -107,5 +85,4 @@ const fetchAPIData = {
 //     .then(data => console.log(data))
 //     .catch(err => console.log(err))
 // }
-
 export default fetchAPIData;
