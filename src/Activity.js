@@ -66,9 +66,9 @@ class Activity extends Calculation {
   }
 
   // Is this function being used?
-  // showcaseWinner(user, date, userRepo) {
-  //   return this.showChallengeListAndWinner(user, date, userRepo)[0];
-  // }
+  showcaseWinner(user, date, userRepo) {
+    return this.showChallengeListAndWinner(user, date, userRepo)[0];
+  }
 
   getStreak(userRepo, id, relevantData) {
     const sortedUserArray = (userRepo.makeSortedUserArray(id, this.dataSet)).reverse();
