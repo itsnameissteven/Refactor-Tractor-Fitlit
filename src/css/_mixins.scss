@@ -1,0 +1,29 @@
+@mixin dataBox {
+  position: relative;
+  height: 100%;
+  width:100%;
+  padding: 4rem;
+  border: $border-grey;
+  border-radius: 5px;
+}
+
+@mixin circle {
+  position: absolute;
+  top:0;
+  left:50%;
+  transform: translate(-50%, -50%);
+  border-radius:100%;
+  height: 10rem;
+  width: 10rem;
+  border: $border-grey;
+}
+
+@mixin flex ($flex-direction: false) {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  
+  @if $flex-direction {
+    flex-direction: $flex-direction;
+  } 
+}
