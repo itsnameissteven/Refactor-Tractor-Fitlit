@@ -17,7 +17,7 @@ class Calculation {
 
   calculateWeeklyData(date, id, userRepo, property) {
     const weekFromDay = userRepo.getWeekFromDate(date, id, this.dataSet);
-    return weekFromDay.map(data => `${data.date}: ${data[property]}`);
+    return weekFromDay.map(data => [data.date, data[property]]);
   }
 }
 

@@ -3,7 +3,7 @@ Chart.defaults.global.elements.line.fill = false
 
 const chart = {
 
-  makeChart(dataSet, element) {
+  makeChart(dataSet, element, label) {
     let myChart = new Chart(element, {
       type: 'line',
         data: {
@@ -13,7 +13,7 @@ const chart = {
               return dataArray.join("/")
             }),
             datasets: [{
-                label: 'Number of ounces',
+                label: label,
                 data: dataSet.map(data => data[1]),
                 borderColor: [
                     'rgba(255, 99, 132, 1)',

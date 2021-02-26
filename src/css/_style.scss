@@ -67,7 +67,7 @@
   grid-column: 2/4;
   
   &__chart {
-    border: $border-test;
+    // border: $border-test;
     height:100%;
     width: 70%;
   }
@@ -95,11 +95,13 @@
   grid-column: 2/4;
 
   &__data {
-    @include flex
+    @include flex;
+    height:30%;
   }
 
   &__chart {
-    border: $border-test;
+    // border: $border-test;
+    height:70%;
   }
 
 }
