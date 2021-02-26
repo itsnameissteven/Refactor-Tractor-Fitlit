@@ -6,10 +6,13 @@ const fetchAPIData = {
       .then(response => response.json())
       .then(data => data.userData)
       .catch(err => console.log(err))
-    userSet = Promise.resolve(userData)
-    console.log(userSet);
-    return userSet;
+    userSet = Promise.resolve(userData).then(data => {
+      // console.log(userSet);
+      return data;
+    })
+    return userSet
   },
+
   fetchLifeData() {
     let dataSet;
     let sleepData = fetch("http://localhost:3001/api/v1/sleep")
@@ -31,18 +34,14 @@ const fetchAPIData = {
     // console.log(dataSet);
     return dataSet;
   }
+
   // return Promise.all([fetchedUserData, fetchedSleepData, fetchedActivityData, fetchedHydrationData])
   //   .then(data => {
   //     console.log(allAPIData);
   //     return allAPIData;
   //   })
 }
-// const fetchAPIData = () => {
-//   fetchedUserData();
-//   fetchedSleepData();
-//   fetchedActivityData();
-//   fetchedHydrationData();
-// }
+
 // ADD NEW DATA
 // const addNewSleepData = (newData) => {
 //   fetch("http://localhost:3001/api/v1/sleep", {

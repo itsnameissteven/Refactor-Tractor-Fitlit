@@ -7,12 +7,10 @@ import './images/walk.svg';
 import './images/water.svg';
 import './images/sleep.svg';
 
-
-
-import userData from './data/users';
-import hydrationData from './data/hydration';
-import sleepData from './data/sleep';
-import activityData from './data/activity';
+// import userData from './data/users';
+// import hydrationData from './data/hydration';
+// import sleepData from './data/sleep';
+// import activityData from './data/activity';
 
 import User from './User';
 import Activity from './Activity';
@@ -20,6 +18,7 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
 import fetchAPIData from './API';
+
 var sidebarName = document.getElementById('sidebarName');
 var stepGoalCard = document.getElementById('stepGoalCard');
 var headerText = document.getElementById('headerText');
@@ -52,6 +51,7 @@ var userMinutesThisWeek = document.getElementById('userMinutesThisWeek');
 var bestUserSteps = document.getElementById('bestUserSteps');
 var streakList = document.getElementById('streakList');
 var streakListMinutes = document.getElementById('streakListMinutes')
+
 let dataSet = []
 
 fetchAPIData.fetchLifeData()
@@ -70,9 +70,11 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
   let userList = [];
   fetchAPIData.fetchUserData()
     .then(data => {
+      console.log('user data', data)
       data.forEach(dataItem => {
         let user = new User(dataItem);
         userList.push(user);
+        console.log('userList', userList)
       })
     })
 
