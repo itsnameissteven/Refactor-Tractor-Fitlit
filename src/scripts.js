@@ -20,6 +20,7 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
 // import fetchAllData from './API';
+import Chart from 'chart.js'
 
 var sidebarName = document.getElementById('sidebarName');
 var stepGoalCard = document.getElementById('stepGoalCard');
