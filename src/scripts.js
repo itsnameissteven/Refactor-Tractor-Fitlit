@@ -15,9 +15,9 @@ import UserRepo from './User-repo';
 import chart from "./dataChart.js"
 import fetchAPIData from './API';
 
-
-
-window.addEventListener('load', getFetchedUsers);
+let hydrationButton = document.querySelector('#hydrationDate');
+let sleepButton = document.querySelector('#hydrationDate');
+let activityButto = document.querySelector('#hydrationDate');
 let formHydrationDate = document.querySelector('#hydrationDate');
 let formHydrationOz = document.querySelector('#hydrationOz');
 let formSleepDate = document.querySelector('#sleepDate');
@@ -28,6 +28,7 @@ let formActivitySteps = document.querySelector('#activitySteps');
 let formActivityMin = document.querySelector('#activityMin');
 let formActivityFlights = document.querySelector('#flights');
 
+window.addEventListener('load', getFetchedUsers);
 
 
 function getFetchedUsers() {

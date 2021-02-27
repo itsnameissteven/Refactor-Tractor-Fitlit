@@ -15,9 +15,9 @@
   <header class="header">
     <h1 class="header__text" id="headerText">Activity Tracker</h1>
     <section class="add-tracking-information-section">
-      <button class="add-button">Hydration</button>
-      <button class="add-button">Sleep</button>
-      <button class="add-button">Activity</button>
+      <button id="hydrationButton" class="add-button">Log Hydration</button>
+      <button id="sleepButton" class="add-button">Log Sleep</button>
+      <button id="activityButton" class="add-button">Log Activity</button>
     </section>
   </header>
   <main class="main">
@@ -199,15 +199,15 @@
       <section class="entry-form-section">
         <div class="input">
           <label for="date">Date of Activity:</label>
-          <input type="text" id="date" name="date" placeholder="2019/06/15">
+          <input type="text" id="activityDate" name="date" placeholder="2019/06/15">
         </div>
         <div class="input">
           <label for="steps">Number of Steps:</label>
-          <input type="text" id="steps" name="steps" placeholder="1236">
+          <input type="text" id="activitySteps" name="steps" placeholder="1236">
         </div>
         <div class="input">
           <label for="min">Minutes Active:</label>
-          <input type="text" id="min" name="min" placeholder="60">
+          <input type="text" id="activityMin" name="min" placeholder="60">
         </div>
         <div class="input">
           <label for="flights">Flights of Stairs:</label>
