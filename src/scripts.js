@@ -5,7 +5,6 @@ import './images/walk.svg';
 import './images/water.svg';
 import './images/sleep.svg';
 
-
 import User from './User';
 import Activity from './Activity';
 import Hydration from './Hydration';
@@ -211,8 +210,10 @@ function addWalkingStats(user, userStorage, date, activityRepo) {
   const userStrideLength = document.getElementById('userStrideLength');
   const stepGoalCard = document.getElementById('stepGoalCard');
   const milesWalked = document.getElementById('milesWalked');
+  const avgStepGoalCard = document.getElementById('avgStepGoalCard');
   userStrideLength.innerText = `${user.strideLength}meters`;
-  stepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
+  stepGoalCard.innerText = `${user.dailyStepGoal}`;
+  avgStepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
   milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}`;
 }
 
@@ -237,11 +238,11 @@ function makeRandomDate(userStorage, id, dataSet) {
 
 function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydrationToday = document.getElementById('hydrationToday');
-  const hydrationAverage = document.getElementById('hydrationAverage');
   const hydroChart = document.getElementById("hydroChart");
-  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces");
-  hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
-  hydrationAverage.innerText = `${hydrationInfo.calculateAverage(id, "numOunces")}oz`;
+  const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
+  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces", '#D5260B');
+  hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
 }
 
 function addSleepInfo(id, sleepInfo, dateString, userStorage) {
@@ -249,10 +250,12 @@ function addSleepInfo(id, sleepInfo, dateString, userStorage) {
   const sleepQualityToday = document.getElementById('sleepQualityToday');
   const avUserSleepQuality = document.getElementById('avUserSleepQuality');
   const sleepChart = document.getElementById("sleepChart");
+  const sleepChartQuality = document.getElementById('sleepChartQuality');
   sleepToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "hoursSlept")}hrs`;
   sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "sleepQuality")}/5`;
   avUserSleepQuality.innerText = `${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept"), sleepChart, "Hours of Sleep");
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept"), sleepChart, "Hours of Sleep", '#0BBBD6');
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "sleepQuality"), sleepChartQuality, "Quality of Sleep", '#8B0BD5')
 }
 
 function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {
@@ -260,14 +263,14 @@ function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateStr
   const flightsOfStairsChart = document.getElementById("flightsOfStairsChart");
   const activeMinutesChart = document.getElementById('activeMinutesChart');
   createBarChart(activityInfo, id, dateString, "numSteps", userStorage, stepChart, "Steps Today");
-  createBarChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, flightsOfStairsChart, "flights of stairs");
+  createBarChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, flightsOfStairsChart, "Flights Climbed Today");
   createBarChart(activityInfo, id, dateString, "minutesActive", userStorage, activeMinutesChart, "Active Minutes Today");
   const weeklySteps = document.getElementById("weeklySteps");
   const weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
   const weeklyFlightsClimbed = document.getElementById('weeklyFlightsClimbed');
-  createLineChart(activityInfo, id, dateString, "numSteps", userStorage, weeklySteps, "weekly steps");
-  createLineChart(activityInfo, id, dateString, "minutesActive", userStorage, weeklyMinutesActive, "weekly minutes active");
-  createLineChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, weeklyFlightsClimbed, "weekly flights climbed");
+  createLineChart(activityInfo, id, dateString, "numSteps", userStorage, weeklySteps, "weekly steps", '#260BD5');
+  createLineChart(activityInfo, id, dateString, "minutesActive", userStorage, weeklyMinutesActive, "weekly minutes active", '#D5260B');
+  createLineChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, weeklyFlightsClimbed, "weekly flights climbed", "#BAD50B");
 }
 
 function createBarChart(activityInfo, id, dateString, property, userStorage, element, chartLabel) {
@@ -275,9 +278,9 @@ function createBarChart(activityInfo, id, dateString, property, userStorage, ele
     activityInfo.getAllUserAverageForDay(dateString, userStorage, property), element, chartLabel);
 }
 
-function createLineChart(activityInfo, id, dateString, property, userStorage, element, chartLabel) {
+function createLineChart(activityInfo, id, dateString, property, userStorage, element, chartLabel, color) {
   chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, property),
-    element, chartLabel);
+    element, chartLabel, color);
 }
 
 // bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, "numSteps")));

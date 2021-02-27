@@ -36,45 +36,20 @@
       <div class="hydration-stats__data">
         <p class="hydration-stats__today">
           You Drank<span class="data-circle" id="hydrationToday"></span>Today
-
         </p>
         <p class="hydration-stats__avg">
-          Average Water Intake<span class="data-circle" id="hydrationAverage"></span>
+          Average Weekly Intake<span class="data-circle" id="hydrationAverageWeek"></span>
         </p>
       </div>
       <div class="hydration-stats__chart">
         <canvas id="hydroChart"></canvas>
-        <ul class="hydration-stats__current-list hidden" id="hydrationThisWeek"></ul>
-        <!-- <p class="historicalWeek"></p> -->
-        <ul class="hydration-stats__earlier-week hidden" id="hydrationEarlierWeek"></ul>
       </div>
     </section>
-
-
-
-
-    <section class="walking-stats" id="walkingStats">
-      <div class="icon">
-        <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
-      </div>
-      <p class="walking-stats__stride-length">
-        Your stride length <span class="walking-data" id="userStrideLength"></span>
-      </p>
-      <p class="walking-stats__step-goal">
-        Your Step Goal <span class="walking-data" id="stepGoalCard"></span>
-      </p>
-      <p class="walking-stats__miles-walked">
-        Miles Walked <span class="walking-data" id="milesWalked"></span>
-      </p>
-    </section>
-
 
     <section class="friends">
       <h2 class="friends__header">Friends</h2>
       <ul class="friends__list" id="friendList"></ul>
     </section>
-
-
     <section class="sleep-stats">
       <div class="icon">
         <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
@@ -90,87 +65,58 @@
           National Average<span class="data-circle" id="avUserSleepQuality"></span> Quality
         </p>
       </div>
-      <div class="sleep-stats__chart">
+      <div class="sleep-stats__chart--hours">
         <canvas id="sleepChart"></canvas>
-        <!-- <p class="sleep-stats__this-week">Hours of sleep this week</p>
-              <ul class="sleep-stats__this-week-list" id="sleepThisWeek"></ul>
-              <p class="sleep-stats__earlier-week">Earlier week</p>
-              <ul class="sleep-stats__earlier-week-list" id="sleepEarlierWeek"></ul> -->
+      </div>
+      <div class="sleep-stats__chart--quality">
+        <canvas id="sleepChartQuality"></canvas>
       </div>
     </section>
-
-    <section class="user-activity">
-      <!-- <div class="user-activity__data">
-              <p class="user-activity__steps-today" id="userStepsToday"></p>
-              <p class="user-activity__steps-all-avg" id="avgStepsToday"></p>
-              <p class="user-activity__stairs-today" id="userStairsToday"></p>
-              <p class="user-activity__stairs-all-avg" id="avgStairsToday"></p>
-              <p class="user-activity__minutes-today" id="userMinutesToday"></p>
-              <p class="user-activity__minutes-all-avg" id="avgMinutesToday"></p>
-            </div> -->
-      <div class="user-activity__chart">
-        <canvas class="user-activity__bar-chart step-chart" id="stepChart"></canvas>
+    <section class="walking-stats" id="walkingStats">
+      <div class="icon">
+        <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
       </div>
-      <div class="user-activity__chart">
-        <canvas class="user-activity__bar-chart flights-of-stairs" id="flightsOfStairsChart"></canvas>
+      <p class="walking-stats__stride-length">
+        Your stride length <span class="walking-data" id="userStrideLength"></span>
+      </p>
+      <div class="walking-stats__user-vs-all">
+        <p class="walking-stats__step-goal">
+          Your Step Goal <span class="walking-data" id="stepGoalCard"></span>
+        </p>
+        <p class="walking-stats__avg-step-goal">
+          National Average<span class="walking-data" id="avgStepGoalCard"></span>Step Goal
+        </p>
       </div>
-      <div class="user-activity__chart">
-        <canvas class="user-activity__bar-chart active-minutes-chart" id="activeMinutesChart"></canvas>
+      <p class="walking-stats__miles-walked">
+        Miles Walked <span class="walking-data" id="milesWalked"></span>
+      </p>
+    </section>
+    <section class="user-activity-today">
+      <h2 class="user-activity-today__header">Daily Stats</h2>
+      <div class="user-activity-today__chart">
+        <canvas class="user-activity-today__bar-chart step-chart" id="stepChart"></canvas>
       </div>
-      <div class="user-activity__chart">
-        <canvas class="user-activity__bar-chart weekly-steps" id="weeklySteps"></canvas>
+      <div class="user-activity-today__chart">
+        <canvas class="user-activity-today__bar-chart flights-of-stairs" id="flightsOfStairsChart"></canvas>
       </div>
-      <div class="user-activity__chart">
-        <canvas class="user-activity__bar-chart weekly-minutes-active" id="weeklyMinutesActive"></canvas>
+      <div class="user-activity-today__chart">
+        <canvas class="user-activity-today__bar-chart active-minutes-chart" id="activeMinutesChart"></canvas>
       </div>
-      <div class="user-activity__chart">
-        <canvas class="user-activity__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
+    </section>
+    <section class="user-activity-week">
+      <h2 class="user-activity-week__header">Weekly Stats</h2>
+      <div class="user-activity-week__chart">
+        <canvas class="user-activity-week__bar-chart weekly-steps" id="weeklySteps"></canvas>
       </div>
-
-
-
-      <!-- <p class="thisWeek">Your stair count this week</p>
-            <ul class="card-vertical-list" id="userStairsThisWeek"></ul>
-            <p class="thisWeek">Your minutes of activity this week</p>
-            <ul class="card-vertical-list" id="userMinutesThisWeek"></ul> 
-            <p class="thisWeek">Winner's steps this week</p>
-            <ul class="card-vertical-list" id="bestUserSteps"></ul> -->
+      <div class="user-activity-week__chart">
+        <canvas class="user-activity-week__bar-chart weekly-minutes-active" id="weeklyMinutesActive"></canvas>
+      </div>
+      <div class="user-activity-week__chart">
+        <canvas class="user-activity-week__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
+      </div>
+    </section>
     </section>
 
-    <section class="step-challenge">
-      <h2 class="step-challenge__header" id="sidebarName">FRIENDLY STEP CHALLENGE!</h2>
-      <!-- <img src="./images/person walking on path.jpg" class="sidebar-header-userImage"></img> -->
-      <p class="step-challenge__winner" id="bigWinner"></p>
-      <p class="step-challenge_user-step-goal" id="stepGoalCard"></p>
-      <p class="step-challenge-avg-step-goal" id="avStepGoalCard">
-      <p>
-      <section class="sidebar-friendContainer-listItems">
-        <p class="thisWeek">Rank this week</p>
-        <ul class="card-vertical-list" id="friendChallengeListToday"></ul>
-        <p class="historicalWeek">- Historical Rank</p>
-        <ul class="card-vertical-list" id="friendChallengeListHistory"></ul>
-      </section>
-    </section>
-  </main>
-
-
-  <form class="add-information-form hidden">
-    <h2 class="user-entry">My Data Entry</h2>
-    <section class="hydration-form hidden">
-      <div class="hydration-stats__icon icon">
-        <img src="images/water.svg" alt="Water glass icon" class="hydration-stats__icon">
-      </div>
-      <section class="entry-form-section">
-        <div class="input">
-          <label for="date">Date of Hydration:</label>
-          <input type="date" id="hydrationDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
-        </div>
-        <div class="input">
-          <label for="oz">Number of Oz:</label>
-          <input type="text" id="hydrationOz" name="oz" placeholder="52">
-        </div>
-      </section>
-    </section>
 
     <section class="sleep-form hidden">
       <div class="icon">
@@ -225,7 +171,21 @@
       <h3 class="header">Form Incorrect</h3>
       <p>Something went wrong!</p>
     </section>
-  </form>
+    </form>
+  </main>
 </body>
 
 </html>
+
+<!-- <section class="step-challenge">
+        <h2 class="step-challenge__header" id="sidebarName">FRIENDLY STEP CHALLENGE!</h2>
+        <p class="step-challenge__winner" id="bigWinner"></p>
+        <p class="step-challenge_user-step-goal" id="stepGoalCard"></p>
+        <p class="step-challenge-avg-step-goal" id="avStepGoalCard"><p>
+          <section class="sidebar-friendContainer-listItems">
+            <p class="thisWeek">Rank this week</p>
+            <ul class="card-vertical-list" id="friendChallengeListToday"></ul>
+            <p class="historicalWeek">- Historical Rank</p>
+            <ul class="card-vertical-list" id="friendChallengeListHistory"></ul>
+          </section>
+      </section> -->
