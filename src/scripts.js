@@ -131,7 +131,7 @@ function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateStr
   const flightsOfStairsChart = document.getElementById("flightsOfStairsChart");
   const activeMinutesChart = document.getElementById('activeMinutesChart');
   createBarChart(activityInfo, id, dateString, "numSteps", userStorage, stepChart, "Steps Today");
-  createBarChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, flightsOfStairsChart, "flights of stairs");
+  createBarChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, flightsOfStairsChart, "Flights Climbed Today");
   createBarChart(activityInfo, id, dateString, "minutesActive", userStorage, activeMinutesChart, "Active Minutes Today");
   const weeklySteps = document.getElementById("weeklySteps");
   const weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
