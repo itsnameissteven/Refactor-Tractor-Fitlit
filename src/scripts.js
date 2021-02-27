@@ -18,6 +18,17 @@ import fetchAPIData from './API';
 
 
 window.addEventListener('load', getFetchedUsers);
+let formHydrationDate = document.querySelector('#hydrationDate');
+let formHydrationOz = document.querySelector('#hydrationOz');
+let formSleepDate = document.querySelector('#sleepDate');
+let formSleepHours = document.querySelector('#sleepHours');
+let formSleepQuality = document.querySelector('#sleepQuality');
+let formActivityDate = document.querySelector('#activityDate');
+let formActivitySteps = document.querySelector('#activitySteps');
+let formActivityMin = document.querySelector('#activityMin');
+let formActivityFlights = document.querySelector('#flights');
+
+
 
 function getFetchedUsers() {
   fetchAPIData.fetchUserData()
