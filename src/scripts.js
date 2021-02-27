@@ -62,14 +62,16 @@ window.addEventListener('load', getFetchedUsers);
 
 function getFetchedUsers() {
   fetchAPIData.fetchUserData()
-    .then(data => createAUser(data))
+    .then(data => createRandomUser(data))
 }
 
-function createAUser(userData) {
+function createRandomUser(userData) {
   let userList = [];
   let userRepo;
   makeUsers(userList, userData);
   userRepo = new UserRepo(userList);
+  const userNowId = pickUser();
+  getFetchedLifeData(userRepo, userNowId);
 }
 
 function makeUsers(userList, userData) {
@@ -78,6 +80,34 @@ function makeUsers(userList, userData) {
     userList.push(user);
   })
 }
+
+function getFetchedLifeData(userRepo, userNowId) {
+  fetchAPIData.fetchLifeData()
+    .then(data => handleLifeData(data[0], data[1], data[2], userRepo, userNowId))
+}
+
+function handleLifeData(sleepData, activityData, hydrationData, userRepo, userNowId) {
+  const hydration = new Hydration(hydrationData);
+  const sleep = new Sleep(sleepData);
+  const activity = new Activity(activityData);
+  startApp(sleep, activity, hydration, userRepo, userNowId)
+}
+
+function startApp(sleepRepo, activityRepo, hydrationRepo, userRepo, userNowId) {
+  let userNow = getUserById(userRepo, userNowId);
+  let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
+  let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
+  addWalkingStats(userNow, userRepo, today, activityRepo)
+  historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
+  addInfoToSidebar(userNow, userRepo);
+  addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
+  addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
+  let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
+  addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
+  // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
+}
+
+
 
 // fetchAPIData.fetchLifeData()
 //   .then(data => handleLifeData(data[0], data[1], data[2]))
