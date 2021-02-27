@@ -122,8 +122,10 @@ function addWalkingStats(user, userStorage, date, activityRepo) {
   const userStrideLength = document.getElementById('userStrideLength');
   const stepGoalCard = document.getElementById('stepGoalCard');
   const milesWalked = document.getElementById('milesWalked');
+  const avgStepGoalCard = document.getElementById('avgStepGoalCard');
   userStrideLength.innerText = `${user.strideLength}meters`;
-  stepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
+  stepGoalCard.innerText = `${user.dailyStepGoal}`;
+  avgStepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
   milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}`;
 }
 

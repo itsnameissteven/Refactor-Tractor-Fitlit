@@ -57,11 +57,17 @@
 .walking-stats {
   @include dataBox;
   @include flex(column);
+  justify-content: space-around;
   grid-row: 3;
   grid-column: 1;
   margin-top:5rem;
   height: 60rem;
   text-align: center;
+
+  &__user-vs-all {
+    width: 100%;
+    @include flex
+  }
 }
 
 .hydration-stats {
@@ -127,25 +133,32 @@
   }
 }
 
-.user-activity {
+.user-activity-today {
   @include dataBox;
   @include flex;
-  // justify-content: unset;
   grid-column: 1/4;
   padding:1rem;
-  min-height: 35rem;
+  height: 35rem;
 
-  &__data {
-    @include flex;
+  &__header {
+    width: 100%;
   }
-
   &__chart {
-    // @include flex;
-    height: 100%;
-    width: 15%;
-    // border: $border-test
+    height: 90%;
+    width: 30%;
   }
+}
 
+.user-activity-week {
+  @extend .user-activity-today;
+
+  &__header {
+    width:100%
+  }
+   &__chart {
+    height: 90%;
+    width: 30%;
+  }
 }
 
 .step-challenge {
