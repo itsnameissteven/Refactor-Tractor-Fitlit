@@ -15,9 +15,18 @@ import UserRepo from './User-repo';
 import chart from "./dataChart.js"
 import fetchAPIData from './API';
 
-let hydrationButton = document.querySelector('#hydrationDate');
-let sleepButton = document.querySelector('#hydrationDate');
-let activityButto = document.querySelector('#hydrationDate');
+// header buttons
+let hydrationButton = document.querySelector('#hydrationButton');
+let sleepButton = document.querySelector('#sleepButton');
+let activityButton = document.querySelector('#activityButton');
+
+// forms
+let baseForm = document.querySelector('.add-information-form');
+let hydrationForm = document.querySelector('.hydration-form');
+let sleepForm = document.querySelector('.sleep-form');
+let activityForm = document.querySelector('.activity-form');
+
+// form entry fields
 let formHydrationDate = document.querySelector('#hydrationDate');
 let formHydrationOz = document.querySelector('#hydrationOz');
 let formSleepDate = document.querySelector('#sleepDate');
@@ -28,8 +37,28 @@ let formActivitySteps = document.querySelector('#activitySteps');
 let formActivityMin = document.querySelector('#activityMin');
 let formActivityFlights = document.querySelector('#flights');
 
-window.addEventListener('load', getFetchedUsers);
+let submitButton = document.querySelector('.submit-button');
+// form notifications
+let formSuccessNotification = document.querySelector('.success');
+let formErrorNotification = document.querySelector('.error');
 
+window.addEventListener('load', getFetchedUsers);
+hydrationButton.addEventListener('click', showHydrationForm);
+// sleepButton.addEventListener('click', showSleepForm);
+// activityButton.addEventListener('click', showActivityForm);
+// submitButton.addEventListener('click', submitForm);
+
+function hideElement(element) {
+  element.classList.add('hidden');
+}
+
+function showElement(element) {
+  element.classList.remove('hidden');
+}
+
+function showHydrationForm() {
+  showElement()
+}
 
 function getFetchedUsers() {
   fetchAPIData.fetchUserData()
