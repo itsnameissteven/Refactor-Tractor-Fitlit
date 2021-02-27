@@ -1,5 +1,3 @@
-// import './css/base.scss';
-// import './css/style.scss';
 import './css/index.scss';
 import './images/person walking on path.jpg';
 import './images/The Rock.jpg';
@@ -7,58 +5,15 @@ import './images/walk.svg';
 import './images/water.svg';
 import './images/sleep.svg';
 
-// import userData from './data/users';
-// import hydrationData from './data/hydration';
-// import sleepData from './data/sleep';
-// import activityData from './data/activity';
-
 import User from './User';
 import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
-// import fetchAllData from './API';
-// import Chart from 'chart.js'
 import chart from "./dataChart.js"
 import fetchAPIData from './API';
 
-// var sidebarName = document.getElementById('sidebarName');
-// var stepGoalCard = document.getElementById('stepGoalCard');
-// var headerText = document.getElementById('headerText');
-// var userAddress = document.getElementById('userAddress');
-// var userEmail = document.getElementById('userEmail');
-// var userStridelength = document.getElementById('userStridelength');
-// var friendList = document.getElementById('friendList');
-// var hydrationToday = document.getElementById('hydrationToday');
-// var hydrationAverage = document.getElementById('hydrationAverage');
-// var hydrationThisWeek = document.getElementById('hydrationThisWeek');
-// var hydrationEarlierWeek = document.getElementById('hydrationEarlierWeek');
 var historicalWeek = document.querySelectorAll('.historicalWeek');
-// var sleepToday = document.getElementById('sleepToday');
-// var sleepQualityToday = document.getElementById('sleepQualityToday');
-// var avUserSleepQuality = document.getElementById('avUserSleepQuality');
-// var sleepThisWeek = document.getElementById('sleepThisWeek');
-// var sleepEarlierWeek = document.getElementById('sleepEarlierWeek');
-// var friendChallengeListToday = document.getElementById('friendChallengeListToday');
-// var friendChallengeListHistory = document.getElementById('friendChallengeListHistory');
-// var bigWinner = document.getElementById('bigWinner');
-// var userStepsToday = document.getElementById('userStepsToday');
-// var avgStepsToday = document.getElementById('avgStepsToday');
-// var userStairsToday = document.getElementById('userStairsToday');
-// var avgStairsToday = document.getElementById('avgStairsToday');
-// var userMinutesToday = document.getElementById('userMinutesToday');
-// var avgMinutesToday = document.getElementById('avgMinutesToday');
-// var userStepsThisWeek = document.getElementById('userStepsThisWeek');
-// var userStairsThisWeek = document.getElementById('userStairsThisWeek');
-// var userMinutesThisWeek = document.getElementById('userMinutesThisWeek');
-// var bestUserSteps = document.getElementById('bestUserSteps');
-// var streakList = document.getElementById('streakList');
-// var streakListMinutes = document.getElementById('streakListMinutes')
-// let hydroChart = document.getElementById("hydroChart")
-// let sleepChart = document.getElementById("sleepChart")
-
-
-
 let dataSet = []
 
 fetchAPIData.fetchLifeData()
@@ -152,8 +107,10 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydrationToday = document.getElementById('hydrationToday');
   const hydrationAverage = document.getElementById('hydrationAverage');
   const hydroChart = document.getElementById("hydroChart");
+  const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces");
   hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
   hydrationAverage.innerText = `${hydrationInfo.calculateAverage(id, "numOunces")}oz`;
 }
 
