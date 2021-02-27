@@ -81,11 +81,13 @@
     text-align: center;
     justify-content: space-around;
     // border: $border-test;
+    width:30%;
   }
   
   &__chart {
     height:100%;
     width: 70%;
+    // border: $border-test;
   }
 
   .test{ 
