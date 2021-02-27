@@ -22,21 +22,21 @@ import UserRepo from './User-repo';
 import chart from "./dataChart.js"
 import fetchAPIData from './API';
 
-var sidebarName = document.getElementById('sidebarName');
-var stepGoalCard = document.getElementById('stepGoalCard');
-var headerText = document.getElementById('headerText');
-var userAddress = document.getElementById('userAddress');
-var userEmail = document.getElementById('userEmail');
+// var sidebarName = document.getElementById('sidebarName');
+// var stepGoalCard = document.getElementById('stepGoalCard');
+// var headerText = document.getElementById('headerText');
+// var userAddress = document.getElementById('userAddress');
+// var userEmail = document.getElementById('userEmail');
 // var userStridelength = document.getElementById('userStridelength');
-var friendList = document.getElementById('friendList');
-var hydrationToday = document.getElementById('hydrationToday');
-var hydrationAverage = document.getElementById('hydrationAverage');
+// var friendList = document.getElementById('friendList');
+// var hydrationToday = document.getElementById('hydrationToday');
+// var hydrationAverage = document.getElementById('hydrationAverage');
 // var hydrationThisWeek = document.getElementById('hydrationThisWeek');
 // var hydrationEarlierWeek = document.getElementById('hydrationEarlierWeek');
 var historicalWeek = document.querySelectorAll('.historicalWeek');
-var sleepToday = document.getElementById('sleepToday');
-var sleepQualityToday = document.getElementById('sleepQualityToday');
-var avUserSleepQuality = document.getElementById('avUserSleepQuality');
+// var sleepToday = document.getElementById('sleepToday');
+// var sleepQualityToday = document.getElementById('sleepQualityToday');
+// var avUserSleepQuality = document.getElementById('avUserSleepQuality');
 // var sleepThisWeek = document.getElementById('sleepThisWeek');
 // var sleepEarlierWeek = document.getElementById('sleepEarlierWeek');
 // var friendChallengeListToday = document.getElementById('friendChallengeListToday');
@@ -54,8 +54,8 @@ var avUserSleepQuality = document.getElementById('avUserSleepQuality');
 // var bestUserSteps = document.getElementById('bestUserSteps');
 // var streakList = document.getElementById('streakList');
 // var streakListMinutes = document.getElementById('streakListMinutes')
-let hydroChart = document.getElementById("hydroChart")
-let sleepChart = document.getElementById("sleepChart")
+// let hydroChart = document.getElementById("hydroChart")
+// let sleepChart = document.getElementById("sleepChart")
 
 
 
@@ -106,6 +106,11 @@ function getUserById(listRepo, id) {
 }
 
 function addInfoToSidebar(user, userStorage) {
+  const sidebarName = document.getElementById('sidebarName');
+  const headerText = document.getElementById('headerText');
+  const userAddress = document.getElementById('userAddress');
+  const userEmail = document.getElementById('userEmail');
+  const friendList = document.getElementById('friendList');
   sidebarName.innerText = user.name;
   headerText.innerText = `${user.getFirstName()}'s Activity Tracker`;
   userAddress.innerText = user.address;
@@ -142,13 +147,20 @@ function makeRandomDate(userStorage, id, dataSet) {
 }
 
 function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
-  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces")
+  const hydrationToday = document.getElementById('hydrationToday');
+  const hydrationAverage = document.getElementById('hydrationAverage');
+  const hydroChart = document.getElementById("hydroChart");
+  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces");
   hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
-  hydrationAverage.innerText = `${hydrationInfo.calculateAverage(id, "numOunces")}oz`
+  hydrationAverage.innerText = `${hydrationInfo.calculateAverage(id, "numOunces")}oz`;
 }
 
 
 function addSleepInfo(id, sleepInfo, dateString, userStorage) {
+  const sleepToday = document.getElementById('sleepToday');
+  const sleepQualityToday = document.getElementById('sleepQualityToday');
+  const avUserSleepQuality = document.getElementById('avUserSleepQuality');
+  const sleepChart = document.getElementById("sleepChart");
   sleepToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "hoursSlept")}hrs`;
   sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "sleepQuality")}/5`;
   avUserSleepQuality.innerText = `${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
