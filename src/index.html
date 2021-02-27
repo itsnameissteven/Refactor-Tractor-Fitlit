@@ -18,25 +18,27 @@
         <div class="user-info__croper">
           <img alt="user's picture" src="./images/The Rock.jpg" class="user-info__croper--pic">
         </div>
-        <h2 class="user-info__name" id="sidebarName">Name Name</h2>
-        <p class="user-info__address" id="userAddress">1234 street name</p>
-        <p class="user-info__email" id="userEmail">itsnameissteven@gmail.com</p>
+        <h2 class="user-info__name" id="sidebarName"></h2>
+        <p class="user-info__address" id="userAddress"></p>
+        <p class="user-info__email" id="userEmail"></p>
       </section>
-
-
-
-
       <section class="hydration-stats">
         <div class="hydration-stats__icon icon">
           <img src="images/water.svg" alt="Water glass icon" class="hydration-stats__icon">
         </div>
         <div class="hydration-stats__data">
-          <p class="hydration-stats__today" id="hydrationToday"></p>
-          <p class="hydration-stats__avg" id="hydrationAverage"></p>
+          <p class="hydration-stats__today">
+            You Drank<span class="data-circle" id="hydrationToday"></span>Today
+            
+          </p>
+          <p class="hydration-stats__avg">
+            Average Water Intake<span class="data-circle" id="hydrationAverage"></span>
+          </p>
         </div>
         <div class="hydration-stats__chart">
+          <canvas id="hydroChart"></canvas>
           <ul class="hydration-stats__current-list hidden" id="hydrationThisWeek"></ul>
-          <p class="historicalWeek"></p>
+          <!-- <p class="historicalWeek"></p> -->
           <ul class="hydration-stats__earlier-week hidden" id="hydrationEarlierWeek"></ul>
         </div>
       </section>
@@ -44,13 +46,19 @@
 
 
 
-      <section class="walking-stats">
+      <section class="walking-stats" id="walkingStats">
         <div class="icon">
           <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
         </div> 
-        <p class="walking-stats__stride-length" id="userStridelength"></p>
-        <p class="walking-stats__step-goal" id="stepGoalCard"></p>
-        <!-- <p class="walking-stats__stride-length" id="avStepGoalCard"></p> -->
+        <p class="walking-stats__stride-length">
+          Your stride length <span class="walking-data" id="userStrideLength"></span>
+        </p>
+        <p class="walking-stats__step-goal">
+          Your Step Goal <span class="walking-data" id="stepGoalCard"></span>
+        </p>
+        <p class="walking-stats__miles-walked">
+          Miles Walked <span class="walking-data" id="milesWalked"></span>
+        </p>
       </section>
 
       
@@ -65,37 +73,61 @@
           <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
         </div>
         <div class="sleep-stats__data">
-          <p class="sleep-stats__sleep-today" id="sleepToday"></p>
-          <p class="sleep-stats__sleep-quality-today" id="sleepQualityToday"></p>
-          <p class="sleep-stats__avg-user-sleep" id="avUserSleepQuality"></p>
+          <p class="sleep-stats__sleep-today">
+            You slept <span class="data-circle" id="sleepToday"></span> Today
+          </p>
+          <p class="sleep-stats__sleep-quality-today">
+            Sleep Quality<span class="data-circle" id="sleepQualityToday"></span>
+          </p>
+          <p class="sleep-stats__avg-user-sleep">
+            National Average<span class="data-circle" id="avUserSleepQuality"></span> Quality
+          </p>
         </div>
         <div class="sleep-stats__chart">
-          <p class="sleep-stats__this-week">Hours of sleep this week</p>
+          <canvas id="sleepChart"></canvas>
+          <!-- <p class="sleep-stats__this-week">Hours of sleep this week</p>
           <ul class="sleep-stats__this-week-list" id="sleepThisWeek"></ul>
           <p class="sleep-stats__earlier-week">Earlier week</p>
-          <ul class="sleep-stats__earlier-week-list" id="sleepEarlierWeek"></ul>
+          <ul class="sleep-stats__earlier-week-list" id="sleepEarlierWeek"></ul> -->
         </div>
       </section>
 
       <section class="user-activity">
-        <div class="user-activity__data">
+        <!-- <div class="user-activity__data">
           <p class="user-activity__steps-today" id="userStepsToday"></p>
           <p class="user-activity__steps-all-avg" id="avgStepsToday"></p>
           <p class="user-activity__stairs-today" id="userStairsToday"></p>
           <p class="user-activity__stairs-all-avg" id="avgStairsToday"></p>
           <p class="user-activity__minutes-today" id="userMinutesToday"></p>
           <p class="user-activity__minutes-all-avg" id="avgMinutesToday"></p>
+        </div> -->
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart step-chart" id="stepChart"></canvas>
+        </div> 
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart flights-of-stairs" id="flightsOfStairsChart"></canvas>
         </div>
         <div class="user-activity__chart">
-          <p class="thisWeek">Your steps this week</p>
-          <ul class="card-vertical-list" id="userStepsThisWeek"></ul>
-          <p class="thisWeek">Your stair count this week</p>
-          <ul class="card-vertical-list" id="userStairsThisWeek"></ul>
-          <p class="thisWeek">Your minutes of activity this week</p>
-          <ul class="card-vertical-list" id="userMinutesThisWeek"></ul> 
-          <p class="thisWeek">Winner's steps this week</p>
-          <ul class="card-vertical-list" id="bestUserSteps"></ul>
-        </div> 
+          <canvas class="user-activity__bar-chart active-minutes-chart" id="activeMinutesChart"></canvas>
+        </div>
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart weekly-steps" id="weeklySteps"></canvas>
+        </div>
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart weekly-minutes-active" id="weeklyMinutesActive"></canvas>
+        </div>
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
+        </div>
+
+
+        
+        <!-- <p class="thisWeek">Your stair count this week</p>
+        <ul class="card-vertical-list" id="userStairsThisWeek"></ul>
+        <p class="thisWeek">Your minutes of activity this week</p>
+        <ul class="card-vertical-list" id="userMinutesThisWeek"></ul> 
+        <p class="thisWeek">Winner's steps this week</p>
+        <ul class="card-vertical-list" id="bestUserSteps"></ul> -->
       </section>
 
       <section class="step-challenge">
