@@ -109,15 +109,20 @@
 
 .user-activity {
   @include dataBox;
+  @include flex;
+  // justify-content: unset;
   grid-column: 1/4;
+  padding:1rem;
+  min-height: 35rem;
 
   &__data {
     @include flex;
   }
 
   &__chart {
-    @include flex;
-    height: 30rem;
+    // @include flex;
+    height: 100%;
+    width: 15%;
     border: $border-test
   }
 

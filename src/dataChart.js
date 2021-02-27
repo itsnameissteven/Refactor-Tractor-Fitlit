@@ -4,7 +4,7 @@ Chart.defaults.global.elements.line.fill = false
 const chart = {
 
   makeChart(dataSet, element, label) {
-    let myChart = new Chart(element, {
+    new Chart(element, {
       type: 'line',
         data: {
             labels: dataSet.map(data => {
@@ -34,7 +34,37 @@ const chart = {
     });
   },
 
-
+  createDoubleDataBarChart(dataSetUser, dataSetAll, element, label) {
+    new Chart(element, {
+      type: 'bar',
+      data: {
+          labels: ['You', 'Average user'],
+          datasets: [{
+              label: label,
+              data: [dataSetUser, dataSetAll],
+              backgroundColor: [
+                  'rgba(255, 99, 132, 0.2)',
+                  'rgba(54, 162, 235, 0.2)'
+              ],
+              borderColor: [
+                  'rgba(255, 99, 132, 1)',
+                  'rgba(54, 162, 235, 1)'
+              ],
+              borderWidth: 1
+          }]
+      },
+      options: {
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+      }
+    });
+  }
 
 }
 

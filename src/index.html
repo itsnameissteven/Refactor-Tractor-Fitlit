@@ -76,24 +76,41 @@
       </section>
 
       <section class="user-activity">
-        <div class="user-activity__data">
+        <!-- <div class="user-activity__data">
           <p class="user-activity__steps-today" id="userStepsToday"></p>
           <p class="user-activity__steps-all-avg" id="avgStepsToday"></p>
           <p class="user-activity__stairs-today" id="userStairsToday"></p>
           <p class="user-activity__stairs-all-avg" id="avgStairsToday"></p>
           <p class="user-activity__minutes-today" id="userMinutesToday"></p>
           <p class="user-activity__minutes-all-avg" id="avgMinutesToday"></p>
+        </div> -->
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart step-chart" id="stepChart"></canvas>
+        </div> 
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart flights-of-stairs" id="flightsOfStairsChart"></canvas>
         </div>
         <div class="user-activity__chart">
-          <p class="thisWeek">Your steps this week</p>
-          <ul class="card-vertical-list" id="userStepsThisWeek"></ul>
-          <p class="thisWeek">Your stair count this week</p>
-          <ul class="card-vertical-list" id="userStairsThisWeek"></ul>
-          <p class="thisWeek">Your minutes of activity this week</p>
-          <ul class="card-vertical-list" id="userMinutesThisWeek"></ul> 
-          <p class="thisWeek">Winner's steps this week</p>
-          <ul class="card-vertical-list" id="bestUserSteps"></ul>
-        </div> 
+          <canvas class="user-activity__bar-chart active-minutes-chart" id="activeMinutesChart"></canvas>
+        </div>
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart weekly-steps" id="weeklySteps"></canvas>
+        </div>
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart weekly-minutes-active" id="weeklyMinutesActive"></canvas>
+        </div>
+        <div class="user-activity__chart">
+          <canvas class="user-activity__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
+        </div>
+
+
+        
+        <!-- <p class="thisWeek">Your stair count this week</p>
+        <ul class="card-vertical-list" id="userStairsThisWeek"></ul>
+        <p class="thisWeek">Your minutes of activity this week</p>
+        <ul class="card-vertical-list" id="userMinutesThisWeek"></ul> 
+        <p class="thisWeek">Winner's steps this week</p>
+        <ul class="card-vertical-list" id="bestUserSteps"></ul> -->
       </section>
 
       <section class="step-challenge">

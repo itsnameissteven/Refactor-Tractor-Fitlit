@@ -150,7 +150,6 @@ function makeWinnerID(activityInfo, user, dateString, userStorage) {
 
 function makeToday(userStorage, id, dataSet) {
   var sortedArray = userStorage.makeSortedUserArray(id, dataSet);
-  console.log('sorted array', sortedArray[0].date)
   return sortedArray[0].date;
 }
 
@@ -165,6 +164,8 @@ function makeRandomDate(userStorage, id, dataSet) {
 
 function addHydrationInfo(id, hydrationInfo, dateString, userStorage, laterDateString) {
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces")
+
+
   hydrationToday.insertAdjacentHTML('afterBegin', `<p>You drank</p><p><span class="number">${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}</span></p><p>oz water today.</p>`);
   hydrationAverage.insertAdjacentHTML('afterBegin', `<p>Your average water intake is</p><p><span class="number">${hydrationInfo.calculateAverage(id, "numOunces")}</span></p> <p>oz per day.</p>`)
   // hydrationThisWeek.insertAdjacentHTML('afterBegin', makeHydrationHTML(id, hydrationInfo, userStorage, hydrationInfo.calculateFirstWeekOunces(userStorage, id)));
@@ -176,11 +177,11 @@ function makeHydrationHTML(id, hydrationInfo, userStorage, method) {
 }
 
 function addSleepInfo(id, sleepInfo, dateString, userStorage, laterDateString) {
-  // console.log(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept"))
   sleepToday.insertAdjacentHTML("afterBegin", `<p>You slept</p> <p><span class="number">${sleepInfo.calculateDailyData(id, dateString, "hoursSlept")}</span></p> <p>hours today.</p>`);
   sleepQualityToday.insertAdjacentHTML("afterBegin", `<p>Your sleep quality was</p> <p><span class="number">${sleepInfo.calculateDailyData(id, dateString, "sleepQuality")}</span></p><p>out of 5.</p>`);
   avUserSleepQuality.insertAdjacentHTML("afterBegin", `<p>The average user's sleep quality is</p> <p><span class="number">${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}</span></p><p>out of 5.</p>`);
-  chart.makeChart(sleepInfo.calculateWeeklyData(laterDateString, id, userStorage, "hoursSlept"), sleepChart, "Hours of Sleep")
+
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept"), sleepChart, "Hours of Sleep")
   // sleepThisWeek.insertAdjacentHTML('afterBegin', makeSleepHTML(id, sleepInfo, userStorage, sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept")));
   // sleepEarlierWeek.insertAdjacentHTML('afterBegin', makeSleepHTML(id, sleepInfo, userStorage, sleepInfo.calculateWeeklyData(laterDateString, id, userStorage, "hoursSlept")));
 }
@@ -194,18 +195,27 @@ function makeSleepQualityHTML(id, sleepInfo, userStorage, method) {
 }
 
 function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {
-  userStairsToday.insertAdjacentHTML("afterBegin", `<p>Stair Count:</p><p>You</><p><span class="number">${activityInfo.calculateDailyData(id, dateString, 'flightsOfStairs')}</span></p>`)
-  avgStairsToday.insertAdjacentHTML("afterBegin", `<p>Stair Count: </p><p>All Users</p><p><span class="number">${activityInfo.getAllUserAverageForDay(dateString, userStorage, 'flightsOfStairs')}</span></p>`)
-  userStepsToday.insertAdjacentHTML("afterBegin", `<p>Step Count:</p><p>You</p><p><span class="number">${activityInfo.calculateDailyData(id, dateString, 'numSteps')}</span></p>`)
-  avgStepsToday.insertAdjacentHTML("afterBegin", `<p>Step Count:</p><p>All Users</p><p><span class="number">${activityInfo.getAllUserAverageForDay(dateString, userStorage, 'numSteps')}</span></p>`)
-  userMinutesToday.insertAdjacentHTML("afterBegin", `<p>Active Minutes:</p><p>You</p><p><span class="number">${activityInfo.calculateDailyData(id, dateString, 'minutesActive')}</span></p>`)
-  avgMinutesToday.insertAdjacentHTML("afterBegin", `<p>Active Minutes:</p><p>All Users</p><p><span class="number">${activityInfo.getAllUserAverageForDay(dateString, userStorage, 'minutesActive')}</span></p>`)
-  userStepsThisWeek.insertAdjacentHTML("afterBegin", makeStepsHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, id, userStorage, "numSteps")));
-  userStairsThisWeek.insertAdjacentHTML("afterBegin", makeStairsHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, id, userStorage, "flightsOfStairs")));
-  userMinutesThisWeek.insertAdjacentHTML("afterBegin", makeMinutesHTML(id, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, id, userStorage, "minutesActive")));
-  bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, "numSteps")));
+  let stepChart = document.getElementById("stepChart");
+  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, "numSteps"), 
+    activityInfo.getAllUserAverageForDay(dateString, userStorage, 'numSteps'), stepChart, "steps");
+  let flightsOfStairsChart = document.getElementById("flightsOfStairsChart");
+  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, "flightsOfStairs"), 
+    activityInfo.getAllUserAverageForDay(dateString, userStorage, 'flightsOfStairs'), flightsOfStairsChart, "Flights of stairs");
+  let activeMinutesChart = document.getElementById('activeMinutesChart');
+  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, 'minutesActive'), 
+    activityInfo.getAllUserAverageForDay(dateString, userStorage, 'minutesActive'), activeMinutesChart, "Active Minutes Today");
+  let weeklySteps = document.getElementById("weeklySteps");
+  chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, "numSteps"),
+    weeklySteps, "Weekly Steps");
+  let weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
+  chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, "minutesActive"), 
+    weeklyMinutesActive, "Weekly Minutes Active");
+  let weeklyFlightsClimbed = document.getElementById('weeklyFlightsClimbed');
+  chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, "flightsOfStairs"),
+    weeklyFlightsClimbed, "Weekly flights climbed");
 }
 
+// bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, "numSteps")));
 function makeStepsHTML(id, activityInfo, userStorage, method) {
   // console.log(method)
   return method.map(activityData => `<li class="historical-list-listItem">On ${activityData} steps</li>`).join('');
