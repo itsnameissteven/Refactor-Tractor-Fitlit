@@ -44,9 +44,9 @@ let formErrorNotification = document.querySelector('.error');
 
 window.addEventListener('load', getFetchedUsers);
 hydrationButton.addEventListener('click', showHydrationForm);
-// sleepButton.addEventListener('click', showSleepForm);
-// activityButton.addEventListener('click', showActivityForm);
-// submitButton.addEventListener('click', submitForm);
+sleepButton.addEventListener('click', showSleepForm);
+activityButton.addEventListener('click', showActivityForm);
+submitButton.addEventListener('click', submitForm);
 
 function hideElement(element) {
   element.classList.add('hidden');
@@ -56,8 +56,82 @@ function showElement(element) {
   element.classList.remove('hidden');
 }
 
+function showHideEntryForms(subForm, form2, form3) {
+  showElement(baseForm);
+  showElement(subForm);
+  hideElement(form2);
+  hideElement(form3);
+}
+
 function showHydrationForm() {
-  showElement()
+  console.log("i have been clicked! hydration")
+  showHideEntryForms(hydrationForm, sleepForm, activityForm);
+}
+function showSleepForm() {
+  console.log("i have been clicked! sleep")
+  showHideEntryForms(sleepForm, hydrationForm, activityForm);
+}
+
+function showActivityForm() {
+  console.log("i have been clicked! activity")
+  showHideEntryForms(activityForm, sleepForm, hydrationForm);
+}
+
+function hideAllForms() {
+  hideElement(baseForm);
+  hideElement(hydrationForm);
+  hideElement(sleepForm);
+  hideElement(activityForm);
+}
+
+function grabHydrationInput(user) {
+  submitButton.value = "hydration";
+  console.log(submitButton)
+  const enteredHydrationInfo = {};
+  enteredHydrationInfo.userID = user.id;
+  enteredHydrationInfo.date = formHydrationDate.value;
+  enteredHydrationInfo.numOunces = formHydrationOz.value;
+  console.log(enteredHydrationInfo)
+}
+
+function grabSleepInput(user) {
+  submitButton.value = "sleep";
+  const enteredSleepInfo = {};
+  enteredSleepInfo.userID = user.id;
+  enteredSleepInfo.date = formSleepDate.value;
+  enteredSleepInfo.hoursSlept = formSleepHours.value;
+  enteredSleepInfo.sleepQuality = formSleepQuality.value;
+  console.log(enteredSleepInfo)
+
+}
+
+function grabActivityInput(user) {
+  submitButton.value = "activity";
+  const enteredActivityInfo = {};
+  enteredActivityInfo.userID = user.id;
+  enteredActivityInfo.date = formActivityDate.value;
+  enteredActivityInfo.numSteps = formActivitySteps.value;
+  enteredActivityInfo.minutesActive = formActivityMin.value;
+  enteredActivityInfo.flightsOfStairs = formActivityFlights.value;
+  console.log(enteredActivityInfo)
+}
+
+function submitForm(event) {
+  console.log('submit has been clicked!!! Oh happy day!')
+  event.preventDefault(event)
+  console.log('i am the submit button', submitButton)
+  // if (submitButton.value === "hydration") {
+  if (!hydrationForm.classList.includes("hidden")) {
+    console.log('hydration');
+    grabHydrationInput();
+  } else if (submitButton.value === "sleep") {
+    console.log('sleep');
+    grabSleepInput();
+  } else if (submitButton.value === "activity") {
+    console.log('activities!');
+    grabActivityInput();
+  }
+  hideAllForms();
 }
 
 function getFetchedUsers() {
