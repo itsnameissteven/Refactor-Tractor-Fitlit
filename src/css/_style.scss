@@ -107,7 +107,7 @@
 
 .sleep-stats {
   @include dataBox;
-  @include flex(column);
+  @include flex;
   grid-row: 3;
   grid-column: 2/4;
   height:60rem;
@@ -123,9 +123,14 @@
     // border: $border-test;
   }
 
-  &__chart {
+  &__chart--hours {
     height:60%;
-    width:100%
+    width:50%
+  }
+
+  &__chart--quality {
+    height:60%;
+    width:50%
   }
 
   .sleep-stats__sleep-quality-today {

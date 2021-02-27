@@ -3,7 +3,7 @@ Chart.defaults.global.elements.line.fill = false
 
 const chart = {
 
-  makeChart(dataSet, element, label) {
+  makeChart(dataSet, element, label, color) {
     new Chart(element, {
       type: 'line',
         data: {
@@ -16,7 +16,7 @@ const chart = {
                 label: label,
                 data: dataSet.map(data => data.data).reverse(),
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    color,
                 ],
                 borderWidth: 2
             }]
