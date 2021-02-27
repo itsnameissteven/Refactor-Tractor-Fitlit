@@ -13,6 +13,23 @@
   }
 }
 
+.add-tracking-information-section {
+  width: 45rem;
+  position: absolute;
+  top: 35%;
+  right: 1%;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  width: 13rem;
+  height: 3.5rem;
+  border: $border-grey;
+  border-radius: 5px;
+  background-color: $color-light-blue;
+}
+
 .user-info {
   @include dataBox;
   position: relative;
