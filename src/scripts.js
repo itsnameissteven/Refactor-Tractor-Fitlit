@@ -65,15 +65,23 @@ function showHideEntryForms(subForm, form2, form3) {
 
 function showHydrationForm() {
   console.log("i have been clicked! hydration")
+  document.getElementById("submit").value = "hydration"
+  console.log(submitButton)
   showHideEntryForms(hydrationForm, sleepForm, activityForm);
 }
 function showSleepForm() {
+  document.getElementById("submit").value = "sleep"
+  console.log(submitButton)
+
   console.log("i have been clicked! sleep")
   showHideEntryForms(sleepForm, hydrationForm, activityForm);
 }
 
 function showActivityForm() {
+  document.getElementById("submit").value = "activity"
   console.log("i have been clicked! activity")
+  console.log(submitButton)
+
   showHideEntryForms(activityForm, sleepForm, hydrationForm);
 }
 
@@ -85,19 +93,16 @@ function hideAllForms() {
 }
 
 function grabHydrationInput(user) {
-  submitButton.value = "hydration";
-  console.log(submitButton)
   const enteredHydrationInfo = {};
-  enteredHydrationInfo.userID = user.id;
+  // enteredHydrationInfo.userID = user.id;
   enteredHydrationInfo.date = formHydrationDate.value;
   enteredHydrationInfo.numOunces = formHydrationOz.value;
   console.log(enteredHydrationInfo)
 }
 
 function grabSleepInput(user) {
-  submitButton.value = "sleep";
   const enteredSleepInfo = {};
-  enteredSleepInfo.userID = user.id;
+  // enteredSleepInfo.userID = user.id;
   enteredSleepInfo.date = formSleepDate.value;
   enteredSleepInfo.hoursSlept = formSleepHours.value;
   enteredSleepInfo.sleepQuality = formSleepQuality.value;
@@ -106,9 +111,8 @@ function grabSleepInput(user) {
 }
 
 function grabActivityInput(user) {
-  submitButton.value = "activity";
   const enteredActivityInfo = {};
-  enteredActivityInfo.userID = user.id;
+  // enteredActivityInfo.userID = user.id;
   enteredActivityInfo.date = formActivityDate.value;
   enteredActivityInfo.numSteps = formActivitySteps.value;
   enteredActivityInfo.minutesActive = formActivityMin.value;
@@ -119,15 +123,15 @@ function grabActivityInput(user) {
 function submitForm(event) {
   console.log('submit has been clicked!!! Oh happy day!')
   event.preventDefault(event)
-  console.log('i am the submit button', submitButton)
+  // console.log('i am the submit button', submitButton)
   // if (submitButton.value === "hydration") {
-  if (!hydrationForm.classList.includes("hidden")) {
+  if (document.getElementById("submit").value === "hydration") {
     console.log('hydration');
     grabHydrationInput();
-  } else if (submitButton.value === "sleep") {
+  } else if (document.getElementById("submit").value === "sleep") {
     console.log('sleep');
     grabSleepInput();
-  } else if (submitButton.value === "activity") {
+  } else if (document.getElementById("submit").value === "activity") {
     console.log('activities!');
     grabActivityInput();
   }
