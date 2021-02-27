@@ -56,10 +56,23 @@ var historicalWeek = document.querySelectorAll('.historicalWeek');
 // var streakListMinutes = document.getElementById('streakListMinutes')
 // let hydroChart = document.getElementById("hydroChart")
 // let sleepChart = document.getElementById("sleepChart")
-
-
-
 let dataSet = []
+
+// window.addEventListener('load', getFetchedUsers);
+
+// function getFetchedUsers() {
+//   let userList = [];
+//   // let userRepo;
+//   fetchAPIData.fetchUserData()
+//     .then(data => {
+//       data.forEach(dataItem => {
+//         let user = new User(dataItem);
+//         userList.push(user);
+//         return userList;
+//       })
+
+//     })
+//   }
 
 fetchAPIData.fetchLifeData()
   .then(data => handleLifeData(data[0], data[1], data[2]))
@@ -79,7 +92,7 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
       data.forEach(dataItem => {
         let user = new User(dataItem);
         userList.push(user);
-        return userList;
+        // return userList;
       })
       userRepo = new UserRepo(userList)
       let userNowId = pickUser();
@@ -151,7 +164,7 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydrationAverage = document.getElementById('hydrationAverage');
   const hydroChart = document.getElementById("hydroChart");
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces");
-  hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
   hydrationAverage.innerText = `${hydrationInfo.calculateAverage(id, "numOunces")}oz`;
 }
 
@@ -183,7 +196,7 @@ function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateStr
 }
 
 function createBarChart(activityInfo, id, dateString, property, userStorage, element, chartLabel) {
-  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, property), 
+  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, property),
     activityInfo.getAllUserAverageForDay(dateString, userStorage, property), element, chartLabel);
 }
 
