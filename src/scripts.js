@@ -93,7 +93,6 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
       addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
       let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
       addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
-      // addWalkingStats(userNow, userRepo, today, activityRepo)
       // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
     })
 }
@@ -109,23 +108,18 @@ function getUserById(listRepo, id) {
 function addInfoToSidebar(user, userStorage) {
   sidebarName.innerText = user.name;
   headerText.innerText = `${user.getFirstName()}'s Activity Tracker`;
-  stepGoalCard.innerText = `Your daily step goal is ${user.dailyStepGoal}.`
   userAddress.innerText = user.address;
   userEmail.innerText = user.email;
   friendList.insertAdjacentHTML('afterBegin', makeFriendHTML(user, userStorage))
 }
 
 function addWalkingStats(user, userStorage, date, activityRepo) {
-  const walkingStats = document.getElementById("walkingStats");
-  walkingStats.insertAdjacentHTML("beforeend",  `
-    <p class="walking-stats__stride-length" id="userStridelength">
-      Your stridelength is ${user.strideLength} meters.
-    </p>
-    <p class="walking-stats__step-goal" id="stepGoalCard">
-      The average daily step goal is ${userStorage.calculateAverageStepGoal()}
-    </p>
-    <p> ${activityRepo.getMilesFromStepsByDate(user.id, date, user)}</p>
-  `)
+  const userStrideLength = document.getElementById('userStrideLength');
+  const stepGoalCard = document.getElementById('stepGoalCard');
+  const milesWalked = document.getElementById('milesWalked');
+  userStrideLength.innerText = `${user.strideLength}meters`;
+  stepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
+  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}`;
 }
 
 
@@ -147,10 +141,6 @@ function makeRandomDate(userStorage, id, dataSet) {
   return sortedArray[Math.floor(Math.random() * sortedArray.length + 1)].date
 }
 
-// function showHydrationInformation(location, activity, method) {
-//   location.insertAdjacentHTML('afterBegin', `<p>${activity}</p><p><span class="number">${method}</span></p><p>oz water today.</p>`);
-// }
-
 function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces")
   hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
@@ -158,12 +148,11 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
 }
 
 
-function addSleepInfo(id, sleepInfo, dateString, userStorage, laterDateString) {
-  sleepToday.insertAdjacentHTML("afterBegin", `<p>You slept</p> <p><span class="number">${sleepInfo.calculateDailyData(id, dateString, "hoursSlept")}</span></p> <p>hours today.</p>`);
-  sleepQualityToday.insertAdjacentHTML("afterBegin", `<p>Your sleep quality was</p> <p><span class="number">${sleepInfo.calculateDailyData(id, dateString, "sleepQuality")}</span></p><p>out of 5.</p>`);
-  avUserSleepQuality.insertAdjacentHTML("afterBegin", `<p>The average user's sleep quality is</p> <p><span class="number">${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}</span></p><p>out of 5.</p>`);
-
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept"), sleepChart, "Hours of Sleep")
+function addSleepInfo(id, sleepInfo, dateString, userStorage) {
+  sleepToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "hoursSlept")}hrs`;
+  sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "sleepQuality")}/5`;
+  avUserSleepQuality.innerText = `${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept"), sleepChart, "Hours of Sleep");
 }
 
 function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {

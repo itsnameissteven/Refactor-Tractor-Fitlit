@@ -32,7 +32,7 @@
   }
 
   &__name {
-    margin-top: 3rem;
+    margin-top: 1rem;
     text-align: center;
   }
 
@@ -56,10 +56,12 @@
 
 .walking-stats {
   @include dataBox;
-  @include flex;
+  @include flex(column);
   grid-row: 3;
   grid-column: 1;
-  // height: 50rem;
+  margin-top:5rem;
+  height: 60rem;
+  text-align: center;
 }
 
 .hydration-stats {
@@ -102,18 +104,27 @@
   @include flex(column);
   grid-row: 3;
   grid-column: 2/4;
+  height:60rem;
+  margin-top:5rem;
 
   &__data {
     @include flex;
-    height:30%;
-    width:100%
+    margin-top: 3%;
+    // justify-content: space-around;
+    text-align: center;
+    height:25%;
+    width:100%;
+    // border: $border-test;
   }
 
   &__chart {
-    height:70%;
+    height:60%;
     width:100%
   }
 
+  .sleep-stats__sleep-quality-today {
+    margin-left: 5.5%;
+  }
 }
 
 .user-activity {
@@ -146,7 +157,7 @@
 .data-circle {
   @include flex;
   margin: 0 auto;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   align-self: center;
   justify-content: center;
   align-content: center;
@@ -156,6 +167,13 @@
   color: $color-light-blue;
   border-radius: 100%;
   // border: $border-grey;
+}
+
+.walking-data {
+  @extend .data-circle;
+  // text-align: center;
+  height: 12rem;
+  width: 12rem;
 }
 
 .hidden {

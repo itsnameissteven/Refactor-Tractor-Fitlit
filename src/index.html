@@ -50,9 +50,15 @@
         <div class="icon">
           <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
         </div> 
-        <!-- <p class="walking-stats__stride-length" id="userStridelength"></p>
-        <p class="walking-stats__step-goal" id="stepGoalCard"></p> -->
-        <!-- <p class="walking-stats__stride-length" id="avStepGoalCard"></p> -->
+        <p class="walking-stats__stride-length">
+          Your stride length <span class="walking-data" id="userStrideLength"></span>
+        </p>
+        <p class="walking-stats__step-goal">
+          Your Step Goal <span class="walking-data" id="stepGoalCard"></span>
+        </p>
+        <p class="walking-stats__miles-walked">
+          Miles Walked <span class="walking-data" id="milesWalked"></span>
+        </p>
       </section>
 
       
@@ -67,9 +73,15 @@
           <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
         </div>
         <div class="sleep-stats__data">
-          <p class="sleep-stats__sleep-today" id="sleepToday"></p>
-          <p class="sleep-stats__sleep-quality-today" id="sleepQualityToday"></p>
-          <p class="sleep-stats__avg-user-sleep" id="avUserSleepQuality"></p>
+          <p class="sleep-stats__sleep-today">
+            You slept <span class="data-circle" id="sleepToday"></span> Today
+          </p>
+          <p class="sleep-stats__sleep-quality-today">
+            Sleep Quality<span class="data-circle" id="sleepQualityToday"></span>
+          </p>
+          <p class="sleep-stats__avg-user-sleep">
+            National Average<span class="data-circle" id="avUserSleepQuality"></span> Quality
+          </p>
         </div>
         <div class="sleep-stats__chart">
           <canvas id="sleepChart"></canvas>
