@@ -66,36 +66,26 @@ fetchAPIData.fetchLifeData()
 
 function handleLifeData(sleepData, activityData, hydrationData) {
   const hydration = new Hydration(hydrationData);
-  // console.log(hydration);
   const sleep = new Sleep(sleepData);
   const activity = new Activity(activityData);
   startApp(sleep, activity, hydration)
 }
 
 function startApp(sleepRepo, activityRepo, hydrationRepo) {
-  // console.log(hydrationRepo.hydrationData);
   let userList = [];
   let userRepo;
 
   fetchAPIData.fetchUserData()
     .then(data => {
       data.forEach(dataItem => {
-
         let user = new User(dataItem);
-        // console.log('I am a user', user)
-        // userList.push(dataItem);
         userList.push(user);
-
-        // userList.length = 50;
-        return userList
+        return userList;
       })
-      // console.log('userList length just inside', userList.length)
       userRepo = new UserRepo(userList)
-      // console.log('this is the full user repo', userRepo)
-      var userNowId = pickUser();
+      let userNowId = pickUser();
       let userNow = getUserById(userRepo, userNowId);
       let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
-
       let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
       historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
       addInfoToSidebar(userNow, userRepo);
@@ -105,18 +95,6 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
       addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
       // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
     })
-  // console.log('userList length after', userList.length)
-
-  // return userList
-
-  // makeUsers(userList);
-
-  // console.log('userRepo', userRepo[id])
-  // let hydrationRepo = new Hydration(hydrationData);
-  // let sleepRepo = new Sleep(sleepData);
-  // let activityRepo = new Activity(activityData);
-
-
 }
 
 function pickUser() {
@@ -150,6 +128,7 @@ function makeWinnerID(activityInfo, user, dateString, userStorage) {
 
 function makeToday(userStorage, id, dataSet) {
   var sortedArray = userStorage.makeSortedUserArray(id, dataSet);
+  console.log(sortedArray)
   return sortedArray[0].date;
 }
 
@@ -186,48 +165,33 @@ function addSleepInfo(id, sleepInfo, dateString, userStorage, laterDateString) {
   // sleepEarlierWeek.insertAdjacentHTML('afterBegin', makeSleepHTML(id, sleepInfo, userStorage, sleepInfo.calculateWeeklyData(laterDateString, id, userStorage, "hoursSlept")));
 }
 
-function makeSleepHTML(id, sleepInfo, userStorage, method) {
-  return method.map(sleepData => `<li class="historical-list-listItem">On ${sleepData} hours</li>`).join('');
-}
-
-function makeSleepQualityHTML(id, sleepInfo, userStorage, method) {
-  return method.map(sleepQualityData => `<li class="historical-list-listItem">On ${sleepQualityData}/5 quality of sleep</li>`).join('');
-}
-
 function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {
-  let stepChart = document.getElementById("stepChart");
-  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, "numSteps"), 
-    activityInfo.getAllUserAverageForDay(dateString, userStorage, 'numSteps'), stepChart, "steps");
-  let flightsOfStairsChart = document.getElementById("flightsOfStairsChart");
-  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, "flightsOfStairs"), 
-    activityInfo.getAllUserAverageForDay(dateString, userStorage, 'flightsOfStairs'), flightsOfStairsChart, "Flights of stairs");
-  let activeMinutesChart = document.getElementById('activeMinutesChart');
-  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, 'minutesActive'), 
-    activityInfo.getAllUserAverageForDay(dateString, userStorage, 'minutesActive'), activeMinutesChart, "Active Minutes Today");
-  let weeklySteps = document.getElementById("weeklySteps");
-  chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, "numSteps"),
-    weeklySteps, "Weekly Steps");
-  let weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
-  chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, "minutesActive"), 
-    weeklyMinutesActive, "Weekly Minutes Active");
-  let weeklyFlightsClimbed = document.getElementById('weeklyFlightsClimbed');
-  chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, "flightsOfStairs"),
-    weeklyFlightsClimbed, "Weekly flights climbed");
+  const stepChart = document.getElementById("stepChart");
+  const flightsOfStairsChart = document.getElementById("flightsOfStairsChart");
+  const activeMinutesChart = document.getElementById('activeMinutesChart');
+  createBarChart(activityInfo, id, dateString, "numSteps", userStorage, stepChart, "Steps Today");
+  createBarChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, flightsOfStairsChart, "flights of stairs");
+  createBarChart(activityInfo, id, dateString, "minutesActive", userStorage, activeMinutesChart, "Active Minutes Today");
+  const weeklySteps = document.getElementById("weeklySteps");
+  const weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
+  const weeklyFlightsClimbed = document.getElementById('weeklyFlightsClimbed');
+  createLineChart(activityInfo, id, dateString, "numSteps", userStorage, weeklySteps, "weekly steps");
+  createLineChart(activityInfo, id, dateString, "minutesActive", userStorage, weeklyMinutesActive, "weekly minutes active");
+  createLineChart(activityInfo, id, dateString, "flightsOfStairs", userStorage, weeklyFlightsClimbed, "weekly flights climbed");
+}
+
+function createBarChart(activityInfo, id, dateString, property, userStorage, element, chartLabel) {
+  chart.createDoubleDataBarChart(activityInfo.calculateDailyData(id, dateString, property), 
+    activityInfo.getAllUserAverageForDay(dateString, userStorage, property), element, chartLabel);
+}
+
+function createLineChart(activityInfo, id, dateString, property, userStorage, element, chartLabel) {
+  chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, property),
+    element, chartLabel);
 }
 
 // bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, "numSteps")));
-function makeStepsHTML(id, activityInfo, userStorage, method) {
-  // console.log(method)
-  return method.map(activityData => `<li class="historical-list-listItem">On ${activityData} steps</li>`).join('');
-}
 
-function makeStairsHTML(id, activityInfo, userStorage, method) {
-  return method.map(data => `<li class="historical-list-listItem">On ${data} flights</li>`).join('');
-}
-
-function makeMinutesHTML(id, activityInfo, userStorage, method) {
-  return method.map(data => `<li class="historical-list-listItem">On ${data} minutes</li>`).join('');
-}
 
 // function addFriendGameInfo(id, activityInfo, userStorage, dateString, laterDateString, user) {
 //   friendChallengeListToday.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
