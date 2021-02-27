@@ -58,57 +58,63 @@ var historicalWeek = document.querySelectorAll('.historicalWeek');
 // let sleepChart = document.getElementById("sleepChart")
 let dataSet = []
 
-// window.addEventListener('load', getFetchedUsers);
+window.addEventListener('load', getFetchedUsers);
 
-// function getFetchedUsers() {
+function getFetchedUsers() {
+  fetchAPIData.fetchUserData()
+    .then(data => createAUser(data))
+}
+
+function createAUser(userData) {
+  let userList = [];
+  makeUsers(userList, userData);
+  console.log(userList);
+}
+
+function makeUsers(userList, userData) {
+  userData.forEach(dataItem => {
+    let user = new User(dataItem);
+    userList.push(user);
+  })
+  console.log(userList);
+}
+
+// fetchAPIData.fetchLifeData()
+//   .then(data => handleLifeData(data[0], data[1], data[2]))
+
+// function handleLifeData(sleepData, activityData, hydrationData) {
+//   const hydration = new Hydration(hydrationData);
+//   const sleep = new Sleep(sleepData);
+//   const activity = new Activity(activityData);
+//   startApp(sleep, activity, hydration)
+// }
+
+// function startApp(sleepRepo, activityRepo, hydrationRepo) {
 //   let userList = [];
-//   // let userRepo;
+//   let userRepo;
 //   fetchAPIData.fetchUserData()
 //     .then(data => {
 //       data.forEach(dataItem => {
 //         let user = new User(dataItem);
 //         userList.push(user);
-//         return userList;
+
 //       })
-
+//       console.log(userList);
+//       userRepo = new UserRepo(userList)
+//       let userNowId = pickUser();
+//       let userNow = getUserById(userRepo, userNowId);
+//       let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
+//       let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
+//       addWalkingStats(userNow, userRepo, today, activityRepo)
+//       historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
+//       addInfoToSidebar(userNow, userRepo);
+//       addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
+//       addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
+//       let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
+//       addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
+//       // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
 //     })
-//   }
-
-fetchAPIData.fetchLifeData()
-  .then(data => handleLifeData(data[0], data[1], data[2]))
-
-function handleLifeData(sleepData, activityData, hydrationData) {
-  const hydration = new Hydration(hydrationData);
-  const sleep = new Sleep(sleepData);
-  const activity = new Activity(activityData);
-  startApp(sleep, activity, hydration)
-}
-
-function startApp(sleepRepo, activityRepo, hydrationRepo) {
-  let userList = [];
-  let userRepo;
-  fetchAPIData.fetchUserData()
-    .then(data => {
-      data.forEach(dataItem => {
-        let user = new User(dataItem);
-        userList.push(user);
-        // return userList;
-      })
-      userRepo = new UserRepo(userList)
-      let userNowId = pickUser();
-      let userNow = getUserById(userRepo, userNowId);
-      let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
-      let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
-      addWalkingStats(userNow, userRepo, today, activityRepo)
-      historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
-      addInfoToSidebar(userNow, userRepo);
-      addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
-      addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
-      let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
-      addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
-      // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
-    })
-}
+// }
 
 function pickUser() {
   return Math.floor(Math.random() * 50);
