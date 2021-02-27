@@ -91,7 +91,6 @@ function startApp(sleepRepo, activityRepo, hydrationRepo) {
       addInfoToSidebar(userNow, userRepo);
       addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
       addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
-      console.log(activityRepo)
       let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
       addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
       // addWalkingStats(userNow, userRepo, today, activityRepo)
@@ -152,15 +151,12 @@ function makeRandomDate(userStorage, id, dataSet) {
 //   location.insertAdjacentHTML('afterBegin', `<p>${activity}</p><p><span class="number">${method}</span></p><p>oz water today.</p>`);
 // }
 
-function addHydrationInfo(id, hydrationInfo, dateString, userStorage, laterDateString) {
+function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces")
-  hydrationToday.insertAdjacentHTML('afterBegin', `<p>You drank</p><p><span class="number">${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}</span></p><p>oz water today.</p>`);
-  hydrationAverage.insertAdjacentHTML('afterBegin', `<p>Your average water intake is</p><p><span class="number">${hydrationInfo.calculateAverage(id, "numOunces")}</span></p> <p>oz per day.</p>`)
+  hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationAverage.innerText = `${hydrationInfo.calculateAverage(id, "numOunces")}oz`
 }
 
-function makeHydrationHTML(id, hydrationInfo, userStorage, method) {
-  return method.map(drinkData => `<li class="historical-list-listItem">On ${drinkData}oz</li>`).join('');
-}
 
 function addSleepInfo(id, sleepInfo, dateString, userStorage, laterDateString) {
   sleepToday.insertAdjacentHTML("afterBegin", `<p>You slept</p> <p><span class="number">${sleepInfo.calculateDailyData(id, dateString, "hoursSlept")}</span></p> <p>hours today.</p>`);
