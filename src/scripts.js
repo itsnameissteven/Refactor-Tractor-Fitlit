@@ -71,7 +71,8 @@ function createRandomUser(userData) {
   makeUsers(userList, userData);
   userRepo = new UserRepo(userList);
   const userNowId = pickUser();
-  getFetchedLifeData(userRepo, userNowId);
+  const userNow = getUserById(userRepo, userNowId);
+  getFetchedLifeData(userRepo, userNowId, userNow);
 }
 
 function makeUsers(userList, userData) {
@@ -81,22 +82,21 @@ function makeUsers(userList, userData) {
   })
 }
 
-function getFetchedLifeData(userRepo, userNowId) {
+function getFetchedLifeData(userRepo, userNowId, userNow) {
   fetchAPIData.fetchLifeData()
-    .then(data => handleLifeData(data[0], data[1], data[2], userRepo, userNowId))
+    .then(data => handleLifeData(data[0], data[1], data[2], userRepo, userNowId, userNow))
 }
 
-function handleLifeData(sleepData, activityData, hydrationData, userRepo, userNowId) {
-  const hydration = new Hydration(hydrationData);
-  const sleep = new Sleep(sleepData);
-  const activity = new Activity(activityData);
-  startApp(sleep, activity, hydration, userRepo, userNowId)
+function handleLifeData(sleepData, activityData, hydrationData, userRepo, userNowId, userNow) {
+  const hydrationRepo = new Hydration(hydrationData);
+  const sleepRepo = new Sleep(sleepData);
+  const activityRepo = new Activity(activityData);
+  const today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
+  const randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
+  startApp(sleepRepo, activityRepo, hydrationRepo, userRepo, userNowId, today, randomHistory, userNow)
 }
 
-function startApp(sleepRepo, activityRepo, hydrationRepo, userRepo, userNowId) {
-  let userNow = getUserById(userRepo, userNowId);
-  let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
-  let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
+function startApp(sleepRepo, activityRepo, hydrationRepo, userRepo, userNowId, today, randomHistory, userNow) {
   addWalkingStats(userNow, userRepo, today, activityRepo)
   historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
   addInfoToSidebar(userNow, userRepo);
@@ -106,45 +106,6 @@ function startApp(sleepRepo, activityRepo, hydrationRepo, userRepo, userNowId) {
   addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
   // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
 }
-
-
-
-// fetchAPIData.fetchLifeData()
-//   .then(data => handleLifeData(data[0], data[1], data[2]))
-
-// function handleLifeData(sleepData, activityData, hydrationData) {
-//   const hydration = new Hydration(hydrationData);
-//   const sleep = new Sleep(sleepData);
-//   const activity = new Activity(activityData);
-//   startApp(sleep, activity, hydration)
-// }
-
-// function startApp(sleepRepo, activityRepo, hydrationRepo) {
-//   let userList = [];
-//   let userRepo;
-//   fetchAPIData.fetchUserData()
-//     .then(data => {
-//       data.forEach(dataItem => {
-//         let user = new User(dataItem);
-//         userList.push(user);
-
-//       })
-//       console.log(userList);
-//       userRepo = new UserRepo(userList)
-//       let userNowId = pickUser();
-//       let userNow = getUserById(userRepo, userNowId);
-//       let today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
-//       let randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
-//       addWalkingStats(userNow, userRepo, today, activityRepo)
-//       historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
-//       addInfoToSidebar(userNow, userRepo);
-//       addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
-//       addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
-//       let winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
-//       addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
-//       // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
-//     })
-// }
 
 function pickUser() {
   return Math.floor(Math.random() * 50);
@@ -203,7 +164,6 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
   hydrationAverage.innerText = `${hydrationInfo.calculateAverage(id, "numOunces")}oz`;
 }
-
 
 function addSleepInfo(id, sleepInfo, dateString, userStorage) {
   const sleepToday = document.getElementById('sleepToday');
