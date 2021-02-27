@@ -319,14 +319,14 @@ describe('Sleep', () => {
 
     it('should find hours slept per day for a specified week', () => {
 
-      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'hoursSlept')[0]).to.eql('2019/06/18: 7.9');
-      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'hoursSlept')[6]).to.eql('2017/06/15: 5.4');
+      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'hoursSlept')[0]).to.eql({ date: '2019/06/18', data: 7.9 });
+      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'hoursSlept')[6]).to.eql({ date: '2017/06/15', data: 5.4 });
     });
 
     it('should find sleep quality per day for a specified week', () => {
 
-      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'sleepQuality')[0]).to.eql('2019/06/18: 1.6');
-      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'sleepQuality')[6]).to.eql('2017/06/15: 3');
+      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'sleepQuality')[0]).to.eql({ date: '2019/06/18', data: 1.6 });
+      expect(sleep.calculateWeeklyData('2019/06/18', 4, userRepo, 'sleepQuality')[6]).to.eql({ date: '2017/06/15', data: 3 });
     });
 
     it('should find the average sleep quality for all users', () => {

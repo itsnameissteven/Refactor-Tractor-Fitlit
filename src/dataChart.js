@@ -3,7 +3,7 @@ Chart.defaults.global.elements.line.fill = false
 
 const chart = {
 
-  makeChart(dataSet, element, label) {
+  makeChart(dataSet, element, label, color) {
     new Chart(element, {
       type: 'line',
         data: {
@@ -16,7 +16,7 @@ const chart = {
                 label: label,
                 data: dataSet.map(data => data.data).reverse(),
                 borderColor: [
-                    'rgba(255, 99, 132, 1)',
+                    color,
                 ],
                 borderWidth: 2
             }]
@@ -38,20 +38,31 @@ const chart = {
     new Chart(element, {
       type: 'bar',
       data: {
-          labels: ['You', 'Average user'],
+          labels: [label],
           datasets: [{
-              label: label,
-              data: [dataSetUser, dataSetAll],
+              label: "You",
+              data: [dataSetUser],
               backgroundColor: [
-                  'rgba(255, 99, 132, 0.2)',
-                  'rgba(54, 162, 235, 0.2)'
+                  'rgba(255, 99, 132, 1)'
               ],
               borderColor: [
-                  'rgba(255, 99, 132, 1)',
+                  'rgba(255, 99, 132, 1)'
+              ],
+              borderWidth: 1
+          },
+          {
+              label: "National Average",
+              data: [dataSetAll],
+              backgroundColor: [
+                  'rgba(54, 162, 235, 1)',
+              ],
+              borderColor: [
                   'rgba(54, 162, 235, 1)'
               ],
               borderWidth: 1
-          }]
+          }
+
+        ]
       },
       options: {
         maintainAspectRatio: false,
