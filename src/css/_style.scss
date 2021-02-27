@@ -116,11 +116,9 @@
   &__data {
     @include flex;
     margin-top: 3%;
-    // justify-content: space-around;
     text-align: center;
     height:25%;
     width:100%;
-    // border: $border-test;
   }
 
   &__chart--hours {
@@ -182,15 +180,14 @@
   align-content: center;
   height: 8rem;
   width: 8rem;
-  background-color: $color-black;
-  color: $color-light-blue;
+  background-color: #088598;
+  color: #fff;
   border-radius: 100%;
-  // border: $border-grey;
+  border: 1px solid #065D6B
 }
 
 .walking-data {
   @extend .data-circle;
-  // text-align: center;
   height: 12rem;
   width: 12rem;
 }
