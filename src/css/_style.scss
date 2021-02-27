@@ -146,6 +146,35 @@ button {
   grid-column: 1/4;
 }
 
+.add-information-form {
+  @include dataBox;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  margin: 5% 0 0 37%;
+  padding: 5%;
+
+  .entry-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  input {
+    display: flex;
+    padding: 2px 0 2px 5px;
+    margin: 10px 0 10px 0;
+    width: 30rem;
+  }
+
+  .submit-button {
+    margin-top: 15px;
+  }
+}
+
 .hidden {
   display: none;
 }

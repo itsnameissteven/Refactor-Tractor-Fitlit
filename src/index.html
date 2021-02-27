@@ -123,16 +123,20 @@
   </main>
 
   <form class="add-information-form">
-    <section class="hydration-form">
+    <section class="hydration-form ">
       <div class="hydration-stats__icon icon">
         <img src="images/water.svg" alt="Water glass icon" class="hydration-stats__icon">
       </div>
       <h2 class="user-entry">Form</h2>
       <section class="entry-form-section">
-        <label for="date">Date of Hydration:</label>
-        <input type="text" id="date" name="date" placeholder="2019/06/15">
-        <label for="oz">Number of Oz:</label>
-        <input type="text" id="oz" name="oz" placeholder="52">
+        <div class="input">
+          <label for="date">Date of Hydration:</label>
+          <input type="text" id="date" name="date" placeholder="2019/06/15">
+        </div>
+        <div class="input">
+          <label for="oz">Number of Oz:</label>
+          <input type="text" id="oz" name="oz" placeholder="52">
+        </div>
       </section>
     </section>
 
@@ -143,12 +147,18 @@
       </div>
       <h2 class="user-entry">Form</h2>
       <section class="entry-form-section">
-        <label for="date">Date of Sleep:</label>
-        <input type="text" id="date" name="date" placeholder="2019/06/15">
-        <label for="hours">Hours Slept:</label>
-        <input type="text" id="hours" name="hours" placeholder="7.5">
-        <label for="quality">Sleep Quality Out of 5:</label>
-        <input type="text" id="quality" name="quality" placeholder="4.2">
+        <div class="input">
+          <label for="date">Date of Sleep:</label>
+          <input type="text" id="date" name="date" placeholder="2019/06/15">
+        </div>
+        <div class="input">
+          <label for="hours">Hours Slept:</label>
+          <input type="text" id="hours" name="hours" placeholder="7.5">
+        </div>
+        <div class="input">
+          <label for="quality">Sleep Quality Out of 5:</label>
+          <input type="text" id="quality" name="quality" placeholder="4.2">
+        </div>
       </section>
     </section>
 
@@ -158,26 +168,35 @@
       </div>
       <h2 class="user-entry-title">Form</h2>
       <section class="entry-form-section">
-        <label for="date">Date of Activity:</label>
-        <input type="text" id="date" name="date" placeholder="2019/06/15">
-        <label for="steps">Number of Steps:</label>
-        <input type="text" id="steps" name="steps" placeholder="1236">
-        <label for="min">Minutes Active:</label>
-        <input type="text" id="min" name="min" placeholder="60">
-        <label for="flights">Flights of Stairs:</label>
-        <input type="text" id="flights" name="flights" placeholder="20">
-      </section>
+        <div class="input">
+          <label for="date">Date of Activity:</label>
+          <input type="text" id="date" name="date" placeholder="2019/06/15">
+        </div>
+        <div class="input">
+          <label for="steps">Number of Steps:</label>
+          <input type="text" id="steps" name="steps" placeholder="1236">
+        </div>
+        <div class="input">
+          <label for="min">Minutes Active:</label>
+          <input type="text" id="min" name="min" placeholder="60">
+        </div>
+        <div class="input">
+          <label for="flights">Flights of Stairs:</label>
+          <input type="text" id="flights" name="flights" placeholder="20">
+        </div>
 
+      </section>
+    </section>
 
-      <button type="submit">Submit</button>
-      <section class="submission-notification success">
-        <h3 class="header">Form Completed</h3>
-        <p>Your submission has been recorded!</p>
-      </section>
-      <section class="submission-notification error">
-        <h3 class="header">Form Incorrect</h3>
-        <p>Something went wrong!</p>
-      </section>
+    <button class="submit-button" type="submit">Submit</button>
+    <section class="submission-notification success hidden">
+      <h3 class="header">Form Completed</h3>
+      <p>Your submission has been recorded!</p>
+    </section>
+    <section class="submission-notification error hidden">
+      <h3 class="header">Form Incorrect</h3>
+      <p>Something went wrong!</p>
+    </section>
   </form>
 </body>
 
