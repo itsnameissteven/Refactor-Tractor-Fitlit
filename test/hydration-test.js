@@ -101,11 +101,33 @@ describe('Hydration', () => {
     });
 
     it('should find water intake by day for first week', () => {
-      expect(hydration.calculateFirstWeekOunces(userRepo, 1)).to.eql(['2019/06/15: 37', '2018/06/16: 39', '2016/08/22: 30']);
+      expect(hydration.calculateFirstWeekOunces(userRepo, 1)).to.eql([
+        {
+          "data": 37,
+          "date": "2019/06/15"
+        },
+        {
+          "data": 39,
+          "date": "2018/06/16"
+        },
+        {
+          "data": 30,
+          "date": "2016/08/22"
+        }
+      ]);
     });
 
     it('should find water intake by day for that days week', () => {
-      expect(hydration.calculateWeeklyData('2018/10/24', 2, userRepo, 'numOunces')).to.eql(['2018/10/24: 40', '2018/10/23: 34'])
+      expect(hydration.calculateWeeklyData('2018/10/24', 2, userRepo, 'numOunces')).to.eql([
+        {
+          "data": 40,
+          "date": "2018/10/24"
+        },
+        {
+          "data": 34,
+          "date": "2018/10/23"
+        }
+      ])
     });
   });
 });

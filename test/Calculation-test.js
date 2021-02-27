@@ -136,7 +136,7 @@ describe('Calculation', () => {
     });
 
     it('should find information for a user by day for that days week', () => {
-      expect(calculation.calculateWeeklyData('2017/06/15', 1, userRepo, 'hoursSlept')[0]).to.equal('2017/06/15: 6.1');
+      expect(calculation.calculateWeeklyData('2017/06/15', 1, userRepo, 'hoursSlept')[0]).to.eql({ date: '2017/06/15', data: 6.1 });
     });
   });
 });

@@ -172,17 +172,55 @@ describe('Activity', () => {
     });
 
     it('should return a weeks worth steps for a given user', () => {
-      const weeklyData = ['2019/06/17: 9303', '2019/06/16: 5000', '2019/06/15: 3577'];
+      const weeklyData = [
+        {
+        "data": 9303,
+        "date": "2019/06/17"
+        },
+        {
+          "data": 5000,
+          "date": "2019/06/16"
+        },
+        {
+          "data": 3577,
+          "date": "2019/06/15"
+        }];
       expect(activity.calculateWeeklyData("2019/06/17", 1, userRepo, 'numSteps')).to.eql(weeklyData);
     });
 
     it('should return a weeks worth active minutes for a given user', () => {
-      const weeklyData = ['2019/06/17: 45', '2019/06/16: 12', '2019/06/15: 140']
+      const weeklyData = [
+        {
+          "data": 45,
+          "date": "2019/06/17"
+        },
+        {
+          "data": 12,
+          "date": "2019/06/16"
+        },
+        {
+          "data": 140,
+          "date": "2019/06/15"
+        }
+      ]
       expect(activity.calculateWeeklyData("2019/06/17", 1, userRepo, 'minutesActive')).to.eql(weeklyData);
     });
 
     it('should return a weeks worth stairs for a given user', () => {
-      const weeklyData = ['2019/06/17: 9', '2019/06/16: 14', '2019/06/15: 16']
+      const weeklyData = [
+        {
+          "data": 9,
+          "date": "2019/06/17"
+        },
+        {
+          "data": 14,
+          "date": "2019/06/16"
+        },
+        {
+          "data": 16,
+          "date": "2019/06/15"
+        }
+      ]
       expect(activity.calculateWeeklyData("2019/06/17", 1, userRepo, 'flightsOfStairs')).to.eql(weeklyData);
     });
   });
