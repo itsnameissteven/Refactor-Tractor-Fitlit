@@ -20,7 +20,8 @@
       <button class="add-button">Activity</button>
     </section>
   </header>
-  <main class="main">
+
+  <main class="main hidden">
     <section class="user-info">
       <div class="user-info__croper">
         <img alt="user's picture" src="./images/The Rock.jpg" class="user-info__croper--pic">
@@ -119,10 +120,65 @@
         <ul class="card-vertical-list" id="friendChallengeListHistory"></ul>
       </section>
     </section>
-    <form class="add-tracking-information-form">
-
-    </form>
   </main>
+
+  <form class="add-information-form">
+    <section class="hydration-form">
+      <div class="hydration-stats__icon icon">
+        <img src="images/water.svg" alt="Water glass icon" class="hydration-stats__icon">
+      </div>
+      <h2 class="user-entry">Form</h2>
+      <section class="entry-form-section">
+        <label for="date">Date of Hydration:</label>
+        <input type="text" id="date" name="date" placeholder="2019/06/15">
+        <label for="oz">Number of Oz:</label>
+        <input type="text" id="oz" name="oz" placeholder="52">
+      </section>
+    </section>
+
+    </section>
+    <section class="sleep-form hidden">
+      <div class="icon">
+        <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
+      </div>
+      <h2 class="user-entry">Form</h2>
+      <section class="entry-form-section">
+        <label for="date">Date of Sleep:</label>
+        <input type="text" id="date" name="date" placeholder="2019/06/15">
+        <label for="hours">Hours Slept:</label>
+        <input type="text" id="hours" name="hours" placeholder="7.5">
+        <label for="quality">Sleep Quality Out of 5:</label>
+        <input type="text" id="quality" name="quality" placeholder="4.2">
+      </section>
+    </section>
+
+    <section class="activity-form hidden">
+      <div class="icon">
+        <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
+      </div>
+      <h2 class="user-entry-title">Form</h2>
+      <section class="entry-form-section">
+        <label for="date">Date of Activity:</label>
+        <input type="text" id="date" name="date" placeholder="2019/06/15">
+        <label for="steps">Number of Steps:</label>
+        <input type="text" id="steps" name="steps" placeholder="1236">
+        <label for="min">Minutes Active:</label>
+        <input type="text" id="min" name="min" placeholder="60">
+        <label for="flights">Flights of Stairs:</label>
+        <input type="text" id="flights" name="flights" placeholder="20">
+      </section>
+
+
+      <button type="submit">Submit</button>
+      <section class="submission-notification success">
+        <h3 class="header">Form Completed</h3>
+        <p>Your submission has been recorded!</p>
+      </section>
+      <section class="submission-notification error">
+        <h3 class="header">Form Incorrect</h3>
+        <p>Something went wrong!</p>
+      </section>
+  </form>
 </body>
 
 </html>

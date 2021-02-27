@@ -25,9 +25,18 @@
 button {
   width: 13rem;
   height: 3.5rem;
-  border: $border-grey;
   border-radius: 5px;
-  background-color: $color-light-blue;
+  border: $color-light-blue;
+  background-color: $color-black;
+  color: $color-light-blue;
+  // transition: 0.2s ease-in-out
+
+  &:hover {
+    background-color: $color-light-blue;
+    color: $color-black;
+    cursor: pointer;
+    // transition: all 0.2s ease-in-out
+  }
 }
 
 .user-info {
