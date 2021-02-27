@@ -67,8 +67,9 @@ function getFetchedUsers() {
 
 function createAUser(userData) {
   let userList = [];
+  let userRepo;
   makeUsers(userList, userData);
-  console.log(userList);
+  userRepo = new UserRepo(userList);
 }
 
 function makeUsers(userList, userData) {
@@ -76,7 +77,6 @@ function makeUsers(userList, userData) {
     let user = new User(dataItem);
     userList.push(user);
   })
-  console.log(userList);
 }
 
 // fetchAPIData.fetchLifeData()
