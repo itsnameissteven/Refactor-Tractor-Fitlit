@@ -64,11 +64,11 @@ function showHideEntryForms(subForm, form2, form3) {
 }
 
 function blur(element) {
-  element.classList.add('is-blurred');
+  element.classList.add('blur');
 }
 
 function unBlur(element) {
-  element.classList.remove('is-blurred');
+  element.classList.remove('blur');
 }
 
 function showHydrationForm() {

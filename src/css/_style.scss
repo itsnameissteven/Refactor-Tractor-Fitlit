@@ -238,6 +238,9 @@ button {
   top: 2px;
   border-color: $color-light-blue;
 
+  .x {
+    float: right;
+  }
   .entry-form-section {
     display: flex;
     flex-direction: column;
@@ -261,7 +264,7 @@ button {
   }
 }
 
-.is-blurred {
+.blur {
   filter: blur(8px);
 }
 
