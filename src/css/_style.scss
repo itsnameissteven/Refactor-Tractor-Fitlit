@@ -271,8 +271,9 @@ button {
   .input {
     margin-top: 5px;
     
-  &:required {
-  border: 3px solid red;
+    &:required {
+    border: 3px solid red;
+    }
   }
 
   .submit-button {

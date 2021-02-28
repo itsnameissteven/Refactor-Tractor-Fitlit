@@ -123,11 +123,13 @@ function grabActivityInput(user) {
   console.log(enteredActivityInfo)
 }
 
+// function checkForCompletion {
+
+// }
+
 function submitForm(event) {
-  console.log('submit has been clicked!!! Oh happy day!')
   event.preventDefault(event)
-  // console.log('i am the submit button', submitButton)
-  // if (submitButton.value === "hydration") {
+  debugger
   if (document.getElementById("submit").value === "hydration") {
     console.log('hydration');
     grabHydrationInput();
