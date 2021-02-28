@@ -5,3 +5,16 @@
   grid-template-rows: repeat( auto-fill, 25rem);
   grid-gap:2rem;
 }
+
+@media screen and (max-width: 1070px) {
+  .main {
+    grid-template-columns:  repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .main {
+    padding:6rem .5rem;
+    grid-template-columns:  minmax(100%, 1fr);
+  }
+}
