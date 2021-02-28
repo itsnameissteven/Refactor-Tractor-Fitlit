@@ -41,6 +41,9 @@ let submitButton = document.querySelector('.submit-button');
 let formSuccessNotification = document.querySelector('.success');
 let formErrorNotification = document.querySelector('.error');
 
+let userRepo;
+let userNow;
+
 window.addEventListener('load', getFetchedUsers);
 hydrationButton.addEventListener('click', showHydrationForm);
 sleepButton.addEventListener('click', showSleepForm);
@@ -93,15 +96,15 @@ function hideAllForms() {
 
 function grabHydrationInput(user) {
   const enteredHydrationInfo = {};
-  // enteredHydrationInfo.userID = user.id;
-  enteredHydrationInfo.date = formHydrationDate.value;
-  enteredHydrationInfo.numOunces = formHydrationOz.value;
+  enteredHydrationInfo.userID = userNow.id;
+  enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
+  enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
   console.log(enteredHydrationInfo)
 }
 
 function grabSleepInput(user) {
   const enteredSleepInfo = {};
-  // enteredSleepInfo.userID = user.id;
+  enteredSleepInfo.userID = userNow.id;
   enteredSleepInfo.date = formSleepDate.value;
   enteredSleepInfo.hoursSlept = formSleepHours.value;
   enteredSleepInfo.sleepQuality = formSleepQuality.value;
@@ -111,7 +114,7 @@ function grabSleepInput(user) {
 
 function grabActivityInput(user) {
   const enteredActivityInfo = {};
-  // enteredActivityInfo.userID = user.id;
+  enteredActivityInfo.userID = userNow.id;
   enteredActivityInfo.date = formActivityDate.value;
   enteredActivityInfo.numSteps = formActivitySteps.value;
   enteredActivityInfo.minutesActive = formActivityMin.value;
@@ -144,11 +147,13 @@ function getFetchedUsers() {
 
 function createRandomUser(userData) {
   let userList = [];
-  let userRepo;
+  // let userRepo;
   makeUsers(userList, userData);
   userRepo = new UserRepo(userList);
   const userNowId = pickUser();
-  const userNow = getUserById(userRepo, userNowId);
+  console.log(userNowId);
+  userNow = getUserById(userRepo, userNowId);
+
   getFetchedLifeData(userRepo, userNowId, userNow);
 }
 
@@ -241,7 +246,7 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydroChart = document.getElementById("hydroChart");
   const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces", '#D5260B');
-  hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
   hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
 }
 
