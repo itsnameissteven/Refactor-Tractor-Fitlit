@@ -4,6 +4,7 @@
   grid-template-columns:  repeat(3, 1fr);
   grid-template-rows: repeat( auto-fill, 25rem);
   grid-gap:2rem;
+  position: relative;
 }
 
 @media screen and (max-width: 1070px) {
