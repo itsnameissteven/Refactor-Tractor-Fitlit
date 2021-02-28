@@ -46,6 +46,12 @@ sleepButton.addEventListener('click', showSleepForm);
 activityButton.addEventListener('click', showActivityForm);
 submitButton.addEventListener('click', submitForm);
 xButton.addEventListener('click', hideAllForms);
+baseForm.addEventListener("keydown", function (event) {
+  var invalidCharacters = ["e", "+", "-", "."];
+  if (invalidCharacters.includes(event.key)) {
+    event.preventDefault();
+  }
+});
 
 
 function hideElement(element) {
