@@ -182,13 +182,24 @@
     </section>
 
     <button id="submit" class="submit-button" type="submit" value="hydration">Submit</button>
-    <section class="submission-notification">
-      <h3 class="success">Entry Submitted!</h3>
-      <p class="success">Your data has been recorded!</p>
+    <section id="successNotification" class="submission-notification hidden">
+      <div class="remove-container">
+        <img src="images/check.svg" alt="green check" class="notification-icon">
+      </div>
+      <div>
+        <h3>Entry Submitted!</h3>
+        <p>Your data has been recorded!</p>
+      </div>
     </section>
-    <section class="submission-notification hidden">
-      <h3 class="error">Entry Incomplete!</h3>
-      <p class="error">Make sure all sections are complete.</p>
+    <section id="failureNotification" class="submission-notification hidden">
+      <div class="remove-container">
+        <img src="images/warning.svg" alt="warning" class="notification-icon">
+      </div>
+      <div>
+        <h3>Submission Failed!</h3>
+        <p>All sections must be completed.</p>
+      </div>
+
     </section>
   </form>
 </body>

@@ -1,10 +1,12 @@
 import './css/index.scss';
-import './images/person walking on path.jpg';
+// import './images/person walking on path.jpg';
 import './images/The Rock.jpg';
 import './images/walk.svg';
 import './images/water.svg';
 import './images/sleep.svg';
 import './images/remove.svg';
+import './images/check.svg';
+import './images/warning.svg';
 
 import User from './User';
 import Activity from './Activity';
@@ -35,8 +37,8 @@ let formActivityFlights = document.querySelector('#flights');
 let submitButton = document.querySelector('.submit-button');
 let xButton = document.querySelector('#remove');
 
-let formSuccessNotification = document.querySelector('.success');
-let formErrorNotification = document.querySelector('.error');
+let formSuccessNotification = document.querySelector('#successNotification');
+let formErrorNotification = document.querySelector('#failureNotification');
 
 window.addEventListener('load', getFetchedUsers);
 hydrationButton.addEventListener('click', showHydrationForm);
@@ -93,13 +95,18 @@ function hideAllForms() {
   hideElement(hydrationForm);
   hideElement(sleepForm);
   hideElement(activityForm);
+  hideElement(formSuccessNotification);
+  hideElement(formErrorNotification);
 }
+
 
 function grabHydrationInput(user) {
   const enteredHydrationInfo = {};
   // enteredHydrationInfo.userID = user.id;
   enteredHydrationInfo.date = formHydrationDate.value;
   enteredHydrationInfo.numOunces = formHydrationOz.value;
+  checkForCompletion(enteredHydrationInfo);
+
   console.log(enteredHydrationInfo)
 }
 
@@ -109,6 +116,7 @@ function grabSleepInput(user) {
   enteredSleepInfo.date = formSleepDate.value;
   enteredSleepInfo.hoursSlept = formSleepHours.value;
   enteredSleepInfo.sleepQuality = formSleepQuality.value;
+  checkForCompletion(enteredSleepInfo);
   console.log(enteredSleepInfo)
 
 }
@@ -120,27 +128,32 @@ function grabActivityInput(user) {
   enteredActivityInfo.numSteps = formActivitySteps.value;
   enteredActivityInfo.minutesActive = formActivityMin.value;
   enteredActivityInfo.flightsOfStairs = formActivityFlights.value;
+  checkForCompletion(enteredActivityInfo);
   console.log(enteredActivityInfo)
 }
 
-// function checkForCompletion {
-
-// }
+function checkForCompletion(composedObject) {
+  const values = Object.values(composedObject);
+  console.log('check for completion values', values)
+  if (values.includes("")) {
+    showElement(formErrorNotification);
+    hideElement(formSuccessNotification);
+  } else {
+    showElement(formSuccessNotification);
+    hideElement(formErrorNotification);
+    setTimeout(hideAllForms, 1500);
+  }
+}
 
 function submitForm(event) {
   event.preventDefault(event)
-  debugger
   if (document.getElementById("submit").value === "hydration") {
-    console.log('hydration');
     grabHydrationInput();
   } else if (document.getElementById("submit").value === "sleep") {
-    console.log('sleep');
     grabSleepInput();
   } else if (document.getElementById("submit").value === "activity") {
-    console.log('activities!');
     grabActivityInput();
   }
-  hideAllForms();
 }
 
 function getFetchedUsers() {
