@@ -4,6 +4,7 @@ import './images/The Rock.jpg';
 import './images/walk.svg';
 import './images/water.svg';
 import './images/sleep.svg';
+import './images/remove.svg';
 
 import User from './User';
 import Activity from './Activity';
@@ -14,18 +15,14 @@ import UserRepo from './User-repo';
 import chart from "./dataChart.js"
 import fetchAPIData from './API';
 
-// header buttons
 let hydrationButton = document.querySelector('#hydrationButton');
 let sleepButton = document.querySelector('#sleepButton');
 let activityButton = document.querySelector('#activityButton');
-
-// forms
+let mainBody = document.querySelector('.main');
 let baseForm = document.querySelector('.add-information-form');
 let hydrationForm = document.querySelector('.hydration-form');
 let sleepForm = document.querySelector('.sleep-form');
 let activityForm = document.querySelector('.activity-form');
-
-// form entry fields
 let formHydrationDate = document.querySelector('#hydrationDate');
 let formHydrationOz = document.querySelector('#hydrationOz');
 let formSleepDate = document.querySelector('#sleepDate');
@@ -35,9 +32,9 @@ let formActivityDate = document.querySelector('#activityDate');
 let formActivitySteps = document.querySelector('#activitySteps');
 let formActivityMin = document.querySelector('#activityMin');
 let formActivityFlights = document.querySelector('#flights');
-
 let submitButton = document.querySelector('.submit-button');
-// form notifications
+let xButton = document.querySelector('#remove');
+
 let formSuccessNotification = document.querySelector('.success');
 let formErrorNotification = document.querySelector('.error');
 
@@ -46,6 +43,8 @@ hydrationButton.addEventListener('click', showHydrationForm);
 sleepButton.addEventListener('click', showSleepForm);
 activityButton.addEventListener('click', showActivityForm);
 submitButton.addEventListener('click', submitForm);
+xButton.addEventListener('click', hideAllForms);
+
 
 function hideElement(element) {
   element.classList.add('hidden');
@@ -62,29 +61,34 @@ function showHideEntryForms(subForm, form2, form3) {
   hideElement(form3);
 }
 
+function blur(element) {
+  element.classList.add('blur');
+}
+
+function unBlur(element) {
+  element.classList.remove('blur');
+}
+
 function showHydrationForm() {
-  console.log("i have been clicked! hydration")
-  document.getElementById("submit").value = "hydration"
-  console.log(submitButton)
+  blur(mainBody);
+  document.getElementById("submit").value = "hydration";
   showHideEntryForms(hydrationForm, sleepForm, activityForm);
 }
-function showSleepForm() {
-  document.getElementById("submit").value = "sleep"
-  console.log(submitButton)
 
-  console.log("i have been clicked! sleep")
+function showSleepForm() {
+  blur(mainBody);
+  document.getElementById("submit").value = "sleep";
   showHideEntryForms(sleepForm, hydrationForm, activityForm);
 }
 
 function showActivityForm() {
-  document.getElementById("submit").value = "activity"
-  console.log("i have been clicked! activity")
-  console.log(submitButton)
-
+  blur(mainBody);
+  document.getElementById("submit").value = "activity";
   showHideEntryForms(activityForm, sleepForm, hydrationForm);
 }
 
 function hideAllForms() {
+  unBlur(mainBody);
   hideElement(baseForm);
   hideElement(hydrationForm);
   hideElement(sleepForm);
@@ -211,10 +215,10 @@ function addWalkingStats(user, userStorage, date, activityRepo) {
   const stepGoalCard = document.getElementById('stepGoalCard');
   const milesWalked = document.getElementById('milesWalked');
   const avgStepGoalCard = document.getElementById('avgStepGoalCard');
-  userStrideLength.innerText = `${user.strideLength}m`;
+  userStrideLength.innerText = `${user.strideLength}meters`;
   stepGoalCard.innerText = `${user.dailyStepGoal}`;
   avgStepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
-  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}mi`;
+  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}`;
 }
 
 
@@ -241,7 +245,7 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydroChart = document.getElementById("hydroChart");
   const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces", '#D5260B');
-  hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
   hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
 }
 
