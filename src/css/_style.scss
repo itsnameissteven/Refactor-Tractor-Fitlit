@@ -240,8 +240,7 @@ button {
   background-color: #fff;
   top: 2px;
   border-color: $color-light-blue;
-  transition: all 250ms ease-in-out;
-
+  // transition: all 250ms ease-in-out;
 
   .x {
     float: right;
@@ -271,6 +270,9 @@ button {
 
   .input {
     margin-top: 5px;
+    
+  &:required {
+  border: 3px solid red;
   }
 
   .submit-button {

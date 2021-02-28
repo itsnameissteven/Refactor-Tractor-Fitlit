@@ -71,26 +71,19 @@ function unBlur(element) {
 
 function showHydrationForm() {
   blur(mainBody);
-  console.log("i have been clicked! hydration")
-  document.getElementById("submit").value = "hydration"
-  console.log(submitButton)
+  document.getElementById("submit").value = "hydration";
   showHideEntryForms(hydrationForm, sleepForm, activityForm);
 }
+
 function showSleepForm() {
   blur(mainBody);
-  document.getElementById("submit").value = "sleep"
-  console.log(submitButton)
-
-  console.log("i have been clicked! sleep")
+  document.getElementById("submit").value = "sleep";
   showHideEntryForms(sleepForm, hydrationForm, activityForm);
 }
 
 function showActivityForm() {
   blur(mainBody);
-  document.getElementById("submit").value = "activity"
-  console.log("i have been clicked! activity")
-  console.log(submitButton)
-
+  document.getElementById("submit").value = "activity";
   showHideEntryForms(activityForm, sleepForm, hydrationForm);
 }
 
