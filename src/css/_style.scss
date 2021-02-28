@@ -274,7 +274,7 @@ button {
   &:required {
   border: 3px solid red;
   }
-
+  }
   .submit-button {
     margin-top: 20px;
   }
@@ -352,7 +352,6 @@ button {
     grid-row: 2;
     grid-column: 1;
   }
-}
 
   .hydration-stats {
     @include flex;

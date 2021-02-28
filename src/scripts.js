@@ -65,6 +65,7 @@ function showHideEntryForms(subForm, form2, form3) {
 }
 
 function blur(element) {
+  console.log("hi")
   element.classList.add('blur');
 }
 
@@ -187,6 +188,8 @@ function handleLifeData(sleepData, activityData, hydrationData) {
   const hydrationRepo = new Hydration(hydrationData);
   const sleepRepo = new Sleep(sleepData);
   const activityRepo = new Activity(activityData);
+  console.log(userRepo)
+  console.log(userNow);
   // if (typeof (userNow) === "undefined") {
   //   userNow = userRepo[0];
   // }
@@ -209,7 +212,7 @@ function startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory) 
 }
 
 function pickUser() {
-  return Math.floor(Math.random() * 50);
+  return Math.floor((Math.random() * 50) + 1);
 }
 
 function getUserById(listRepo, id) {
@@ -274,11 +277,11 @@ function addSleepInfo(id, sleepInfo, dateString, userStorage) {
   const avUserSleepQuality = document.getElementById('avUserSleepQuality');
   const sleepChart = document.getElementById("sleepChart");
   const sleepChartQuality = document.getElementById('sleepChartQuality');
-  sleepToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "hoursSlept")}hrs`;
-  sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(id, dateString, "sleepQuality")}/5`;
+  sleepToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, "hoursSlept")}hrs`;
+  sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, "sleepQuality")}/5`;
   avUserSleepQuality.innerText = `${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "hoursSlept"), sleepChart, "Hours of Sleep", '#0BBBD6');
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, id, userStorage, "sleepQuality"), sleepChartQuality, "Quality of Sleep", '#8B0BD5')
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, "hoursSlept"), sleepChart, "Hours of Sleep", '#0BBBD6');
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, "sleepQuality"), sleepChartQuality, "Quality of Sleep", '#8B0BD5')
 }
 
 function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {

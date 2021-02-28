@@ -12,7 +12,10 @@ class Calculation {
 
   calculateDailyData(id, date, property) {
     const findDataByDate = this.dataSet.find(data => id === data.userID && date === data.date);
-    return findDataByDate[property];
+    if (findDataByDate && findDataByDate[property]) {
+      return findDataByDate[property];
+    }
+    // return findDataByDate[property];
   }
 
   calculateWeeklyData(date, id, userRepo, property) {
