@@ -15,6 +15,9 @@
   }
 }
 
+.main {
+  transition: all 250ms ease-in-out;
+}
 
 .add-tracking-information-section {
   width: 45rem;
@@ -237,6 +240,8 @@ button {
   background-color: #fff;
   top: 2px;
   border-color: $color-light-blue;
+  transition: all 250ms ease-in-out;
+
 
   .x {
     float: right;
@@ -250,7 +255,6 @@ button {
     }
   }
   
-  }
   .entry-form-section {
     display: flex;
     flex-direction: column;
@@ -260,7 +264,7 @@ button {
 
   input {
     display: flex;
-    padding: 2px 0 2px 5px;
+    padding: 8px 0 8px 8px;
     margin: 10px 0 10px 0;
     width: 30rem;
   }
@@ -272,10 +276,26 @@ button {
   .submit-button {
     margin-top: 20px;
   }
+
+  .submission-notification {
+    margin-top: 2rem;
+    width: 30rem;
+
+    .success {
+      background-color: #2ED009;
+      padding-left: 10px;
+    }
+
+    .error {
+      background-color: #F44335;
+      padding-left: 10px;
+    }
+  }
 }
 
+
 .blur {
-  filter: blur(15px);
+  filter: blur(15px) brightness(50%);
 }
 
 .hidden {
