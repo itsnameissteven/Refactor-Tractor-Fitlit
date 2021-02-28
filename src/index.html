@@ -1,28 +1,123 @@
 <!DOCTYPE html>
 <html lang="en-US" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="description" content="Fitness Tracker">
-    <meta name="keywords" content="Fitness, Health, Tracker">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Activity Tracker</title>
-    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap"
-      rel="stylesheet" />
-  </head>
-  <body class="body">
-    <header class="header">
-      <h1 class="header__text" id="headerText">Activity Tracker</h1>
-    </header>
-    <main class="main">
-      <section class="user-info">
-        <div class="user-info__croper">
-          <img alt="user's picture" src="./images/The Rock.jpg" class="user-info__croper--pic">
-        </div>
-        <h2 class="user-info__name" id="sidebarName"></h2>
-        <p class="user-info__address" id="userAddress"></p>
-        <p class="user-info__email" id="userEmail"></p>
-      </section>
-      <section class="hydration-stats">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="Fitness Tracker">
+  <meta name="keywords" content="Fitness, Health, Tracker">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Activity Tracker</title>
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans:400,800&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body class="body">
+  <header class="header">
+    <h1 class="header__text" id="headerText">Activity Tracker</h1>
+    <section class="add-tracking-information-section">
+      <button id="hydrationButton" class="add-button">Log Hydration</button>
+      <button id="sleepButton" class="add-button">Log Sleep</button>
+      <button id="activityButton" class="add-button">Log Activity</button>
+    </section>
+  </header>
+  <main class="main">
+    <section class="user-info">
+      <div class="user-info__croper">
+        <img alt="user's picture" src="./images/The Rock.jpg" class="user-info__croper--pic">
+      </div>
+      <h2 class="user-info__name" id="sidebarName"></h2>
+      <p class="user-info__address" id="userAddress"></p>
+      <p class="user-info__email" id="userEmail"></p>
+    </section>
+    <section class="hydration-stats">
+      <div class="hydration-stats__icon icon">
+        <img src="images/water.svg" alt="Water glass icon" class="hydration-stats__icon">
+      </div>
+      <div class="hydration-stats__data">
+        <p class="hydration-stats__today">
+          You Drank<span class="data-circle" id="hydrationToday"></span>Today
+        </p>
+        <p class="hydration-stats__avg">
+          Average Weekly Intake<span class="data-circle" id="hydrationAverageWeek"></span>
+        </p>
+      </div>
+      <div class="hydration-stats__chart">
+        <canvas id="hydroChart"></canvas>
+      </div>
+    </section>
+
+    <section class="friends">
+      <h2 class="friends__header">Friends</h2>
+      <ul class="friends__list" id="friendList"></ul>
+    </section>
+    <section class="sleep-stats">
+      <div class="icon">
+        <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
+      </div>
+      <div class="sleep-stats__data">
+        <p class="sleep-stats__sleep-today">
+          You slept <span class="data-circle" id="sleepToday"></span> Today
+        </p>
+        <p class="sleep-stats__sleep-quality-today">
+          Sleep Quality<span class="data-circle" id="sleepQualityToday"></span>
+        </p>
+        <p class="sleep-stats__avg-user-sleep">
+          National Average<span class="data-circle" id="avUserSleepQuality"></span> Quality
+        </p>
+      </div>
+      <div class="sleep-stats__chart--hours">
+        <canvas id="sleepChart"></canvas>
+      </div>
+      <div class="sleep-stats__chart--quality">
+        <canvas id="sleepChartQuality"></canvas>
+      </div>
+    </section>
+    <section class="walking-stats" id="walkingStats">
+      <div class="icon">
+        <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
+      </div>
+      <p class="walking-stats__stride-length">
+        Your stride length <span class="walking-data" id="userStrideLength"></span>
+      </p>
+      <p class="walking-stats__step-goal">
+        Your Step Goal <span class="walking-data" id="stepGoalCard"></span>
+      </p>
+      <p class="walking-stats__avg-step-goal">
+        National Average<span class="walking-data" id="avgStepGoalCard"></span>Step Goal
+      </p>
+      <p class="walking-stats__miles-walked">
+        Miles Walked <span class="walking-data" id="milesWalked"></span>
+      </p>
+    </section>
+    <section class="user-activity-today">
+      <h2 class="user-activity-today__header">Daily Stats</h2>
+      <div class="user-activity-today__chart">
+        <canvas class="user-activity-today__bar-chart step-chart" id="stepChart"></canvas>
+      </div>
+      <div class="user-activity-today__chart">
+        <canvas class="user-activity-today__bar-chart flights-of-stairs" id="flightsOfStairsChart"></canvas>
+      </div>
+      <div class="user-activity-today__chart">
+        <canvas class="user-activity-today__bar-chart active-minutes-chart" id="activeMinutesChart"></canvas>
+      </div>
+    </section>
+    <section class="user-activity-week">
+      <h2 class="user-activity-week__header">Weekly Stats</h2>
+      <div class="user-activity-week__chart">
+        <canvas class="user-activity-week__bar-chart weekly-steps" id="weeklySteps"></canvas>
+      </div>
+      <div class="user-activity-week__chart">
+        <canvas class="user-activity-week__bar-chart weekly-minutes-active" id="weeklyMinutesActive"></canvas>
+      </div>
+      <div class="user-activity-week__chart">
+        <canvas class="user-activity-week__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
+      </div>
+    </section>
+    </section>
+
+    <form class="add-information-form hidden">
+      <h2 class="user-entry">My Data Entry</h2>
+      <section class="hydration-form hidden">
         <div class="hydration-stats__icon icon">
           <img src="images/water.svg" alt="Water glass icon" class="hydration-stats__icon">
         </div>
@@ -37,13 +132,21 @@
         <div class="hydration-stats__chart chart">
           <canvas id="hydroChart"></canvas>
         </div>
+        <section class="entry-form-section">
+          <div class="input">
+            <label for="date">Date of Hydration:</label>
+            <input type="date" id="hydrationDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
+          </div>
+          <div class="input">
+            <label for="oz">Number of Oz:</label>
+            <input type="text" id="hydrationOz" name="oz" placeholder="52">
+          </div>
+        </section>
       </section>
-      
-      <section class="friends">
-        <h2 class="friends__header">Friends</h2>
-        <ul class="friends__list" id="friendList"></ul>
+
       </section>
-      <section class="sleep-stats">
+
+      <section class="sleep-form hidden">
         <div class="icon">
           <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
         </div>
@@ -64,8 +167,23 @@
         <div class="sleep-stats__chart--quality chart">
           <canvas id="sleepChartQuality"></canvas>
         </div>
+        <section class="entry-form-section">
+          <div class="input">
+            <label for="date">Date of Sleep:</label>
+            <input type="date" id="sleepDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
+          </div>
+          <div class="input">
+            <label for="hours">Hours Slept:</label>
+            <input type="text" id="sleepHours" name="hours" placeholder="7.5">
+          </div>
+          <div class="input">
+            <label for="quality">Sleep Quality Out of 5:</label>
+            <input type="text" id="sleepQuality" name="quality" placeholder="4.2">
+          </div>
+        </section>
       </section>
-      <section class="walking-stats" id="walkingStats">
+
+      <section class="activity-form hidden">
         <div class="icon">
           <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
         </div> 
@@ -105,9 +223,43 @@
         <div class="user-activity-week__chart chart">
           <canvas class="user-activity-week__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
         </div>
+        </div>
+        <section class="entry-form-section">
+          <div class="input">
+            <label for="date">Date of Activity:</label>
+            <input type="date" id="activityDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
+          </div>
+          <div class="input">
+            <label for="steps">Number of Steps:</label>
+            <input type="text" id="activitySteps" name="steps" placeholder="1236">
+          </div>
+          <div class="input">
+            <label for="min">Minutes Active:</label>
+            <input type="text" id="activityMin" name="min" placeholder="60">
+          </div>
+          <div class="input">
+            <label for="flights">Flights of Stairs:</label>
+            <input type="text" id="flights" name="flights" placeholder="20">
+          </div>
+        </section>
       </section>
 
-      <!-- <section class="step-challenge">
+      <button id="submit" class="submit-button" type="submit" value="hydration">Submit</button>
+      <section class="submission-notification success hidden">
+        <h3 class="header">Form Completed</h3>
+        <p>Your submission has been recorded!</p>
+      </section>
+      <section class="submission-notification error hidden">
+        <h3 class="header">Form Incorrect</h3>
+        <p>Something went wrong!</p>
+      </section>
+    </form>
+  </main>
+</body>
+
+</html>
+
+<!-- <section class="step-challenge">
         <h2 class="step-challenge__header" id="sidebarName">FRIENDLY STEP CHALLENGE!</h2>
         <p class="step-challenge__winner" id="bigWinner"></p>
         <p class="step-challenge_user-step-goal" id="stepGoalCard"></p>
@@ -119,11 +271,3 @@
             <ul class="card-vertical-list" id="friendChallengeListHistory"></ul>
           </section>
       </section> -->
-    </main>
-  </body>
-  <script>
-    window.addEventListener("resize", () => {
-      console.log(window.innerWidth)
-    })
-  </script>
-</html>

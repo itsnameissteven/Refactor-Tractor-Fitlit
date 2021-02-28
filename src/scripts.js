@@ -14,9 +14,128 @@ import UserRepo from './User-repo';
 import chart from "./dataChart.js"
 import fetchAPIData from './API';
 
+// header buttons
+let hydrationButton = document.querySelector('#hydrationButton');
+let sleepButton = document.querySelector('#sleepButton');
+let activityButton = document.querySelector('#activityButton');
 
+// forms
+let baseForm = document.querySelector('.add-information-form');
+let hydrationForm = document.querySelector('.hydration-form');
+let sleepForm = document.querySelector('.sleep-form');
+let activityForm = document.querySelector('.activity-form');
+
+// form entry fields
+let formHydrationDate = document.querySelector('#hydrationDate');
+let formHydrationOz = document.querySelector('#hydrationOz');
+let formSleepDate = document.querySelector('#sleepDate');
+let formSleepHours = document.querySelector('#sleepHours');
+let formSleepQuality = document.querySelector('#sleepQuality');
+let formActivityDate = document.querySelector('#activityDate');
+let formActivitySteps = document.querySelector('#activitySteps');
+let formActivityMin = document.querySelector('#activityMin');
+let formActivityFlights = document.querySelector('#flights');
+
+let submitButton = document.querySelector('.submit-button');
+// form notifications
+let formSuccessNotification = document.querySelector('.success');
+let formErrorNotification = document.querySelector('.error');
 
 window.addEventListener('load', getFetchedUsers);
+hydrationButton.addEventListener('click', showHydrationForm);
+sleepButton.addEventListener('click', showSleepForm);
+activityButton.addEventListener('click', showActivityForm);
+submitButton.addEventListener('click', submitForm);
+
+function hideElement(element) {
+  element.classList.add('hidden');
+}
+
+function showElement(element) {
+  element.classList.remove('hidden');
+}
+
+function showHideEntryForms(subForm, form2, form3) {
+  showElement(baseForm);
+  showElement(subForm);
+  hideElement(form2);
+  hideElement(form3);
+}
+
+function showHydrationForm() {
+  console.log("i have been clicked! hydration")
+  document.getElementById("submit").value = "hydration"
+  console.log(submitButton)
+  showHideEntryForms(hydrationForm, sleepForm, activityForm);
+}
+function showSleepForm() {
+  document.getElementById("submit").value = "sleep"
+  console.log(submitButton)
+
+  console.log("i have been clicked! sleep")
+  showHideEntryForms(sleepForm, hydrationForm, activityForm);
+}
+
+function showActivityForm() {
+  document.getElementById("submit").value = "activity"
+  console.log("i have been clicked! activity")
+  console.log(submitButton)
+
+  showHideEntryForms(activityForm, sleepForm, hydrationForm);
+}
+
+function hideAllForms() {
+  hideElement(baseForm);
+  hideElement(hydrationForm);
+  hideElement(sleepForm);
+  hideElement(activityForm);
+}
+
+function grabHydrationInput(user) {
+  const enteredHydrationInfo = {};
+  // enteredHydrationInfo.userID = user.id;
+  enteredHydrationInfo.date = formHydrationDate.value;
+  enteredHydrationInfo.numOunces = formHydrationOz.value;
+  console.log(enteredHydrationInfo)
+}
+
+function grabSleepInput(user) {
+  const enteredSleepInfo = {};
+  // enteredSleepInfo.userID = user.id;
+  enteredSleepInfo.date = formSleepDate.value;
+  enteredSleepInfo.hoursSlept = formSleepHours.value;
+  enteredSleepInfo.sleepQuality = formSleepQuality.value;
+  console.log(enteredSleepInfo)
+
+}
+
+function grabActivityInput(user) {
+  const enteredActivityInfo = {};
+  // enteredActivityInfo.userID = user.id;
+  enteredActivityInfo.date = formActivityDate.value;
+  enteredActivityInfo.numSteps = formActivitySteps.value;
+  enteredActivityInfo.minutesActive = formActivityMin.value;
+  enteredActivityInfo.flightsOfStairs = formActivityFlights.value;
+  console.log(enteredActivityInfo)
+}
+
+function submitForm(event) {
+  console.log('submit has been clicked!!! Oh happy day!')
+  event.preventDefault(event)
+  // console.log('i am the submit button', submitButton)
+  // if (submitButton.value === "hydration") {
+  if (document.getElementById("submit").value === "hydration") {
+    console.log('hydration');
+    grabHydrationInput();
+  } else if (document.getElementById("submit").value === "sleep") {
+    console.log('sleep');
+    grabSleepInput();
+  } else if (document.getElementById("submit").value === "activity") {
+    console.log('activities!');
+    grabActivityInput();
+  }
+  hideAllForms();
+}
 
 function getFetchedUsers() {
   fetchAPIData.fetchUserData()
