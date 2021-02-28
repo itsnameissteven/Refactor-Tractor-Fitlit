@@ -113,78 +113,80 @@
         <canvas class="user-activity-week__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
       </div>
     </section>
+  </main>
+
+  <form class="add-information-form hidden">
+    <h2 class="user-entry">My Data Entry</h2>
+    <section class="hydration-form hidden">
+      <div class="hydration-stats__icon icon">
+        <img src="images/water.svg" alt="Water glass icon" class="hydration-stats__icon">
+      </div>
+      <section class="entry-form-section">
+        <div class="input">
+          <label for="date">Date of Hydration:</label>
+          <input type="date" id="hydrationDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
+        </div>
+        <div class="input">
+          <label for="oz">Number of Oz:</label>
+          <input type="text" id="hydrationOz" name="oz" placeholder="52">
+        </div>
+      </section>
     </section>
 
-    <form class="add-information-form hidden">
-      <h2 class="user-entry">My Data Entry</h2>
-      <section class="hydration-form hidden">
-        <section class="entry-form-section">
-          <div class="input">
-            <label for="date">Date of Hydration:</label>
-            <input type="date" id="hydrationDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
-          </div>
-          <div class="input">
-            <label for="oz">Number of Oz:</label>
-            <input type="text" id="hydrationOz" name="oz" placeholder="52">
-          </div>
-        </section>
-      </section>
-
-      <section class="sleep-form hidden">
-        <div class="icon">
-          <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
+    <section class="sleep-form hidden">
+      <div class="icon">
+        <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
+      </div>
+      <section class="entry-form-section">
+        <div class="input">
+          <label for="date">Date of Sleep:</label>
+          <input type="date" id="sleepDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
         </div>
-        <section class="entry-form-section">
-          <div class="input">
-            <label for="date">Date of Sleep:</label>
-            <input type="date" id="sleepDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
-          </div>
-          <div class="input">
-            <label for="hours">Hours Slept:</label>
-            <input type="text" id="sleepHours" name="hours" placeholder="7.5">
-          </div>
-          <div class="input">
-            <label for="quality">Sleep Quality Out of 5:</label>
-            <input type="text" id="sleepQuality" name="quality" placeholder="4.2">
-          </div>
-        </section>
-      </section>
-
-      <section class="activity-form hidden">
-        <div class="icon">
-          <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
+        <div class="input">
+          <label for="hours">Hours Slept:</label>
+          <input type="text" id="sleepHours" name="hours" placeholder="7.5">
         </div>
-        <section class="entry-form-section">
-          <div class="input">
-            <label for="date">Date of Activity:</label>
-            <input type="date" id="activityDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
-          </div>
-          <div class="input">
-            <label for="steps">Number of Steps:</label>
-            <input type="text" id="activitySteps" name="steps" placeholder="1236">
-          </div>
-          <div class="input">
-            <label for="min">Minutes Active:</label>
-            <input type="text" id="activityMin" name="min" placeholder="60">
-          </div>
-          <div class="input">
-            <label for="flights">Flights of Stairs:</label>
-            <input type="text" id="flights" name="flights" placeholder="20">
-          </div>
-        </section>
+        <div class="input">
+          <label for="quality">Sleep Quality Out of 5:</label>
+          <input type="text" id="sleepQuality" name="quality" placeholder="4.2">
+        </div>
       </section>
+    </section>
 
-      <button id="submit" class="submit-button" type="submit" value="hydration">Submit</button>
-      <section class="submission-notification success hidden">
-        <h3 class="header">Form Completed</h3>
-        <p>Your submission has been recorded!</p>
+    <section class="activity-form hidden">
+      <div class="icon">
+        <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
+      </div>
+      <section class="entry-form-section">
+        <div class="input">
+          <label for="date">Date of Activity:</label>
+          <input type="date" id="activityDate" name="date" required pattern="\d{4}/\d{2}/\d{2}">
+        </div>
+        <div class="input">
+          <label for="steps">Number of Steps:</label>
+          <input type="text" id="activitySteps" name="steps" placeholder="1236">
+        </div>
+        <div class="input">
+          <label for="min">Minutes Active:</label>
+          <input type="text" id="activityMin" name="min" placeholder="60">
+        </div>
+        <div class="input">
+          <label for="flights">Flights of Stairs:</label>
+          <input type="text" id="flights" name="flights" placeholder="20">
+        </div>
       </section>
-      <section class="submission-notification error hidden">
-        <h3 class="header">Form Incorrect</h3>
-        <p>Something went wrong!</p>
-      </section>
-    </form>
-  </main>
+    </section>
+
+    <button id="submit" class="submit-button" type="submit" value="hydration">Submit</button>
+    <section class="submission-notification success hidden">
+      <h3 class="header">Form Completed</h3>
+      <p>Your submission has been recorded!</p>
+    </section>
+    <section class="submission-notification error hidden">
+      <h3 class="header">Form Incorrect</h3>
+      <p>Something went wrong!</p>
+    </section>
+  </form>
 </body>
 
 </html>

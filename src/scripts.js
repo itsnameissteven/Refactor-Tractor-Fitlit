@@ -19,6 +19,7 @@ let hydrationButton = document.querySelector('#hydrationButton');
 let sleepButton = document.querySelector('#sleepButton');
 let activityButton = document.querySelector('#activityButton');
 
+let mainBody = document.querySelector('.main');
 // forms
 let baseForm = document.querySelector('.add-information-form');
 let hydrationForm = document.querySelector('.hydration-form');
@@ -62,13 +63,23 @@ function showHideEntryForms(subForm, form2, form3) {
   hideElement(form3);
 }
 
+function blur(element) {
+  element.classList.add('is-blurred');
+}
+
+function unBlur(element) {
+  element.classList.remove('is-blurred');
+}
+
 function showHydrationForm() {
+  blur(mainBody);
   console.log("i have been clicked! hydration")
   document.getElementById("submit").value = "hydration"
   console.log(submitButton)
   showHideEntryForms(hydrationForm, sleepForm, activityForm);
 }
 function showSleepForm() {
+  blur(mainBody);
   document.getElementById("submit").value = "sleep"
   console.log(submitButton)
 
@@ -77,6 +88,7 @@ function showSleepForm() {
 }
 
 function showActivityForm() {
+  blur(mainBody);
   document.getElementById("submit").value = "activity"
   console.log("i have been clicked! activity")
   console.log(submitButton)
@@ -85,6 +97,7 @@ function showActivityForm() {
 }
 
 function hideAllForms() {
+  unBlur(mainBody);
   hideElement(baseForm);
   hideElement(hydrationForm);
   hideElement(sleepForm);
@@ -211,10 +224,10 @@ function addWalkingStats(user, userStorage, date, activityRepo) {
   const stepGoalCard = document.getElementById('stepGoalCard');
   const milesWalked = document.getElementById('milesWalked');
   const avgStepGoalCard = document.getElementById('avgStepGoalCard');
-  userStrideLength.innerText = `${user.strideLength}m`;
+  userStrideLength.innerText = `${user.strideLength}meters`;
   stepGoalCard.innerText = `${user.dailyStepGoal}`;
   avgStepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
-  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}mi`;
+  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}`;
 }
 
 
@@ -241,7 +254,7 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydroChart = document.getElementById("hydroChart");
   const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces", '#D5260B');
-  hydrationToday.innerText= `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
   hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
 }
 
