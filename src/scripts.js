@@ -4,6 +4,7 @@ import './images/The Rock.jpg';
 import './images/walk.svg';
 import './images/water.svg';
 import './images/sleep.svg';
+import './images/remove.svg';
 
 import User from './User';
 import Activity from './Activity';
@@ -14,19 +15,14 @@ import UserRepo from './User-repo';
 import chart from "./dataChart.js"
 import fetchAPIData from './API';
 
-// header buttons
 let hydrationButton = document.querySelector('#hydrationButton');
 let sleepButton = document.querySelector('#sleepButton');
 let activityButton = document.querySelector('#activityButton');
-
 let mainBody = document.querySelector('.main');
-// forms
 let baseForm = document.querySelector('.add-information-form');
 let hydrationForm = document.querySelector('.hydration-form');
 let sleepForm = document.querySelector('.sleep-form');
 let activityForm = document.querySelector('.activity-form');
-
-// form entry fields
 let formHydrationDate = document.querySelector('#hydrationDate');
 let formHydrationOz = document.querySelector('#hydrationOz');
 let formSleepDate = document.querySelector('#sleepDate');
@@ -36,9 +32,9 @@ let formActivityDate = document.querySelector('#activityDate');
 let formActivitySteps = document.querySelector('#activitySteps');
 let formActivityMin = document.querySelector('#activityMin');
 let formActivityFlights = document.querySelector('#flights');
-
 let submitButton = document.querySelector('.submit-button');
-// form notifications
+let xButton = document.querySelector('#remove');
+
 let formSuccessNotification = document.querySelector('.success');
 let formErrorNotification = document.querySelector('.error');
 
@@ -47,6 +43,8 @@ hydrationButton.addEventListener('click', showHydrationForm);
 sleepButton.addEventListener('click', showSleepForm);
 activityButton.addEventListener('click', showActivityForm);
 submitButton.addEventListener('click', submitForm);
+xButton.addEventListener('click', hideAllForms);
+
 
 function hideElement(element) {
   element.classList.add('hidden');

@@ -240,6 +240,16 @@ button {
 
   .x {
     float: right;
+    width: 4rem;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
   }
   .entry-form-section {
     display: flex;
@@ -265,7 +275,7 @@ button {
 }
 
 .blur {
-  filter: blur(8px);
+  filter: blur(15px);
 }
 
 .hidden {
