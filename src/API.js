@@ -56,6 +56,15 @@ const fetchAPIData = {
 }
 
 // ADD NEW DATA
+
+
+
+// const formHydrationDate = document.querySelector('#hydrationDate');
+// formHydrationDate.value.replace(/-/g, '/') ==>
+//   "2021/02/10"
+
+
+
 // const addNewSleepData = (newData) => {
 //   fetch("http://localhost:3001/api/v1/sleep", {
 //     method: 'POST',

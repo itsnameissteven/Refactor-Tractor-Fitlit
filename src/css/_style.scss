@@ -13,6 +13,30 @@
   }
 }
 
+.add-tracking-information-section {
+  width: 45rem;
+  position: absolute;
+  top: 35%;
+  right: 1%;
+  display: flex;
+  justify-content: space-between;
+}
+
+button {
+  width: 13rem;
+  height: 3.5rem;
+  border-radius: 5px;
+  border: $color-light-blue;
+  background-color: $color-black;
+  color: $color-light-blue;
+
+  &:hover {
+    background-color: $color-light-blue;
+    color: $color-black;
+    cursor: pointer;
+  }
+}
+
 .user-info {
   @include dataBox;
   position: relative;
@@ -172,7 +196,6 @@
   grid-column: 1/4;
 }
 
-
 .data-circle {
   @include flex;
   margin: 0 auto;
@@ -192,6 +215,35 @@
   @extend .data-circle;
   height: 12rem;
   width: 12rem;
+}
+
+.add-information-form {
+  @include dataBox;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+  margin: 5% 0 0 37%;
+  padding: 5%;
+
+  .entry-form-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  input {
+    display: flex;
+    padding: 2px 0 2px 5px;
+    margin: 10px 0 10px 0;
+    width: 30rem;
+  }
+
+  .submit-button {
+    margin-top: 15px;
+  }
 }
 
 .hidden {
