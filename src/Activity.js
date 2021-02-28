@@ -7,6 +7,7 @@ class Activity extends Calculation {
 
   getMilesFromStepsByDate(id, date, userRepo) {
     const userStepsByDate = this.dataSet.find(data => id === data.userID && date === data.date);
+    console.log(userStepsByDate);
     return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength) / 5280).toFixed(1));
   }
 

@@ -41,7 +41,7 @@ const fetchAPIData = {
       .then(data => data.hydrationData)
       .catch(err => console.log(err))
     dataSet = Promise.all([sleepData, activityData, hydrationData]).then(data => {
-      // console.log(data[0]);
+
       return data;
     })
     // console.log(dataSet);

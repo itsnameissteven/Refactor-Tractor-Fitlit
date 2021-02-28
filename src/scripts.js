@@ -97,9 +97,19 @@ function hideAllForms() {
 function grabHydrationInput(user) {
   const enteredHydrationInfo = {};
   enteredHydrationInfo.userID = userNow.id;
+  console.log(typeof formHydrationDate.value);
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
-  console.log(enteredHydrationInfo)
+  console.log(typeof enteredHydrationInfo.date);
+  postHydrationRequest(enteredHydrationInfo);
+}
+
+function postHydrationRequest(enteredHydrationInfo) {
+  fetchAPIData.addNewData("http://localhost:3001/api/v1/hydration", enteredHydrationInfo)
+    .then(() => handlePostSucess())
+}
+function handlePostSucess() {
+  getFetchedLifeData();
 }
 
 function grabSleepInput(user) {
@@ -154,7 +164,7 @@ function createRandomUser(userData) {
   console.log(userNowId);
   userNow = getUserById(userRepo, userNowId);
 
-  getFetchedLifeData(userRepo, userNowId, userNow);
+  getFetchedLifeData();
 }
 
 function makeUsers(userList, userData) {
@@ -164,29 +174,33 @@ function makeUsers(userList, userData) {
   })
 }
 
-function getFetchedLifeData(userRepo, userNowId, userNow) {
+function getFetchedLifeData() {
   fetchAPIData.fetchLifeData()
-    .then(data => handleLifeData(data[0], data[1], data[2], userRepo, userNowId, userNow))
+    .then(data => handleLifeData(data[0], data[1], data[2]))
 }
 
-function handleLifeData(sleepData, activityData, hydrationData, userRepo, userNowId, userNow) {
+function handleLifeData(sleepData, activityData, hydrationData) {
   const hydrationRepo = new Hydration(hydrationData);
   const sleepRepo = new Sleep(sleepData);
   const activityRepo = new Activity(activityData);
-  const today = makeToday(userRepo, userNowId, hydrationRepo.dataSet);
-  const randomHistory = makeRandomDate(userRepo, userNowId, hydrationRepo.dataSet);
-  startApp(sleepRepo, activityRepo, hydrationRepo, userRepo, userNowId, today, randomHistory, userNow)
+  // if (typeof (userNow) === "undefined") {
+  //   userNow = userRepo[0];
+  // }
+  console.log(hydrationRepo);
+  const today = makeToday(userRepo, userNow.id, hydrationRepo.dataSet);
+  const randomHistory = makeRandomDate(userRepo, userNow.id, hydrationRepo.dataSet);
+  startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory)
 }
 
-function startApp(sleepRepo, activityRepo, hydrationRepo, userRepo, userNowId, today, randomHistory, userNow) {
+function startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory) {
   const historicalWeek = document.querySelectorAll('.historicalWeek');
-  addWalkingStats(userNow, userRepo, today, activityRepo)
   historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
   addInfoToSidebar(userNow, userRepo);
-  addHydrationInfo(userNowId, hydrationRepo, today, userRepo, randomHistory);
-  addSleepInfo(userNowId, sleepRepo, today, userRepo, randomHistory);
+  addHydrationInfo(userNow.id, hydrationRepo, today, userRepo, randomHistory);
+  addSleepInfo(userNow.id, sleepRepo, today, userRepo, randomHistory);
+  addWalkingStats(today, activityRepo)
   const winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
-  addActivityInfo(userNowId, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
+  addActivityInfo(userNow.id, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
   // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
 }
 
@@ -211,15 +225,15 @@ function addInfoToSidebar(user, userStorage) {
   friendList.insertAdjacentHTML('afterBegin', makeFriendHTML(user, userStorage))
 }
 
-function addWalkingStats(user, userStorage, date, activityRepo) {
+function addWalkingStats(date, activityRepo) {
   const userStrideLength = document.getElementById('userStrideLength');
   const stepGoalCard = document.getElementById('stepGoalCard');
   const milesWalked = document.getElementById('milesWalked');
   const avgStepGoalCard = document.getElementById('avgStepGoalCard');
-  userStrideLength.innerText = `${user.strideLength}m`;
-  stepGoalCard.innerText = `${user.dailyStepGoal}`;
-  avgStepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
-  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}mi`;
+  userStrideLength.innerText = `${userNow.strideLength}m`;
+  stepGoalCard.innerText = `${userNow.dailyStepGoal}`;
+  avgStepGoalCard.innerText = `${userRepo.calculateAverageStepGoal()}`;
+  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(userNow.id, date, userNow)}mi`;
 }
 
 
