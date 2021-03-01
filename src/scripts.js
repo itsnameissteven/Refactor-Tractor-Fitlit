@@ -113,13 +113,12 @@ function hideAllForms() {
 function grabHydrationInput(user) {
   const enteredHydrationInfo = {};
   enteredHydrationInfo.userID = userNow.id;
-  console.log(typeof formHydrationDate.value);
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
-  console.log(typeof enteredHydrationInfo.date);
   // postHydrationRequest(enteredHydrationInfo);
   checkForCompletion(enteredHydrationInfo);
 }
+
 
 function postHydrationRequest(enteredHydrationInfo) {
   fetchAPIData.addNewData("http://localhost:3001/api/v1/hydration", enteredHydrationInfo)
