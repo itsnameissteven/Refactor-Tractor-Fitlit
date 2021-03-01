@@ -15,7 +15,9 @@ class Calculation {
     if (findDataByDate && findDataByDate[property]) {
       return findDataByDate[property];
     }
-    // return findDataByDate[property];
+    else {
+      return 0;
+    }
   }
 
   calculateWeeklyData(date, id, userRepo, property) {
