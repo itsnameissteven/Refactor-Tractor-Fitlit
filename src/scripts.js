@@ -116,12 +116,12 @@ function grabHydrationInput(user) {
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
   // postHydrationRequest(enteredHydrationInfo);
-  checkForCompletion(enteredHydrationInfo);
+  checkForCompletion("http://localhost:3001/api/v1/hydration", enteredHydrationInfo);
 }
 
 
-function postHydrationRequest(enteredHydrationInfo) {
-  fetchAPIData.addNewData("http://localhost:3001/api/v1/hydration", enteredHydrationInfo)
+function handlePostRequest(link, body) {
+  fetchAPIData.addNewData(link, body)
     .then(() => handlePostSucess())
 }
 function handlePostSucess() {
@@ -151,7 +151,7 @@ function grabActivityInput(user) {
   console.log(enteredActivityInfo)
 }
 
-function checkForCompletion(composedObject) {
+function checkForCompletion(url, composedObject) {
   const values = Object.values(composedObject);
   console.log('check for completion values', values)
   if (values.includes("")) {
@@ -159,7 +159,7 @@ function checkForCompletion(composedObject) {
     hideElement(formSuccessNotification);
 
   } else {
-    postHydrationRequest(composedObject);
+    handlePostRequest(url, composedObject);
     showElement(formSuccessNotification);
     hideElement(formErrorNotification);
     setTimeout(hideAllForms, 1500);
