@@ -41,6 +41,7 @@ let xButton = document.querySelector('#remove');
 let formSuccessNotification = document.querySelector('#successNotification');
 let formErrorNotification = document.querySelector('#failureNotification');
 
+window.addEventListener("mouseover", showDropDown)
 window.addEventListener('load', getFetchedUsers);
 hydrationButton.addEventListener('click', showHydrationForm);
 sleepButton.addEventListener('click', showSleepForm);
@@ -53,6 +54,13 @@ baseForm.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
+
+
+function showDropDown(event){
+  const navContainer = document.getElementById('navButtonContainer')
+  event.target.className.includes("drop-down") ? navContainer.classList.add('show') :
+    navContainer.classList.remove('show')
+}
 
 
 function hideElement(element) {
@@ -68,10 +76,6 @@ function showHideEntryForms(subForm, form2, form3) {
   showElement(subForm);
   hideElement(form2);
   hideElement(form3);
-}
-
-function showDropdown() {
-  showElement(element)
 }
 
 function blur(element) {

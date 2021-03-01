@@ -11,10 +11,10 @@
   </head>
   <body class="body">
     <header class="header">
-      <nav class="navigation">
+      <nav class="navigation" id="navigation">
         <h1 class="header__text" id="headerText">Activity Tracker</h1>
-        <button class="navigation__drop-down"></button>
-        <section class="add-tracking-information-section">
+        <button class="navigation__drop-down drop-down" id="dropDown" aria-label="Open drop down menu"></button>
+        <section class="add-tracking-information-section drop-down" id="navButtonContainer">
           <button id="hydrationButton" class="add-button btn drop-down-btn">Log Hydration</button>
           <button id="sleepButton" class="add-button btn drop-down-btn">Log Sleep</button>
           <button id="activityButton" class="add-button btn drop-down-btn">Log Activity</button>
@@ -73,21 +73,21 @@
           <canvas id="sleepChartQuality"></canvas>
         </div>
       </section>
-      <section class="walking-stats" id="walkingStats">
+      <section class="walking-stats " id="walkingStats">
         <div class="icon">
           <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
         </div>
         <p class="walking-stats__stride-length">
-          Your stride length <span class="walking-data" id="userStrideLength"></span>
+          Your stride length <span class="stats" id="userStrideLength"></span>
         </p>
         <p class="walking-stats__step-goal">
-          Your Step Goal <span class="walking-data" id="stepGoalCard"></span>
+          Your Step Goal <span class="stats" id="stepGoalCard"></span>
         </p>
         <p class="walking-stats__avg-step-goal">
-          National Average<span class="walking-data" id="avgStepGoalCard"></span>
+          National Average<span class="stats" id="avgStepGoalCard"></span>
         </p>
         <p class="walking-stats__miles-walked">
-          Miles Walked <span class="walking-data" id="milesWalked"></span>
+          Miles Walked <span class="stats" id="milesWalked"></span>
         </p>
       </section>
       <section class="user-activity-today activity-charts">
