@@ -126,12 +126,7 @@ function postHydrationRequest(enteredHydrationInfo) {
 }
 function handlePostSucess() {
   getFetchedLifeData();
-  // enteredHydrationInfo.userID = user.id;
-  enteredHydrationInfo.date = formHydrationDate.value;
-  enteredHydrationInfo.numOunces = formHydrationOz.value;
-  checkForCompletion(enteredHydrationInfo);
 
-  console.log(enteredHydrationInfo)
 }
 
 function grabSleepInput(user) {
@@ -162,7 +157,9 @@ function checkForCompletion(composedObject) {
   if (values.includes("")) {
     showElement(formErrorNotification);
     hideElement(formSuccessNotification);
+
   } else {
+    postHydrationRequest(composedObject);
     showElement(formSuccessNotification);
     hideElement(formErrorNotification);
     setTimeout(hideAllForms, 1500);
