@@ -117,7 +117,8 @@ function grabHydrationInput(user) {
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
   console.log(typeof enteredHydrationInfo.date);
-  postHydrationRequest(enteredHydrationInfo);
+  // postHydrationRequest(enteredHydrationInfo);
+  checkForCompletion(enteredHydrationInfo);
 }
 
 function postHydrationRequest(enteredHydrationInfo) {
