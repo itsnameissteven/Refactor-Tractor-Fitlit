@@ -82,7 +82,6 @@ function showHideEntryForms(subForm, form2, form3) {
 }
 
 function blur(element) {
-  console.log("hi")
   element.classList.add('blur');
 }
 
@@ -131,7 +130,6 @@ function grabHydrationInput(user) {
   enteredHydrationInfo.userID = userNow.id;
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
-  console.log(enteredHydrationInfo);
   checkForCompletion("http://localhost:3001/api/v1/hydration", enteredHydrationInfo);
 }
 
@@ -143,7 +141,6 @@ function grabSleepInput(user) {
   enteredSleepInfo.date = formSleepDate.value.replace(/-/g, '/');;
   enteredSleepInfo.hoursSlept = parseInt(formSleepHours.value);
   enteredSleepInfo.sleepQuality = parseInt(formSleepQuality.value);
-  console.log(enteredSleepInfo);
   checkForCompletion("http://localhost:3001/api/v1/sleep", enteredSleepInfo);
 }
 
@@ -159,7 +156,6 @@ function grabActivityInput(user) {
 
 function checkForCompletion(url, composedObject) {
   const values = Object.values(composedObject);
-  console.log('check for completion values', values)
   if (values.includes("" || NaN)) {
     showElement(formErrorNotification);
     hideElement(formSuccessNotification);
@@ -193,7 +189,6 @@ function createRandomUser(userData) {
   makeUsers(userList, userData);
   userRepo = new UserRepo(userList);
   const userNowId = pickUser();
-  console.log(userNowId);
   userNow = getUserById(userRepo, userNowId);
 
   getFetchedLifeData();
@@ -215,12 +210,9 @@ function handleLifeData(sleepData, activityData, hydrationData) {
   const hydrationRepo = new Hydration(hydrationData);
   const sleepRepo = new Sleep(sleepData);
   const activityRepo = new Activity(activityData);
-  console.log(userRepo)
-  console.log(userNow);
   // if (typeof (userNow) === "undefined") {
   //   userNow = userRepo[0];
   // }
-  console.log(sleepRepo);
   const today = makeToday(userRepo, userNow.id, hydrationRepo.dataSet);
   const randomHistory = makeRandomDate(userRepo, userNow.id, hydrationRepo.dataSet);
   startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory)
@@ -281,7 +273,6 @@ function makeWinnerID(activityInfo, user, dateString, userStorage) {
 
 function makeToday(userStorage, id, dataSet) {
   const sortedArray = userStorage.makeSortedUserArray(id, dataSet);
-  console.log(sortedArray);
   return sortedArray[0].date;
 }
 
