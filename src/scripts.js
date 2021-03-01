@@ -7,6 +7,7 @@ import './images/sleep.svg';
 import './images/remove.svg';
 import './images/check.svg';
 import './images/warning.svg';
+import './images/hamburger.svg'
 
 import User from './User';
 import Activity from './Activity';
@@ -40,6 +41,7 @@ let xButton = document.querySelector('#remove');
 let formSuccessNotification = document.querySelector('#successNotification');
 let formErrorNotification = document.querySelector('#failureNotification');
 
+window.addEventListener("mouseover", showDropDown)
 window.addEventListener('load', getFetchedUsers);
 hydrationButton.addEventListener('click', showHydrationForm);
 sleepButton.addEventListener('click', showSleepForm);
@@ -52,6 +54,13 @@ baseForm.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
+
+
+function showDropDown(event){
+  const navContainer = document.getElementById('navButtonContainer')
+  event.target.className.includes("drop-down") ? navContainer.classList.add('show') :
+    navContainer.classList.remove('show')
+}
 
 
 function hideElement(element) {
@@ -236,10 +245,10 @@ function addWalkingStats(user, userStorage, date, activityRepo) {
   const stepGoalCard = document.getElementById('stepGoalCard');
   const milesWalked = document.getElementById('milesWalked');
   const avgStepGoalCard = document.getElementById('avgStepGoalCard');
-  userStrideLength.innerText = `${user.strideLength}meters`;
+  userStrideLength.innerText = `${user.strideLength}m`;
   stepGoalCard.innerText = `${user.dailyStepGoal}`;
   avgStepGoalCard.innerText = `${userStorage.calculateAverageStepGoal()}`;
-  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}`;
+  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(user.id, date, user)}mi`;
 }
 
 
