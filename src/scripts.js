@@ -7,6 +7,7 @@ import './images/sleep.svg';
 import './images/remove.svg';
 import './images/check.svg';
 import './images/warning.svg';
+import './images/hamburger.svg'
 
 import User from './User';
 import Activity from './Activity';
@@ -67,6 +68,10 @@ function showHideEntryForms(subForm, form2, form3) {
   showElement(subForm);
   hideElement(form2);
   hideElement(form3);
+}
+
+function showDropdown() {
+  showElement(element)
 }
 
 function blur(element) {
