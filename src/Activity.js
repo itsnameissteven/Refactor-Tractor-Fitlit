@@ -7,7 +7,11 @@ class Activity extends Calculation {
 
   getMilesFromStepsByDate(id, date, userRepo) {
     const userStepsByDate = this.dataSet.find(data => id === data.userID && date === data.date);
-    return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength) / 5280).toFixed(1));
+    if (userStepsByDate) {
+      return parseFloat(((userStepsByDate.numSteps * userRepo.strideLength) / 5280).toFixed(1));
+    } else {
+      return "0";
+    }
   }
 
   calculateActiveAverageForWeek(id, date, userRepo) {
@@ -86,7 +90,9 @@ class Activity extends Calculation {
   getWinnerId(user, date, userRepo) {
     const rankedList = this.getFriendsAverageStepsForWeek(user, date, userRepo);
     const keysList = rankedList.map(listItem => Object.keys(listItem));
-    return parseInt(keysList[0].join(''))
+    if (keysList[0]) {
+      return parseInt(keysList[0].join(''));
+    }
   }
 }
 
