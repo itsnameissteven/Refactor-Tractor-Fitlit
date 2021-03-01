@@ -115,7 +115,6 @@ function handlePostRequest(link, body) {
 }
 function handlePostSucess() {
   getFetchedLifeData();
-
 }
 
 function grabHydrationInput(user) {
@@ -123,6 +122,7 @@ function grabHydrationInput(user) {
   enteredHydrationInfo.userID = userNow.id;
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
+  console.log(enteredHydrationInfo);
   checkForCompletion("http://localhost:3001/api/v1/hydration", enteredHydrationInfo);
 }
 
@@ -131,28 +131,30 @@ function grabHydrationInput(user) {
 function grabSleepInput(user) {
   const enteredSleepInfo = {};
   enteredSleepInfo.userID = userNow.id;
-  enteredSleepInfo.date = formSleepDate.value;
-  enteredSleepInfo.hoursSlept = formSleepHours.value;
-  enteredSleepInfo.sleepQuality = formSleepQuality.value;
+  enteredSleepInfo.date = formSleepDate.value.replace(/-/g, '/');;
+  enteredSleepInfo.hoursSlept = parseInt(formSleepHours.value);
+  enteredSleepInfo.sleepQuality = parseInt(formSleepQuality.value);
+  console.log(enteredSleepInfo);
   checkForCompletion("http://localhost:3001/api/v1/sleep", enteredSleepInfo);
 }
 
 function grabActivityInput(user) {
   const enteredActivityInfo = {};
   enteredActivityInfo.userID = userNow.id;
-  enteredActivityInfo.date = formActivityDate.value;
-  enteredActivityInfo.numSteps = formActivitySteps.value;
-  enteredActivityInfo.minutesActive = formActivityMin.value;
-  enteredActivityInfo.flightsOfStairs = formActivityFlights.value;
+  enteredActivityInfo.date = formActivityDate.value.replace(/-/g, '/');;
+  enteredActivityInfo.numSteps = parseInt(formActivitySteps.value);
+  enteredActivityInfo.minutesActive = parseInt(formActivityMin.value);
+  enteredActivityInfo.flightsOfStairs = parseInt(formActivityFlights.value);
   checkForCompletion("http://localhost:3001/api/v1/activity", enteredActivityInfo);
 }
 
 function checkForCompletion(url, composedObject) {
   const values = Object.values(composedObject);
   console.log('check for completion values', values)
-  if (values.includes("")) {
+  if (values.includes("" || NaN)) {
     showElement(formErrorNotification);
     hideElement(formSuccessNotification);
+    console.log('im inside the if')
 
   } else {
     handlePostRequest(url, composedObject);
