@@ -38,14 +38,14 @@
           You Drank<span class="data-circle" id="hydrationToday"></span>Today
         </p>
         <p class="hydration-stats__avg">
-          Average Weekly Intake<span class="data-circle" id="hydrationAverageWeek"></span>
+          Average Intake<span class="data-circle" id="hydrationAverageWeek"></span>
         </p>
       </div>
-      <div class="hydration-stats__chart">
+      <div class="hydration-stats__chart chart">
         <canvas id="hydroChart"></canvas>
       </div>
     </section>
-
+    
     <section class="friends">
       <h2 class="friends__header">Friends</h2>
       <ul class="friends__list" id="friendList"></ul>
@@ -65,10 +65,10 @@
           National Average<span class="data-circle" id="avUserSleepQuality"></span> Quality
         </p>
       </div>
-      <div class="sleep-stats__chart--hours">
+      <div class="sleep-stats__chart--hours chart">
         <canvas id="sleepChart"></canvas>
       </div>
-      <div class="sleep-stats__chart--quality">
+      <div class="sleep-stats__chart--quality chart">
         <canvas id="sleepChartQuality"></canvas>
       </div>
     </section>
@@ -83,33 +83,33 @@
         Your Step Goal <span class="walking-data" id="stepGoalCard"></span>
       </p>
       <p class="walking-stats__avg-step-goal">
-        National Average<span class="walking-data" id="avgStepGoalCard"></span>Step Goal
+        National Average<span class="walking-data" id="avgStepGoalCard"></span>
       </p>
       <p class="walking-stats__miles-walked">
         Miles Walked <span class="walking-data" id="milesWalked"></span>
       </p>
     </section>
-    <section class="user-activity-today">
+    <section class="user-activity-today activity-charts">
       <h2 class="user-activity-today__header">Daily Stats</h2>
-      <div class="user-activity-today__chart">
+      <div class="user-activity-today__chart chart">
         <canvas class="user-activity-today__bar-chart step-chart" id="stepChart"></canvas>
       </div>
-      <div class="user-activity-today__chart">
+      <div class="user-activity-today__chart chart">
         <canvas class="user-activity-today__bar-chart flights-of-stairs" id="flightsOfStairsChart"></canvas>
       </div>
-      <div class="user-activity-today__chart">
+      <div class="user-activity-today__chart chart">
         <canvas class="user-activity-today__bar-chart active-minutes-chart" id="activeMinutesChart"></canvas>
       </div>
     </section>
-    <section class="user-activity-week">
+    <section class="user-activity-week activity-charts">
       <h2 class="user-activity-week__header">Weekly Stats</h2>
-      <div class="user-activity-week__chart">
+      <div class="user-activity-week__chart chart">
         <canvas class="user-activity-week__bar-chart weekly-steps" id="weeklySteps"></canvas>
       </div>
-      <div class="user-activity-week__chart">
+      <div class="user-activity-week__chart chart">
         <canvas class="user-activity-week__bar-chart weekly-minutes-active" id="weeklyMinutesActive"></canvas>
       </div>
-      <div class="user-activity-week__chart">
+      <div class="user-activity-week__chart chart">
         <canvas class="user-activity-week__bar-chart weekly-flights-climbed" id="weeklyFlightsClimbed"></canvas>
       </div>
     </section>
