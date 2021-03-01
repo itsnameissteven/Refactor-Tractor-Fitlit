@@ -126,13 +126,13 @@
       </div>
       <section class="entry-form-section">
         <div class="input">
-          <label for="date">Date of Hydration:</label>
+          <label for="date">Date of Hydration<span class="span-required">* </span>:</label>
           <input type="date" id="hydrationDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" aria-required="true"
             required>
         </div>
         <div class="input">
-          <label for="oz">Number of Oz:</label>
-          <input type="text" id="hydrationOz" name="oz" placeholder="52" required>
+          <label for="oz">Number of Oz<span class="span-required">* </span>:</label>
+          <input type="number" id="hydrationOz" name="oz" placeholder="52" required>
         </div>
       </section>
     </section>
@@ -143,16 +143,16 @@
       </div>
       <section class="entry-form-section">
         <div class="input">
-          <label for="date">Date of Sleep:</label>
+          <label for="date">Date of Sleep<span class="span-required">* </span>:</label>
           <input type="date" id="sleepDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" required>
         </div>
         <div class="input">
-          <label for="hours">Hours Slept:</label>
-          <input type="text" id="sleepHours" name="hours" placeholder="7.5" required>
+          <label for="hours">Hours Slept<span class="span-required">* </span>:</label>
+          <input type="number" id="sleepHours" name="hours" placeholder="7.5" required>
         </div>
         <div class="input">
-          <label for="quality">Sleep Quality Out of 5:</label>
-          <input type="text" id="sleepQuality" name="quality" placeholder="4.2" required>
+          <label for="quality">Sleep Quality Out of 5<span class="span-required">* </span>:</label>
+          <input type="number" id="sleepQuality" name="quality" placeholder="4.2" required>
         </div>
       </section>
     </section>
@@ -163,32 +163,43 @@
       </div>
       <section class="entry-form-section">
         <div class="input">
-          <label for="date">Date of Activity:</label>
+          <label for="date">Date of Activity<span class="span-required">* </span>:</label>
           <input type="date" id="activityDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" required>
         </div>
         <div class="input">
-          <label for="steps">Number of Steps:</label>
-          <input type="text" id="activitySteps" name="steps" placeholder="1236" required>
+          <label for="steps">Number of Steps<span class="span-required">* </span>:</label>
+          <input type="number" id="activitySteps" name="steps" placeholder="1236" required>
         </div>
         <div class="input">
-          <label for="min">Minutes Active:</label>
-          <input type="text" id="activityMin" name="min" placeholder="60" required>
+          <label for="min">Minutes Active<span class="span-required">* </span>:</label>
+          <input type="number" id="activityMin" name="min" placeholder="60" required>
         </div>
         <div class="input">
-          <label for="flights">Flights of Stairs:</label>
-          <input type="text" id="flights" name="flights" placeholder="20" required>
+          <label for="flights">Flights of Stairs<span class="span-required">* </span>:</label>
+          <input type="number" id="flights" name="flights" placeholder="20" required>
         </div>
       </section>
     </section>
 
     <button id="submit" class="submit-button" type="submit" value="hydration">Submit</button>
-    <section class="submission-notification">
-      <h3 class="success">Entry Submitted!</h3>
-      <p class="success">Your data has been recorded!</p>
+    <section id="successNotification" class="submission-notification hidden">
+      <div class="remove-container">
+        <img src="images/check.svg" alt="green check" class="notification-icon">
+      </div>
+      <div>
+        <h3>Entry Submitted!</h3>
+        <p>Your data has been recorded!</p>
+      </div>
     </section>
-    <section class="submission-notification hidden">
-      <h3 class="error">Entry Incomplete!</h3>
-      <p class="error">Make sure all sections are complete.</p>
+    <section id="failureNotification" class="submission-notification hidden">
+      <div class="remove-container">
+        <img src="images/warning.svg" alt="warning" class="notification-icon">
+      </div>
+      <div>
+        <h3>Submission Failed!</h3>
+        <p>All sections must be completed.</p>
+      </div>
+
     </section>
   </form>
 </body>
