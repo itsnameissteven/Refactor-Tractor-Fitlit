@@ -109,17 +109,6 @@ function hideAllForms() {
   hideElement(formErrorNotification);
 }
 
-
-function grabHydrationInput(user) {
-  const enteredHydrationInfo = {};
-  enteredHydrationInfo.userID = userNow.id;
-  enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
-  enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
-  // postHydrationRequest(enteredHydrationInfo);
-  checkForCompletion("http://localhost:3001/api/v1/hydration", enteredHydrationInfo);
-}
-
-
 function handlePostRequest(link, body) {
   fetchAPIData.addNewData(link, body)
     .then(() => handlePostSucess())
@@ -129,15 +118,23 @@ function handlePostSucess() {
 
 }
 
+function grabHydrationInput(user) {
+  const enteredHydrationInfo = {};
+  enteredHydrationInfo.userID = userNow.id;
+  enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
+  enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
+  checkForCompletion("http://localhost:3001/api/v1/hydration", enteredHydrationInfo);
+}
+
+
+
 function grabSleepInput(user) {
   const enteredSleepInfo = {};
   enteredSleepInfo.userID = userNow.id;
   enteredSleepInfo.date = formSleepDate.value;
   enteredSleepInfo.hoursSlept = formSleepHours.value;
   enteredSleepInfo.sleepQuality = formSleepQuality.value;
-  checkForCompletion(enteredSleepInfo);
-  console.log(enteredSleepInfo)
-
+  checkForCompletion("http://localhost:3001/api/v1/sleep", enteredSleepInfo);
 }
 
 function grabActivityInput(user) {
@@ -147,8 +144,7 @@ function grabActivityInput(user) {
   enteredActivityInfo.numSteps = formActivitySteps.value;
   enteredActivityInfo.minutesActive = formActivityMin.value;
   enteredActivityInfo.flightsOfStairs = formActivityFlights.value;
-  checkForCompletion(enteredActivityInfo);
-  console.log(enteredActivityInfo)
+  checkForCompletion("http://localhost:3001/api/v1/activity", enteredActivityInfo);
 }
 
 function checkForCompletion(url, composedObject) {
@@ -184,7 +180,6 @@ function getFetchedUsers() {
 
 function createRandomUser(userData) {
   let userList = [];
-  // let userRepo;
   makeUsers(userList, userData);
   userRepo = new UserRepo(userList);
   const userNowId = pickUser();
@@ -215,7 +210,7 @@ function handleLifeData(sleepData, activityData, hydrationData) {
   // if (typeof (userNow) === "undefined") {
   //   userNow = userRepo[0];
   // }
-  console.log(hydrationRepo);
+  console.log(sleepRepo);
   const today = makeToday(userRepo, userNow.id, hydrationRepo.dataSet);
   const randomHistory = makeRandomDate(userRepo, userNow.id, hydrationRepo.dataSet);
   startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory)
@@ -276,6 +271,7 @@ function makeWinnerID(activityInfo, user, dateString, userStorage) {
 
 function makeToday(userStorage, id, dataSet) {
   const sortedArray = userStorage.makeSortedUserArray(id, dataSet);
+  console.log(sortedArray);
   return sortedArray[0].date;
 }
 
