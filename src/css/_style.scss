@@ -81,7 +81,6 @@ button {
 
   img {
     height: 5rem;
-    // margin-bottom: 1rem;
   }
 }
 
@@ -96,11 +95,6 @@ button {
   margin-top:5rem;
   height: 60rem;
   text-align: center;
-
-  // &__user-vs-all {
-  //   width: 100%;
-  //   @include flex
-  // }
 }
 
 .hydration-stats {
@@ -113,27 +107,21 @@ button {
     @include flex(column);
     text-align: center;
     justify-content: space-around;
-    // border: $border-test;
     width:30%;
   }
   
   &__chart {
     height:100%;
     width: 70%;
-    // border: $border-test;
   }
 
   &__data__header{
     padding-top: 2rem;
     @include flex;
     margin: 0 auto; 
-    justify-content: center;   // justify-items: center;
+    justify-content: center;
     width: 100%
   }
-  // .test{ 
-  //   height: 200px;
-  //   width: 100px;
-  // }
 }
 
 .friends {
@@ -173,9 +161,6 @@ button {
     width:50%
   }
 
-  // .sleep-stats__sleep-quality-today {
-  //   margin-left: 5.5%;
-  // }
 }
 
 .user-activity-today {
@@ -217,16 +202,8 @@ button {
   margin: 0 auto;
   font-size: 4rem;
   text-align: center;
-  // align-self: center;
   justify-content: center;
   font-weight: bold;
-  // align-content: center;
-  // height: 8rem;
-  // width: 8rem;
-  // background-color: #088598;
-  // color: #fff;
-  // border-radius: 100%;
-  // border: 1px solid #065D6B
 }
 
 .walking-data {
