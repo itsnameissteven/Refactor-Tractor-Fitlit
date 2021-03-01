@@ -7,6 +7,7 @@ import './images/sleep.svg';
 import './images/remove.svg';
 import './images/check.svg';
 import './images/warning.svg';
+import './images/hamburger.svg'
 
 import User from './User';
 import Activity from './Activity';
@@ -43,6 +44,7 @@ let formErrorNotification = document.querySelector('#failureNotification');
 let userRepo;
 let userNow;
 
+window.addEventListener("mouseover", showDropDown)
 window.addEventListener('load', getFetchedUsers);
 hydrationButton.addEventListener('click', showHydrationForm);
 sleepButton.addEventListener('click', showSleepForm);
@@ -55,6 +57,13 @@ baseForm.addEventListener("keydown", function (event) {
     event.preventDefault();
   }
 });
+
+
+function showDropDown(event) {
+  const navContainer = document.getElementById('navButtonContainer')
+  event.target.className.includes("drop-down") ? navContainer.classList.add('show') :
+    navContainer.classList.remove('show')
+}
 
 
 function hideElement(element) {
@@ -154,7 +163,6 @@ function checkForCompletion(url, composedObject) {
   if (values.includes("" || NaN)) {
     showElement(formErrorNotification);
     hideElement(formSuccessNotification);
-    console.log('im inside the if')
 
   } else {
     handlePostRequest(url, composedObject);
