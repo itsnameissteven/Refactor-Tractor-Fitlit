@@ -4,6 +4,7 @@ Chart.defaults.global.elements.line.fill = false
 const chart = {
 
   makeChart(dataSet, element, label, color) {
+    // console.log(dataSet, "Chartssss")
     new Chart(element, {
       type: 'line',
         data: {
@@ -22,6 +23,7 @@ const chart = {
             }]
         },
         options: {
+          events: [],
           maintainAspectRatio: false,
           scales: {
               yAxes: [{
@@ -65,6 +67,7 @@ const chart = {
         ]
       },
       options: {
+         events: [],
         maintainAspectRatio: false,
         scales: {
             yAxes: [{
