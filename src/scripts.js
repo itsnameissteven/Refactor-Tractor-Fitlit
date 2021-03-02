@@ -20,28 +20,28 @@ import UserRepo from './User-repo';
 import chart from './dataChart.js'
 import fetchAPIData from './API';
 
-let hydrationButton = document.querySelector('#hydrationButton');
-let sleepButton = document.querySelector('#sleepButton');
-let activityButton = document.querySelector('#activityButton');
-let mainBody = document.querySelector('.main');
-let baseForm = document.querySelector('.add-information-form');
-let hydrationForm = document.querySelector('.hydration-form');
-let sleepForm = document.querySelector('.sleep-form');
-let activityForm = document.querySelector('.activity-form');
-let formHydrationDate = document.querySelector('#hydrationDate');
-let formHydrationOz = document.querySelector('#hydrationOz');
-let formSleepDate = document.querySelector('#sleepDate');
-let formSleepHours = document.querySelector('#sleepHours');
-let formSleepQuality = document.querySelector('#sleepQuality');
-let formActivityDate = document.querySelector('#activityDate');
-let formActivitySteps = document.querySelector('#activitySteps');
-let formActivityMin = document.querySelector('#activityMin');
-let formActivityFlights = document.querySelector('#flights');
-let submitButton = document.getElementById('submit');
-let xButton = document.querySelector('#remove');
+const hydrationButton = document.querySelector('#hydrationButton');
+const sleepButton = document.querySelector('#sleepButton');
+const activityButton = document.querySelector('#activityButton');
+const mainBody = document.querySelector('.main');
+const baseForm = document.querySelector('.add-information-form');
+const hydrationForm = document.querySelector('.hydration-form');
+const sleepForm = document.querySelector('.sleep-form');
+const activityForm = document.querySelector('.activity-form');
+// const formHydrationDate = document.querySelector('#hydrationDate');
+// const formHydrationOz = document.querySelector('#hydrationOz');
+// const formSleepDate = document.querySelector('#sleepDate');
+// const formSleepHours = document.querySelector('#sleepHours');
+// const formSleepQuality = document.querySelector('#sleepQuality');
+// const formActivityDate = document.querySelector('#activityDate');
+// const formActivitySteps = document.querySelector('#activitySteps');
+// const formActivityMin = document.querySelector('#activityMin');
+// const formActivityFlights = document.querySelector('#flights');
+const submitButton = document.getElementById('submit');
+const xButton = document.querySelector('#remove');
 
-let formSuccessNotification = document.querySelector('#successNotification');
-let formErrorNotification = document.querySelector('#failureNotification');
+const formSuccessNotification = document.querySelector('#successNotification');
+const formErrorNotification = document.querySelector('#failureNotification');
 
 let userRepo;
 let userNow;
@@ -88,19 +88,19 @@ function showHideEntryForms(subForm, form2, form3) {
 
 function showHydrationForm() {
   addClass(mainBody, 'blur');
-  document.getElementById('submit').value = 'hydration';
+  submitButton.value = 'hydration';
   showHideEntryForms(hydrationForm, sleepForm, activityForm);
 }
 
 function showSleepForm() {
-  addClass(mainBody);
-  document.getElementById('submit').value = 'sleep';
+  addClass(mainBody, 'blur');
+  submitButton.value = 'sleep';
   showHideEntryForms(sleepForm, hydrationForm, activityForm);
 }
 
 function showActivityForm() {
-  addClass(mainBody);
-  document.getElementById('submit').value = 'activity';
+  addClass(mainBody, 'blur');
+  submitButton.value = 'activity';
   showHideEntryForms(activityForm, sleepForm, hydrationForm);
 }
 
@@ -121,7 +121,9 @@ function handlePostSucess() {
   getFetchedLifeData();
 }
 
-function grabHydrationInput(user) {
+function grabHydrationInput() {
+  const formHydrationDate = document.querySelector('#hydrationDate');
+  const formHydrationOz = document.querySelector('#hydrationOz');
   const enteredHydrationInfo = {};
   enteredHydrationInfo.userID = userNow.id;
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
@@ -131,7 +133,10 @@ function grabHydrationInput(user) {
 
 
 
-function grabSleepInput(user) {
+function grabSleepInput() {
+  const formSleepDate = document.querySelector('#sleepDate');
+  const formSleepHours = document.querySelector('#sleepHours');
+  const formSleepQuality = document.querySelector('#sleepQuality');
   const enteredSleepInfo = {};
   enteredSleepInfo.userID = userNow.id;
   enteredSleepInfo.date = formSleepDate.value.replace(/-/g, '/');;
@@ -140,12 +145,19 @@ function grabSleepInput(user) {
     
     formSleepQuality.value = 5
   }
+  if(parseInt(formSleepHours.value) > 24){
+    formSleepHours.value = 24; 
+  }
   enteredSleepInfo.sleepQuality = parseInt(formSleepQuality.value);
   checkForCompletion('http://localhost:3001/api/v1/sleep', enteredSleepInfo);
 }
 
-function grabActivityInput(user) {
+function grabActivityInput() {
   const enteredActivityInfo = {};
+  const formActivityDate = document.querySelector('#activityDate');
+  const formActivitySteps = document.querySelector('#activitySteps');
+  const formActivityMin = document.querySelector('#activityMin');
+  const formActivityFlights = document.querySelector('#flights');
   enteredActivityInfo.userID = userNow.id;
   enteredActivityInfo.date = formActivityDate.value.replace(/-/g, '/');;
   enteredActivityInfo.numSteps = parseInt(formActivitySteps.value);
@@ -224,11 +236,11 @@ function startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory) 
   addSleepInfo(userNow.id, sleepRepo, today, userRepo, randomHistory);
   addWalkingStats(today, activityRepo)
   const winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
-  addActivityInfo(userNow.id, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
+  addActivityInfo(userNow.id, activityRepo, userRepo);
 }
 
 function pickUser() {
-  return Math.floor((Math.random() * 50) + 1);
+  return Math.floor((Math.random() * userRepo.users.length));
 }
 
 function getUserById(listRepo, id) {
@@ -272,7 +284,7 @@ function makeWinnerID(activityInfo, user, dateString, userStorage) {
 
 function makeToday(userStorage, id, dataSet) {
   const sortedArray = userStorage.makeSortedUserArray(id, dataSet);
-  if (today === undefined) {
+  if (!today) {
     return sortedArray[0].date;
   } else {
     return today
@@ -306,7 +318,7 @@ function addSleepInfo(id, sleepInfo, dateString, userStorage) {
   chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, 'sleepQuality'), sleepChartQuality, 'Quality of Sleep', '#8B0BD5')
 }
 
-function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {
+function addActivityInfo(id, activityInfo, userStorage) {
   const stepChart = document.getElementById('stepChart');
   const flightsOfStairsChart = document.getElementById('flightsOfStairsChart');
   const activeMinutesChart = document.getElementById('activeMinutesChart');
@@ -327,27 +339,6 @@ function createBarChart(activityInfo, id, dateString, property, userStorage, ele
 }
 
 function createLineChart(activityInfo, id, dateString, property, userStorage, element, chartLabel, color) {
-  // console.log(activityInfo, 'asdfawooooork')
-  // console.log(activityInfo.calculateWeeklyData(dateString, id, userStorage, property))
   chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, property),
     element, chartLabel, color);
-}
-
-// bestUserSteps.insertAdjacentHTML('afterBegin', makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, 'numSteps')));
-
-
-// function addFriendGameInfo(id, activityInfo, userStorage, dateString, laterDateString, user) {
-//   friendChallengeListToday.insertAdjacentHTML('afterBegin', makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
-//   streakList.insertAdjacentHTML('afterBegin', makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'numSteps')));
-//   streakListMinutes.insertAdjacentHTML('afterBegin', makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'minutesActive')));
-//   friendChallengeListHistory.insertAdjacentHTML('afterBegin', makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
-//   bigWinner.insertAdjacentHTML('afterBegin', `THIS WEEK'S WINNER! ${activityInfo.showcaseWinner(user, dateString, userStorage)} steps`)
-// }
-
-function makeFriendChallengeHTML(id, activityInfo, userStorage, method) {
-  return method.map(friendChallengeData => `<li class='historical-list-listItem'>Your friend ${friendChallengeData} average steps.</li>`).join('');
-}
-
-function makeStepStreakHTML(id, activityInfo, userStorage, method) {
-  return method.map(streakData => `<li class='historical-list-listItem'>${streakData}!</li>`).join('');
 }
