@@ -55,7 +55,29 @@ Error handling was considered when building the forms. The user cannot proceed u
 
 ![](https://media.giphy.com/media/P1DPEkxDZv9qzfydWA/giphy.gif)
 
-## Contributing
-* Alex Thompson (https://github.com/alexthompson207)
-* Anneke Miers (https://github.com/aemiers)
-* Steven Mancine (https://github.com/itsnameissteven)
+## Contributers
+* [Alex Thompson](https://github.com/alexthompson207)
+* [Anneke Miers](https://github.com/aemiers)
+* [Steven Mancine](https://github.com/itsnameissteven)
+
+## Contact
+
+## Contact
+
+[<img src="https://img.shields.io/badge/LinkedIn-alex--thompson-informational?style=for-the-badge&labelColor=black&logo=linkedin&logoColor=0077b5&&color=0077b5"/>][linkedin]
+[<img src="https://img.shields.io/badge/Github-AlexThompson207-informational?style=for-the-badge&labelColor=black&logo=github&color=7d88e6"/>][github]
+[<img src="https://img.shields.io/badge/LinkedIn-anneke--miers-informational?style=for-the-badge&labelColor=black&logo=linkedin&logoColor=0077b5&&color=0077b5"/>][linkedin2]
+[<img src="https://img.shields.io/badge/Github-aemiers-informational?style=for-the-badge&labelColor=black&logo=github&color=7d88e6"/>][github2]
+[<img src="https://img.shields.io/badge/LinkedIn-steven--mancine-informational?style=for-the-badge&labelColor=black&logo=linkedin&logoColor=0077b5&&color=0077b5"/>][linkedin2]
+[<img src="https://img.shields.io/badge/Github-itsnameissteven-informational?style=for-the-badge&labelColor=black&logo=github&color=7d88e6"/>][github2]
+
+
+
+<!-- Personal Definitions  -->
+
+[linkedin]: https://www.linkedin.com/in/alex-thompson-309070a2/
+[github]: https://github.com/alexthompson207
+[linkedin2]: https://www.linkedin.com/in/anneke-miers/
+[github2]: https://github.com/aemiers
+[linkedin3]: https://www.linkedin.com/in/steven-mancine-13509521/
+[github3]: https://github.com/itsnameissteven
