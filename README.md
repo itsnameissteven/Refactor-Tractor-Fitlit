@@ -28,7 +28,7 @@ https://github.com/itsnameissteven/Refactor-Tractor-Fitlit
 
 ## Technologies Used
 
-- [![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)](https://www.javascript.com/) with `ES6` implementations
+- [![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)](https://www.javascript.com/)
 
 - ![HTML5](https://img.shields.io/badge/-HTML5-black?style=flat-square&logo=html5&logoColor=white)
 
