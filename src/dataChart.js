@@ -65,6 +65,7 @@ const chart = {
         ]
       },
       options: {
+         events: [],
         maintainAspectRatio: false,
         scales: {
             yAxes: [{
