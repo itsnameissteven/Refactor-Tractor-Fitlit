@@ -1,12 +1,3 @@
-  <p align="center">
-  <a href="https://github.com/itsnameissteven/Refactor-Tractor-Fitlit">
-    <img src="./src/images/The Rock.jpg" alt="Logo" width="80" height="80">
-  </a>
- 
- <h1 align="left">Refactor Tractor</h1>
-
-
-
 ## About
 
 In this project, our job was to take code that was written by another student and transform it into a beautiful, functional application. 
@@ -55,21 +46,37 @@ https://github.com/itsnameissteven/Refactor-Tractor-Fitlit
 
 
 ## Functionality
+
+#### General
 Activity Tracker is a versatile web application that enables its users to track their fitness goals and accomplishments, water consumption, and sleep stats. 
 
-![]<img src="https://media.giphy.com/media/nYWEEel9zGPcTXuT7E/giphy.gif" width="80%">
+<img src="https://media.giphy.com/media/nYWEEel9zGPcTXuT7E/giphy.gif" width="80%">
 
 Not only can users view their own data, but they can compare their stats with other Activity Tracker users on the national level. This national user data comes from incorporating data from an API. 
 
-![]<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
+<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
 
 Enabling the user to add their data to the API and see the charts and graphs automatically update before their eyes with current information was our top priority. Users can add information by clicking on a log button and entering their stats.
 
-![]<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
+<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
 
+#### Error Handling
 Error handling was considered when building the forms. The user cannot proceed unless all of the required fields are filled in. Numbers and decimals are only permitted in input fields. Smooth transitions between the form view and the widget view ensure an enjoyable UI. 
 
-![]<img src="https://media.giphy.com/media/P1DPEkxDZv9qzfydWA/giphy.gif" width="80%">
+<img src="https://media.giphy.com/media/P1DPEkxDZv9qzfydWA/giphy.gif" width="80%">
+
+#### Responsive
+##### Mobile View
+<img src="https://media.giphy.com/media/qVDAzLDS65NXubUfTS/giphy.gif">
+
+##### Tablet View
+<img src="https://media.giphy.com/media/2VeVFbQnYcCVn4smLY/giphy.gif">
+
+#### Accessibility
+Activity Tracker scores very highly on Wave and received a 100% from Lighthouse on Accessibility.. Users can tab throughout the full application, making it accessible for those using keyboards to navigate through. 
+
+![](src/images/ATWaveRating.png)
+![](src/images/LighthouseScore.png)
 
 ## Contributers
 * [Alex Thompson](https://github.com/alexthompson207)
@@ -77,7 +84,6 @@ Error handling was considered when building the forms. The user cannot proceed u
 * [Steven Mancine](https://github.com/itsnameissteven)
 
 ## Contact
-
 
 [<img src="https://img.shields.io/badge/LinkedIn-alex--thompson-informational?style=for-the-badge&labelColor=black&logo=linkedin&logoColor=0077b5&&color=0FBBD6"/>][linkedin]
 [<img src="https://img.shields.io/badge/Github-AlexThompson207-informational?style=for-the-badge&labelColor=black&logo=github&color=8B0BD5"/>][github]
