@@ -49,7 +49,7 @@ Not only can users view their own data, but they can compare their stats with ot
 
 Enabling the user to add their data to the API and see the charts and graphs automatically update before their eyes with current information was our top priority. Users can add information by clicking on a log button and entering their stats.
 
-![] (https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif)
+![](https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif)
 
 Error handling was considered when building the forms. The user cannot proceed unless all of the required fields are filled in. Numbers and decimals are only permitted in input fields. Smooth transitions between the form view and the widget view ensure an enjoyable UI. 
 
