@@ -8,7 +8,9 @@ import './images/remove.svg';
 import './images/check.svg';
 import './images/warning.svg';
 import './images/hamburger.svg';
-import "./images/daily.svg"
+import "./images/daily.svg";
+import "./images/calendar.svg";
+import "./images/user.svg"
 
 import User from './User';
 import Activity from './Activity';
@@ -281,7 +283,7 @@ function addWalkingStats(date, activityRepo) {
 
 
 function makeFriendHTML(user, userStorage) {
-  return user.getFriendsNames(userStorage).map(friendName => `<li class='historical-list-listItem'>${friendName}</li>`).join('');
+  return user.getFriendsNames(userStorage).map(friendName => `<li class='my-friends'>${friendName}</li>`).join('');
 }
 
 function makeWinnerID(activityInfo, user, dateString, userStorage) {

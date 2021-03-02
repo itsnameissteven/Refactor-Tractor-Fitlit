@@ -112,6 +112,10 @@
   margin-top:5rem;
   height: 60rem;
   text-align: center;
+
+  &__header {
+    @extend .hydration-stats__data__header;
+  }
 }
 
 .hydration-stats {
@@ -147,8 +151,25 @@
   height: 25rem;
 
   &__list {
-    margin-top: 3rem;
+    margin-top: 1rem;
     @include flex;
+
+  }
+  .my-friends{
+
+    font-size: 1.6rem;
+    line-height: 3;
+  }
+  .my-friends::before {
+    //  margin: 0 5px 0 5px;
+    margin-right: 1rem;
+  display: inline-block;
+  content: "";
+  background-image: url('../images/user.svg');
+  background-size: 20px 20px;
+  height: 20px;
+  width: 20px;
+  vertical-align: middle;
   }
 }
 
@@ -159,6 +180,10 @@
   grid-column: 2/4;
   height:60rem;
   margin-top:5rem;
+
+  &__header {
+    @extend .hydration-stats__data__header
+  }
 
   &__data {
     @include flex;
@@ -183,15 +208,16 @@
 .user-activity-today {
   @include dataBox;
   @include flex;
+  padding: 5rem;
   grid-column: 1/4;
-  padding:1rem;
-  height: 35rem;
-
+  padding:5rem;
+  margin-top: 5rem;
+  height: 60rem;
   &__header {
     width: 100%;
   }
   &__chart {
-    height: 90%;
+    height: 80%;
     width: 30%;
   }
 }
@@ -204,7 +230,7 @@
   }
   
    &__chart {
-    height: 90%;
+    height: 80%;
     width: 30%;
   }
 }
@@ -445,6 +471,7 @@
   .sleep-stats {
     grid-row: 6;
     grid-column: 1;
+    height: fit-content;
   }
   
   .activity-charts {

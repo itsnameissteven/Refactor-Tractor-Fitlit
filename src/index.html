@@ -52,6 +52,7 @@
         <ul class="friends__list" id="friendList"></ul>
       </section>
       <section class="sleep-stats">
+        <h2 class="sleep-stats__header">Sleep Stats</h2>
         <div class="icon">
           <img src="images/sleep.svg" alt="sleep-icon icon" class="sleep-stats__icon">
         </div>
@@ -74,6 +75,7 @@
         </div>
       </section>
       <section class="walking-stats " id="walkingStats">
+        <!-- <h2 class="walking-stats__header">Walking Data</h2> -->
         <div class="icon">
           <img src="images/walk.svg" alt="Shoe walking icon" class="walking-stats__icon">
         </div>
@@ -106,6 +108,9 @@
         </div>
       </section>
       <section class="user-activity-week activity-charts">
+        <div class="weekly-activity icon">
+          <img src="images/calendar.svg" alt="calendar icon" class="calendar__icon">
+        </div>
         <h2 class="user-activity-week__header">Weekly Stats</h2>
         <div class="user-activity-week__chart chart">
           <canvas class="user-activity-week__bar-chart weekly-steps" id="weeklySteps"></canvas>
@@ -129,13 +134,13 @@
         </div>
         <section class="entry-form-section">
           <div class="input">
-            <label for="date">Date of Hydration<span class="span-required">* </span>:</label>
-            <input type="date" id="hydrationDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" aria-required="true"
-              required>
+            <label for="date">Date of Hydration<span class="span-required">* </span>:
+            <input type="date" id="hydrationDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" aria-label="Hydration date"
+              required></label>
           </div>
           <div class="input">
-            <label for="oz">Number of Oz<span class="span-required">* </span>:</label>
-            <input type="number" id="hydrationOz" name="oz" placeholder="52" required>
+            <label for="oz">Number of Oz<span class="span-required">* </span>:
+            <input type="number" id="hydrationOz" name="oz" placeholder="52" aria-label="Number of Ounces" required></label>
           </div>
         </section>
       </section>
@@ -145,16 +150,16 @@
         </div>
         <section class="entry-form-section">
           <div class="input">
-            <label for="date">Date of Sleep<span class="span-required">* </span>:</label>
-            <input type="date" id="sleepDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" required>
+            <label for="date">Date of Sleep<span class="span-required">* </span>:
+            <input type="date" id="sleepDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" aria-label="Sleep Date" required></label>
           </div>
           <div class="input">
-            <label for="hours">Hours Slept<span class="span-required">* </span>:</label>
-            <input type="number" id="sleepHours" name="hours" placeholder="7.5" required>
+            <label for="hours">Hours Slept<span class="span-required">* </span>:
+            <input type="number" id="sleepHours" name="hours" placeholder="7.5" aria-label="Hours Slept"required></label>
           </div>
           <div class="input">
-            <label for="quality">Sleep Quality Out of 5<span class="span-required">* </span>:</label>
-            <input type="number" id="sleepQuality" name="quality" placeholder="4.2" min="0" max="5" required>
+            <label for="quality">Sleep Quality Out of 5<span class="span-required">* </span>:
+            <input type="number" id="sleepQuality" name="quality" placeholder="4.2" min="0" max="5" aria-label="Sleep quality out of 5" required></label>
           </div>
         </section>
       </section>
@@ -164,20 +169,20 @@
         </div>
         <section class="entry-form-section">
           <div class="input">
-            <label for="date">Date of Activity<span class="span-required">* </span>:</label>
-            <input type="date" id="activityDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" required>
+            <label for="date">Date of Activity<span class="span-required">* </span>:
+            <input type="date" id="activityDate" name="date" required pattern="\d{4}/\d{2}/\d{2}" aria-label="Date of Activity" required></label>
           </div>
           <div class="input">
-            <label for="steps">Number of Steps<span class="span-required">* </span>:</label>
-            <input type="number" id="activitySteps" name="steps" placeholder="1236" required>
+            <label for="steps">Number of Steps<span class="span-required">* </span>:
+            <input type="number" id="activitySteps" name="steps" placeholder="1236" aria-label="Number of steps" required></label>
           </div>
           <div class="input">
-            <label for="min">Minutes Active<span class="span-required">* </span>:</label>
-            <input type="number" id="activityMin" name="min" placeholder="60" required>
+            <label for="min">Minutes Active<span class="span-required">* </span>:
+            <input type="number" id="activityMin" name="min" placeholder="60" aria-label="Active minutes" required></label>
           </div>
           <div class="input">
-            <label for="flights">Flights of Stairs<span class="span-required">* </span>:</label>
-            <input type="number" id="flights" name="flights" placeholder="20" required>
+            <label for="flights">Flights of Stairs<span class="span-required">* </span>:
+            <input type="number" id="flights" name="flights" placeholder="20" aria-label="Flights of stairs" required></label>
           </div>
         </section>
       </section>
