@@ -1,4 +1,7 @@
-# Refactor Tractor
+ <h1 align="center">Refactor Tractor</h1>
+
+
+## About
 
 In this project, our job was to take code that was written by another student and transform it into a beautiful, functional application. 
 
