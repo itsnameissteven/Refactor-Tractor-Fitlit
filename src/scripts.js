@@ -7,9 +7,9 @@ import './images/remove.svg';
 import './images/check.svg';
 import './images/warning.svg';
 import './images/hamburger.svg';
-import "./images/daily.svg";
-import "./images/calendar.svg";
-import "./images/user.svg"
+import './images/daily.svg';
+import './images/calendar.svg';
+import './images/user.svg'
 
 import User from './User';
 import Activity from './Activity';
@@ -17,7 +17,7 @@ import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
 
-import chart from "./dataChart.js"
+import chart from './dataChart.js'
 import fetchAPIData from './API';
 
 let hydrationButton = document.querySelector('#hydrationButton');
@@ -37,7 +37,7 @@ let formActivityDate = document.querySelector('#activityDate');
 let formActivitySteps = document.querySelector('#activitySteps');
 let formActivityMin = document.querySelector('#activityMin');
 let formActivityFlights = document.querySelector('#flights');
-let submitButton = document.querySelector('.submit-button');
+let submitButton = document.getElementById('submit');
 let xButton = document.querySelector('#remove');
 
 let formSuccessNotification = document.querySelector('#successNotification');
@@ -47,17 +47,17 @@ let userRepo;
 let userNow;
 let today;
 
-window.addEventListener("mouseover", showDropDown)
+window.addEventListener('mouseover', showDropDown)
 window.addEventListener('load', getFetchedUsers);
 hydrationButton.addEventListener('click', showHydrationForm);
 sleepButton.addEventListener('click', showSleepForm);
 activityButton.addEventListener('click', showActivityForm);
 submitButton.addEventListener('click', submitForm);
 xButton.addEventListener('click', hideAllForms);
-baseForm.addEventListener("keydown", preventInvalidKeys);
+baseForm.addEventListener('keydown', preventInvalidKeys);
 
 function preventInvalidKeys (event) {
-  var invalidCharacters = ["e", "+", "-"];
+  var invalidCharacters = ['e', '+', '-'];
   if (invalidCharacters.includes(event.key)) {
     event.preventDefault();
   }
@@ -66,8 +66,8 @@ function preventInvalidKeys (event) {
 
 function showDropDown(event) {
   const navContainer = document.getElementById('navButtonContainer')
-  event.target.className.includes("drop-down") ? addClass(navContainer, 'show') :
-    navContainer.classList.remove('show')
+  event.target.className.includes('drop-down') ? addClass(navContainer, 'show') :
+    removeClass(navContainer, 'show')
 }
 
 
@@ -75,52 +75,42 @@ function addClass(element, className) {
   element.classList.add(className || 'hidden');
 }
 
-function showElement(element) {
-  element.classList.remove('hidden');
+function removeClass(element, className) {
+  element.classList.remove(className || 'hidden');
 }
 
 function showHideEntryForms(subForm, form2, form3) {
-  showElement(baseForm);
-  showElement(subForm);
+  removeClass(baseForm);
+  removeClass(subForm);
   addClass(form2);
   addClass(form3);
 }
 
-function unBlur(element) {
-  element.classList.remove('blur');
-}
-
 function showHydrationForm() {
   addClass(mainBody, 'blur');
-  document.getElementById("submit").value = "hydration";
+  document.getElementById('submit').value = 'hydration';
   showHideEntryForms(hydrationForm, sleepForm, activityForm);
 }
 
 function showSleepForm() {
   addClass(mainBody);
-  document.getElementById("submit").value = "sleep";
+  document.getElementById('submit').value = 'sleep';
   showHideEntryForms(sleepForm, hydrationForm, activityForm);
 }
 
 function showActivityForm() {
   addClass(mainBody);
-  document.getElementById("submit").value = "activity";
+  document.getElementById('submit').value = 'activity';
   showHideEntryForms(activityForm, sleepForm, hydrationForm);
 }
 
 function hideAllForms() {
   baseForm.reset()
-  submitButton.classList.remove("disable")
-  unBlur(mainBody);
+  removeClass(submitButton, 'disable')
+  removeClass(mainBody, 'blur')
   const elements = [baseForm, hydrationForm,sleepForm, activityForm, 
     formSuccessNotification, formErrorNotification];
-  elements.forEach(element => addClass(element));
-  // addClass(baseForm);
-  // addClass(hydrationForm);
-  // addClass(sleepForm);
-  // addClass(activityForm);
-  // addClass(formSuccessNotification);
-  // addClass(formErrorNotification);
+  elements.forEach(addClass);
 }
 
 function handlePostRequest(link, body) {
@@ -136,7 +126,7 @@ function grabHydrationInput(user) {
   enteredHydrationInfo.userID = userNow.id;
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
-  checkForCompletion("http://localhost:3001/api/v1/hydration", enteredHydrationInfo);
+  checkForCompletion('http://localhost:3001/api/v1/hydration', enteredHydrationInfo);
 }
 
 
@@ -151,7 +141,7 @@ function grabSleepInput(user) {
     formSleepQuality.value = 5
   }
   enteredSleepInfo.sleepQuality = parseInt(formSleepQuality.value);
-  checkForCompletion("http://localhost:3001/api/v1/sleep", enteredSleepInfo);
+  checkForCompletion('http://localhost:3001/api/v1/sleep', enteredSleepInfo);
 }
 
 function grabActivityInput(user) {
@@ -161,20 +151,20 @@ function grabActivityInput(user) {
   enteredActivityInfo.numSteps = parseInt(formActivitySteps.value);
   enteredActivityInfo.minutesActive = parseInt(formActivityMin.value);
   enteredActivityInfo.flightsOfStairs = parseInt(formActivityFlights.value);
-  checkForCompletion("http://localhost:3001/api/v1/activity", enteredActivityInfo);
+  checkForCompletion('http://localhost:3001/api/v1/activity', enteredActivityInfo);
 }
 
 function checkForCompletion(url, composedObject) {
   const values = Object.values(composedObject);
   today = composedObject.date
-  if (values.includes("" || NaN)) {
-    showElement(formErrorNotification);
+  if (values.includes('' || NaN)) {
+    removeClass(formErrorNotification);
     addClass(formSuccessNotification);
 
   } else {
     addClass(submitButton, 'disable');
     handlePostRequest(url, composedObject);
-    showElement(formSuccessNotification);
+    removeClass(formSuccessNotification);
     addClass(formErrorNotification);
     setTimeout(hideAllForms, 1500);
   }
@@ -182,11 +172,11 @@ function checkForCompletion(url, composedObject) {
 
 function submitForm(event) {
   event.preventDefault(event)
-  if (document.getElementById("submit").value === "hydration") {
+  if (submitButton.value === 'hydration') {
     grabHydrationInput();
-  } else if (document.getElementById("submit").value === "sleep") {
+  } else if (submitButton.value === 'sleep') {
     grabSleepInput();
-  } else if (document.getElementById("submit").value === "activity") {
+  } else if (submitButton.value === 'activity') {
     grabActivityInput();
   }
 }
@@ -202,13 +192,12 @@ function createRandomUser(userData) {
   userRepo = new UserRepo(userList);
   const userNowId = pickUser();
   userNow = getUserById(userRepo, userNowId);
-
   getFetchedLifeData();
 }
 
 function makeUsers(userList, userData) {
   userData.forEach(dataItem => {
-    let user = new User(dataItem);
+    const user = new User(dataItem);
     userList.push(user);
   })
 }
@@ -222,9 +211,6 @@ function handleLifeData(sleepData, activityData, hydrationData) {
   const hydrationRepo = new Hydration(hydrationData);
   const sleepRepo = new Sleep(sleepData);
   const activityRepo = new Activity(activityData);
-  // if (typeof (userNow) === "undefined") {
-  //   userNow = userRepo[0];
-  // }
   today = makeToday(userRepo, userNow.id, hydrationRepo.dataSet);
   const randomHistory = makeRandomDate(userRepo, userNow.id, hydrationRepo.dataSet);
   startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory)
@@ -239,7 +225,6 @@ function startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory) 
   addWalkingStats(today, activityRepo)
   const winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
   addActivityInfo(userNow.id, activityRepo, today, userRepo, randomHistory, userNow, winnerNow);
-  // addFriendGameInfo(userNowId, activityRepo, userRepo, today, randomHistory, userNow);
 }
 
 function pickUser() {
@@ -256,7 +241,7 @@ function addInfoToSidebar(user, userStorage) {
   const userAddress = document.getElementById('userAddress');
   const userEmail = document.getElementById('userEmail');
   const friendList = document.getElementById('friendList');
-  document.getElementById('friendList').innerHTML = ""
+  document.getElementById('friendList').innerHTML = ''
   sidebarName.innerText = user.name;
   headerText.innerText = `${user.getFirstName()}'s Activity Tracker`;
   userAddress.innerText = user.address;
@@ -301,9 +286,9 @@ function makeRandomDate(userStorage, id, dataSet) {
 
 function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydrationToday = document.getElementById('hydrationToday');
-  const hydroChart = document.getElementById("hydroChart");
+  const hydroChart = document.getElementById('hydroChart');
   const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
-  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, "Number of Ounces", '#D5260B');
+  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, 'Number of Ounces', '#D5260B');
   hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
   hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
 }
@@ -312,30 +297,28 @@ function addSleepInfo(id, sleepInfo, dateString, userStorage) {
   const sleepToday = document.getElementById('sleepToday');
   const sleepQualityToday = document.getElementById('sleepQualityToday');
   const avUserSleepQuality = document.getElementById('avUserSleepQuality');
-  const sleepChart = document.getElementById("sleepChart");
+  const sleepChart = document.getElementById('sleepChart');
   const sleepChartQuality = document.getElementById('sleepChartQuality');
-  sleepToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, "hoursSlept")}hrs`;
-  sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, "sleepQuality")}/5`;
+  sleepToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, 'hoursSlept')}hrs`;
+  sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, 'sleepQuality')}/5`;
   avUserSleepQuality.innerText = `${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, "hoursSlept"), sleepChart, "Hours of Sleep", '#0BBBD6');
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, "sleepQuality"), sleepChartQuality, "Quality of Sleep", '#8B0BD5')
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, 'hoursSlept'), sleepChart, 'Hours of Sleep', '#0BBBD6');
+  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, 'sleepQuality'), sleepChartQuality, 'Quality of Sleep', '#8B0BD5')
 }
 
 function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateString, user, winnerId) {
-  const stepChart = document.getElementById("stepChart");
-  const flightsOfStairsChart = document.getElementById("flightsOfStairsChart");
+  const stepChart = document.getElementById('stepChart');
+  const flightsOfStairsChart = document.getElementById('flightsOfStairsChart');
   const activeMinutesChart = document.getElementById('activeMinutesChart');
-  createBarChart(activityInfo, id, today, "numSteps", userStorage, stepChart, "Steps Today");
-  createBarChart(activityInfo, id, today, "flightsOfStairs", userStorage, flightsOfStairsChart, "Flights Climbed Today");
-  createBarChart(activityInfo, id, today, "minutesActive", userStorage, activeMinutesChart, "Active Minutes Today");
-  // console.log(dateString, "TEEEEESSST")
-  const weeklySteps = document.getElementById("weeklySteps");
+  createBarChart(activityInfo, id, today, 'numSteps', userStorage, stepChart, 'Steps Today');
+  createBarChart(activityInfo, id, today, 'flightsOfStairs', userStorage, flightsOfStairsChart, 'Flights Climbed Today');
+  createBarChart(activityInfo, id, today, 'minutesActive', userStorage, activeMinutesChart, 'Active Minutes Today');
+  const weeklySteps = document.getElementById('weeklySteps');
   const weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
   const weeklyFlightsClimbed = document.getElementById('weeklyFlightsClimbed');
-  
-  createLineChart(activityInfo, id, today, "numSteps", userStorage, weeklySteps, "weekly steps", '#260BD5');
-  createLineChart(activityInfo, id, today, "minutesActive", userStorage, weeklyMinutesActive, "weekly minutes active", '#D5260B');
-  createLineChart(activityInfo, id, today, "flightsOfStairs", userStorage, weeklyFlightsClimbed, "weekly flights climbed", "#BAD50B");
+  createLineChart(activityInfo, id, today, 'numSteps', userStorage, weeklySteps, 'weekly steps', '#260BD5');
+  createLineChart(activityInfo, id, today, 'minutesActive', userStorage, weeklyMinutesActive, 'weekly minutes active', '#D5260B');
+  createLineChart(activityInfo, id, today, 'flightsOfStairs', userStorage, weeklyFlightsClimbed, 'weekly flights climbed', '#BAD50B');
 }
 
 function createBarChart(activityInfo, id, dateString, property, userStorage, element, chartLabel) {
@@ -344,27 +327,27 @@ function createBarChart(activityInfo, id, dateString, property, userStorage, ele
 }
 
 function createLineChart(activityInfo, id, dateString, property, userStorage, element, chartLabel, color) {
-  // console.log(activityInfo, "asdfawooooork")
+  // console.log(activityInfo, 'asdfawooooork')
   // console.log(activityInfo.calculateWeeklyData(dateString, id, userStorage, property))
   chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, property),
     element, chartLabel, color);
 }
 
-// bestUserSteps.insertAdjacentHTML("afterBegin", makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, "numSteps")));
+// bestUserSteps.insertAdjacentHTML('afterBegin', makeStepsHTML(user, activityInfo, userStorage, activityInfo.calculateWeeklyData(dateString, winnerId, userStorage, 'numSteps')));
 
 
 // function addFriendGameInfo(id, activityInfo, userStorage, dateString, laterDateString, user) {
-//   friendChallengeListToday.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
-//   streakList.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'numSteps')));
-//   streakListMinutes.insertAdjacentHTML("afterBegin", makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'minutesActive')));
-//   friendChallengeListHistory.insertAdjacentHTML("afterBegin", makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
+//   friendChallengeListToday.insertAdjacentHTML('afterBegin', makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
+//   streakList.insertAdjacentHTML('afterBegin', makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'numSteps')));
+//   streakListMinutes.insertAdjacentHTML('afterBegin', makeStepStreakHTML(id, activityInfo, userStorage, activityInfo.getStreak(userStorage, id, 'minutesActive')));
+//   friendChallengeListHistory.insertAdjacentHTML('afterBegin', makeFriendChallengeHTML(id, activityInfo, userStorage, activityInfo.showChallengeListAndWinner(user, dateString, userStorage)));
 //   bigWinner.insertAdjacentHTML('afterBegin', `THIS WEEK'S WINNER! ${activityInfo.showcaseWinner(user, dateString, userStorage)} steps`)
 // }
 
 function makeFriendChallengeHTML(id, activityInfo, userStorage, method) {
-  return method.map(friendChallengeData => `<li class="historical-list-listItem">Your friend ${friendChallengeData} average steps.</li>`).join('');
+  return method.map(friendChallengeData => `<li class='historical-list-listItem'>Your friend ${friendChallengeData} average steps.</li>`).join('');
 }
 
 function makeStepStreakHTML(id, activityInfo, userStorage, method) {
-  return method.map(streakData => `<li class="historical-list-listItem">${streakData}!</li>`).join('');
+  return method.map(streakData => `<li class='historical-list-listItem'>${streakData}!</li>`).join('');
 }
