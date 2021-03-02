@@ -7,7 +7,8 @@ import './images/sleep.svg';
 import './images/remove.svg';
 import './images/check.svg';
 import './images/warning.svg';
-import './images/hamburger.svg'
+import './images/hamburger.svg';
+import "./images/daily.svg"
 
 import User from './User';
 import Activity from './Activity';
@@ -52,12 +53,14 @@ sleepButton.addEventListener('click', showSleepForm);
 activityButton.addEventListener('click', showActivityForm);
 submitButton.addEventListener('click', submitForm);
 xButton.addEventListener('click', hideAllForms);
-baseForm.addEventListener("keydown", function (event) {
-  var invalidCharacters = ["e", "+", "-", "."];
+baseForm.addEventListener("keydown", preventInvalidKeys);
+
+function preventInvalidKeys (event) {
+  var invalidCharacters = ["e", "+", "-"];
   if (invalidCharacters.includes(event.key)) {
     event.preventDefault();
   }
-});
+}
 
 
 function showDropDown(event) {
@@ -109,13 +112,18 @@ function showActivityForm() {
 }
 
 function hideAllForms() {
+  baseForm.reset()
+  submitButton.classList.remove("disable")
   unBlur(mainBody);
-  hideElement(baseForm);
-  hideElement(hydrationForm);
-  hideElement(sleepForm);
-  hideElement(activityForm);
-  hideElement(formSuccessNotification);
-  hideElement(formErrorNotification);
+  const elements = [baseForm, hydrationForm,sleepForm, activityForm, 
+    formSuccessNotification, formErrorNotification];
+  elements.forEach(element => hideElement(element));
+  // hideElement(baseForm);
+  // hideElement(hydrationForm);
+  // hideElement(sleepForm);
+  // hideElement(activityForm);
+  // hideElement(formSuccessNotification);
+  // hideElement(formErrorNotification);
 }
 
 function handlePostRequest(link, body) {
@@ -167,6 +175,7 @@ function checkForCompletion(url, composedObject) {
     hideElement(formSuccessNotification);
 
   } else {
+    submitButton.classList.add('disable');
     handlePostRequest(url, composedObject);
     showElement(formSuccessNotification);
     hideElement(formErrorNotification);
@@ -250,11 +259,13 @@ function addInfoToSidebar(user, userStorage) {
   const userAddress = document.getElementById('userAddress');
   const userEmail = document.getElementById('userEmail');
   const friendList = document.getElementById('friendList');
+  document.getElementById('friendList').innerHTML = ""
   sidebarName.innerText = user.name;
   headerText.innerText = `${user.getFirstName()}'s Activity Tracker`;
   userAddress.innerText = user.address;
   userEmail.innerText = user.email;
   friendList.insertAdjacentHTML('afterBegin', makeFriendHTML(user, userStorage))
+  
 }
 
 function addWalkingStats(date, activityRepo) {
