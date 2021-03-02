@@ -6,12 +6,16 @@
 
 In this project, our job was to take code that was written by another student and transform it into a beautiful, functional application. 
 
-#### Before:
+#### Final Product:
+![](src/images/ATSectionA.png)
+![](src/images/ATSectionB.png)
+![](src/images/ATSectionC.png)
+![](src/images/ATSectionD.png)
+
+#### Project Before:
 ![](src/images/beforeOne.png)
 ![](src/images/beforeTwo.png)
 
-#### After:
-![](https://media.giphy.com/media/nYWEEel9zGPcTXuT7E/giphy.gif)
 
 ## Project Goals 
 1. Make network requests to API endpoints to retrieve and manipulate data.
@@ -47,18 +51,16 @@ https://github.com/itsnameissteven/Refactor-Tractor-Fitlit
 
 ## Functionality
 Activity Tracker is a versatile web application that enables its users to track their fitness goals and accomplishments, water consumption, and sleep stats. 
-
-![](src/images/ATSectionA.png)
-![](src/images/ATSectionB.png)
-
+![](https://media.giphy.com/media/nYWEEel9zGPcTXuT7E/giphy.gif)
 Not only can users view their own data, but they can compare their stats with other Activity Tracker users on the national level. This national user data comes from incorporating data from an API. 
 
-![](src/images/ATSectionC.png)
-![](src/images/ATSectionD.png)
-
-Enabling the user to add their data to the API and see the charts and graphs automatically update before their eyes with current information was our top priority. Users can add information by clicking on a log button and entering their stats.
 
 ![](https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif)
+Enabling the user to add their data to the API and see the charts and graphs automatically update before their eyes with current information was our top priority. Users can add information by clicking on a log button and entering their stats.
+
+
+![]<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
+
 
 Error handling was considered when building the forms. The user cannot proceed unless all of the required fields are filled in. Numbers and decimals are only permitted in input fields. Smooth transitions between the form view and the widget view ensure an enjoyable UI. 
 
