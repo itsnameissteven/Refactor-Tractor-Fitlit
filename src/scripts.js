@@ -283,7 +283,6 @@ function makeToday(userStorage, id, dataSet) {
     return sortedArray[0].date;
   } else {
     return today
-
   }
 }
 
@@ -321,9 +320,11 @@ function addActivityInfo(id, activityInfo, dateString, userStorage, laterDateStr
   createBarChart(activityInfo, id, today, "numSteps", userStorage, stepChart, "Steps Today");
   createBarChart(activityInfo, id, today, "flightsOfStairs", userStorage, flightsOfStairsChart, "Flights Climbed Today");
   createBarChart(activityInfo, id, today, "minutesActive", userStorage, activeMinutesChart, "Active Minutes Today");
+  // console.log(dateString, "TEEEEESSST")
   const weeklySteps = document.getElementById("weeklySteps");
   const weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
   const weeklyFlightsClimbed = document.getElementById('weeklyFlightsClimbed');
+  
   createLineChart(activityInfo, id, today, "numSteps", userStorage, weeklySteps, "weekly steps", '#260BD5');
   createLineChart(activityInfo, id, today, "minutesActive", userStorage, weeklyMinutesActive, "weekly minutes active", '#D5260B');
   createLineChart(activityInfo, id, today, "flightsOfStairs", userStorage, weeklyFlightsClimbed, "weekly flights climbed", "#BAD50B");
@@ -335,6 +336,8 @@ function createBarChart(activityInfo, id, dateString, property, userStorage, ele
 }
 
 function createLineChart(activityInfo, id, dateString, property, userStorage, element, chartLabel, color) {
+  // console.log(activityInfo, "asdfawooooork")
+  // console.log(activityInfo.calculateWeeklyData(dateString, id, userStorage, property))
   chart.makeChart(activityInfo.calculateWeeklyData(dateString, id, userStorage, property),
     element, chartLabel, color);
 }
