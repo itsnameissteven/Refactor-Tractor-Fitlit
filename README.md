@@ -27,10 +27,14 @@ View code at ->
 https://github.com/itsnameissteven/Refactor-Tractor-Fitlit 
 
 ## Technologies Used
-1. Javascript
-2. HTML
-3. CSS
-4. Google
+
+- [![JavaScript](https://img.shields.io/badge/-JavaScript-black?style=flat-square&logo=javascript)](https://www.javascript.com/) with `ES6` implementations
+
+- ![HTML5](https://img.shields.io/badge/-HTML5-black?style=flat-square&logo=html5&logoColor=white)
+
+- ![CSS3](https://img.shields.io/badge/-CSS3-black?style=flat-square&logo=css3)
+
+- Google
 
 ## Functionality
 Activity Tracker is a versatile web application that enables its users to track their fitness goals and accomplishments, water consumption, and sleep stats. 
