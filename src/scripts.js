@@ -1,5 +1,4 @@
 import './css/index.scss';
-// import './images/person walking on path.jpg';
 import './images/The Rock.jpg';
 import './images/walk.svg';
 import './images/water.svg';
@@ -67,13 +66,13 @@ function preventInvalidKeys (event) {
 
 function showDropDown(event) {
   const navContainer = document.getElementById('navButtonContainer')
-  event.target.className.includes("drop-down") ? navContainer.classList.add('show') :
+  event.target.className.includes("drop-down") ? addClass(navContainer, 'show') :
     navContainer.classList.remove('show')
 }
 
 
-function hideElement(element) {
-  element.classList.add('hidden');
+function addClass(element, className) {
+  element.classList.add(className || 'hidden');
 }
 
 function showElement(element) {
@@ -83,12 +82,8 @@ function showElement(element) {
 function showHideEntryForms(subForm, form2, form3) {
   showElement(baseForm);
   showElement(subForm);
-  hideElement(form2);
-  hideElement(form3);
-}
-
-function blur(element) {
-  element.classList.add('blur');
+  addClass(form2);
+  addClass(form3);
 }
 
 function unBlur(element) {
@@ -96,19 +91,19 @@ function unBlur(element) {
 }
 
 function showHydrationForm() {
-  blur(mainBody);
+  addClass(mainBody, 'blur');
   document.getElementById("submit").value = "hydration";
   showHideEntryForms(hydrationForm, sleepForm, activityForm);
 }
 
 function showSleepForm() {
-  blur(mainBody);
+  addClass(mainBody);
   document.getElementById("submit").value = "sleep";
   showHideEntryForms(sleepForm, hydrationForm, activityForm);
 }
 
 function showActivityForm() {
-  blur(mainBody);
+  addClass(mainBody);
   document.getElementById("submit").value = "activity";
   showHideEntryForms(activityForm, sleepForm, hydrationForm);
 }
@@ -119,13 +114,13 @@ function hideAllForms() {
   unBlur(mainBody);
   const elements = [baseForm, hydrationForm,sleepForm, activityForm, 
     formSuccessNotification, formErrorNotification];
-  elements.forEach(element => hideElement(element));
-  // hideElement(baseForm);
-  // hideElement(hydrationForm);
-  // hideElement(sleepForm);
-  // hideElement(activityForm);
-  // hideElement(formSuccessNotification);
-  // hideElement(formErrorNotification);
+  elements.forEach(element => addClass(element));
+  // addClass(baseForm);
+  // addClass(hydrationForm);
+  // addClass(sleepForm);
+  // addClass(activityForm);
+  // addClass(formSuccessNotification);
+  // addClass(formErrorNotification);
 }
 
 function handlePostRequest(link, body) {
@@ -174,13 +169,13 @@ function checkForCompletion(url, composedObject) {
   today = composedObject.date
   if (values.includes("" || NaN)) {
     showElement(formErrorNotification);
-    hideElement(formSuccessNotification);
+    addClass(formSuccessNotification);
 
   } else {
-    submitButton.classList.add('disable');
+    addClass(submitButton, 'disable');
     handlePostRequest(url, composedObject);
     showElement(formSuccessNotification);
-    hideElement(formErrorNotification);
+    addClass(formErrorNotification);
     setTimeout(hideAllForms, 1500);
   }
 }
