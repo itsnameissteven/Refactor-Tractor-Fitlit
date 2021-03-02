@@ -27,14 +27,6 @@ class Sleep extends Calculation {
     })
   }
 
-  //THIS METHOD IS NEVER USED NOR MENTIONED IN RUBRIC
-  // determineSleepWinnerForWeek(date, userRepo) {
-  //   let timeline = userRepo.chooseWeekDataForAllUsers(this.sleepData, date);
-  //   let sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData('sleepQuality', timeline);
-
-  //   return this.getWinnerNamesFromList(sleepRankWithData, userRepo);
-  // }
-
   determineSleptMostonDate(date, userRepo) {
     const timeline = userRepo.chooseDayDataForAllUsers(this.dataSet, date);
     const sleepRankWithData = userRepo.combineRankedUserIDsAndAveragedData('hoursSlept', timeline);
