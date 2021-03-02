@@ -69,24 +69,6 @@ class Activity extends Calculation {
     })
   }
 
-  // Is this function being used?
-  showcaseWinner(user, date, userRepo) {
-    return this.showChallengeListAndWinner(user, date, userRepo)[0];
-  }
-
-  getStreak(userRepo, id, relevantData) {
-    const sortedUserArray = (userRepo.makeSortedUserArray(id, this.dataSet)).reverse();
-    const streaks = sortedUserArray.reduce((acc, userData, index, arr) => {
-      if (index >= 2 &&
-        userData[relevantData] > arr[index - 1][relevantData] &&
-        userData[relevantData] > arr[index - 2][relevantData]) {
-        acc.push(userData.date);
-      }
-      return acc;
-    }, []);
-    return streaks;
-  }
-
   getWinnerId(user, date, userRepo) {
     const rankedList = this.getFriendsAverageStepsForWeek(user, date, userRepo);
     const keysList = rankedList.map(listItem => Object.keys(listItem));

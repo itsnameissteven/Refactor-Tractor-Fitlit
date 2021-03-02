@@ -134,7 +134,7 @@ describe('Activity', () => {
     });
 
     it('should return average active minutes in a given week', () => {
-      expect(activity.calculateActiveAverageForWeek(1, "2019/06/21", userRepo)).to.eql(20);
+      expect(activity.calculateActiveAverageForWeek(1, "2019/06/21", userRepo)).to.eql(37.6);
     });
 
     it('should return true/false if the given user met their step goal on a given day', () => {
@@ -174,8 +174,8 @@ describe('Activity', () => {
     it('should return a weeks worth steps for a given user', () => {
       const weeklyData = [
         {
-        "data": 9303,
-        "date": "2019/06/17"
+          "data": 9303,
+          "date": "2019/06/17"
         },
         {
           "data": 5000,
