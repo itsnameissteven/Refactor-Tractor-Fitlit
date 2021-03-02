@@ -1,3 +1,8 @@
+  <p align="center">
+  <a href="https://github.com/itsnameissteven/Refactor-Tractor-Fitlit">
+    <img src="./src/assets/images/person-walking-on-path.jpg" alt="Logo" width="80" height="80">
+  </a>
+ 
  <h1 align="left">Refactor Tractor</h1>
 
 
