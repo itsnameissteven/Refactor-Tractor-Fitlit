@@ -51,20 +51,20 @@ https://github.com/itsnameissteven/Refactor-Tractor-Fitlit
 
 ## Functionality
 Activity Tracker is a versatile web application that enables its users to track their fitness goals and accomplishments, water consumption, and sleep stats. 
-![](https://media.giphy.com/media/nYWEEel9zGPcTXuT7E/giphy.gif)
+
+![]<img src="https://media.giphy.com/media/nYWEEel9zGPcTXuT7E/giphy.gif" width="80%">
+
 Not only can users view their own data, but they can compare their stats with other Activity Tracker users on the national level. This national user data comes from incorporating data from an API. 
-
-
-![](https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif)
-Enabling the user to add their data to the API and see the charts and graphs automatically update before their eyes with current information was our top priority. Users can add information by clicking on a log button and entering their stats.
-
 
 ![]<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
 
+Enabling the user to add their data to the API and see the charts and graphs automatically update before their eyes with current information was our top priority. Users can add information by clicking on a log button and entering their stats.
+
+![]<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
 
 Error handling was considered when building the forms. The user cannot proceed unless all of the required fields are filled in. Numbers and decimals are only permitted in input fields. Smooth transitions between the form view and the widget view ensure an enjoyable UI. 
 
-![](https://media.giphy.com/media/P1DPEkxDZv9qzfydWA/giphy.gif)
+![]<img src="https://media.giphy.com/media/P1DPEkxDZv9qzfydWA/giphy.gif" width="80%">
 
 ## Contributers
 * [Alex Thompson](https://github.com/alexthompson207)
