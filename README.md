@@ -38,7 +38,8 @@ https://github.com/itsnameissteven/Refactor-Tractor-Fitlit
 
 - ![Mocha](https://img.shields.io/badge/-mocha-%238D6748?&style=for-the-badge&logo=mocha&logoColor=white)
 
-- Google
+- ![Mocha](https://img.shields.io/badge/node.js%20-%2343853D.svg?&style=for-the-badge&logo=node.js&logoColor=white)
+
 
 ## Functionality
 Activity Tracker is a versatile web application that enables its users to track their fitness goals and accomplishments, water consumption, and sleep stats. 
