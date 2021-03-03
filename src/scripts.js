@@ -126,14 +126,16 @@ function grabSleepInput() {
   const enteredSleepInfo = {};
   enteredSleepInfo.userID = userNow.id;
   enteredSleepInfo.date = formSleepDate.value.replace(/-/g, '/');
-  enteredSleepInfo.hoursSlept = parseInt(formSleepHours.value);
   if (parseInt(formSleepQuality.value) > 5) {
     formSleepQuality.value = 5;
   }
   if (parseInt(formSleepHours.value) > 24) {
     formSleepHours.value = 24; 
   }
+  
+  enteredSleepInfo.hoursSlept = parseInt(formSleepHours.value);
   enteredSleepInfo.sleepQuality = parseInt(formSleepQuality.value);
+
   checkForCompletion('http://localhost:3001/api/v1/sleep', enteredSleepInfo);
 }
 
