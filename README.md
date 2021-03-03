@@ -47,8 +47,8 @@ In this project, our job was to take code that was written by another student an
 6. Make our app responsive so that content can be viewed on all devices.
 
 ## Installation
-View the program on GitHub pages -> 
-
+View the site -> 
+https://itsnameissteven.github.io/Refactor-Tractor-Fitlit/
 
 Or clone the repo to your local machine and launch the index.html file in your browser.
 
