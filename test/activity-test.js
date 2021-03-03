@@ -134,21 +134,7 @@ describe('Activity', () => {
     });
 
     it('should return average active minutes in a given week', () => {
-      expect(activity.calculateActiveAverageForWeek(1, "2019/06/21", userRepo)).to.eql(20);
-    });
-
-    it('should return true/false if the given user met their step goal on a given day', () => {
-      expect(activity.accomplishStepGoal(4, "2019/06/15", userRepo.users[3])).to.eql(false);
-      expect(activity.accomplishStepGoal(1, "2019/06/16", userRepo.users[0])).to.eql(true);
-    });
-
-    it('should return all days that a given user exceeded their step goal', () => {
-      const daysAchievedGoals = ['2019/06/17', '2019/06/18'];
-      expect(activity.getDaysGoalExceeded(1, userRepo.users[0])).to.eql(daysAchievedGoals);
-    });
-
-    it('should return the highest number of stairs climbed in a day for all time', () => {
-      expect(activity.getStairRecord(3)).to.eql(33);
+      expect(activity.calculateActiveAverageForWeek(1, "2019/06/21", userRepo)).to.eql(37.6);
     });
 
     it('should return the average flight of stairs for all users on given day', () => {
@@ -174,8 +160,8 @@ describe('Activity', () => {
     it('should return a weeks worth steps for a given user', () => {
       const weeklyData = [
         {
-        "data": 9303,
-        "date": "2019/06/17"
+          "data": 9303,
+          "date": "2019/06/17"
         },
         {
           "data": 5000,
@@ -236,21 +222,8 @@ describe('Activity', () => {
       expect(activity.getFriendsAverageStepsForWeek(user4, "2019/06/15", userRepo)).to.eql(usersRanked);
     });
 
-    it('should get a users ranked friendslist activity for a chosen week with names', () => {
-      const usersWeeklyRanked = ['Allie McCarthy: 4294', 'Alex Roth: 3577'];
-      expect(activity.showChallengeListAndWinner(user4, "2019/06/15", userRepo)).to.eql(usersWeeklyRanked);
-    });
-
     it('should know the ID of the winning friend', () => {
       expect(activity.getWinnerId(user4, "2019/06/15", userRepo)).to.eql(2);
-    });
-
-    it('should show a 3-day increasing streak for a users step count', () => {
-      expect(activity.getStreak(userRepo, 1, 'numSteps')).to.eql(['2019/06/17', '2019/06/18']);
-    });
-
-    it('should show a 3-day increasing streak for a users minutes of activity', () => {
-      expect(activity.getStreak(userRepo, 1, 'minutesActive')).to.eql(['2019/06/18']);
     });
   });
 });
