@@ -57,8 +57,6 @@ Activity Tracker is a versatile web application that enables its users to track 
 
 Not only can users view their own data, but they can compare their stats with other Activity Tracker users on the national level. This national user data comes from incorporating data from an API. 
 
-<img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
-
 Enabling the user to add their data to the API and see the charts and graphs automatically update before their eyes with current information was our top priority. Users can add information by clicking on a log button and entering their stats.
 
 <img src="https://media.giphy.com/media/YznWgI3kMgyDLE1oZz/giphy.gif" width="80%">
