@@ -1,7 +1,7 @@
 const fetchAPIData = {
   fetchUserData() {
     let userSet;
-    let userData = fetch("http://localhost:3001/api/v1/users")
+    let userData = fetch("https://refactor-tractor-fitlit.herokuapp.com/api/v1/users")
       .then(response => response.json())
       .then(data => data.userData)
       .catch(err => console.log(err))
