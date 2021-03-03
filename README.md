@@ -1,5 +1,10 @@
 <h1 align="left">Refactor Tractor</h1>
 
+<p align="center">
+  <a href="https://github.com/itsnameissteven/Refactor-Tractor-Fitlit">
+    <img src="./src/images/tractor.svg" alt="Tractor Logo" width="80" height="80">
+  </a>
+
 ## Table of Contents
 
 - [About the Project](#about-the-project)
