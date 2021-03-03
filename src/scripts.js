@@ -16,7 +16,6 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 import UserRepo from './User-repo';
-
 import chart from './dataChart.js'
 import fetchAPIData from './API';
 
@@ -28,18 +27,8 @@ const baseForm = document.querySelector('.add-information-form');
 const hydrationForm = document.querySelector('.hydration-form');
 const sleepForm = document.querySelector('.sleep-form');
 const activityForm = document.querySelector('.activity-form');
-// const formHydrationDate = document.querySelector('#hydrationDate');
-// const formHydrationOz = document.querySelector('#hydrationOz');
-// const formSleepDate = document.querySelector('#sleepDate');
-// const formSleepHours = document.querySelector('#sleepHours');
-// const formSleepQuality = document.querySelector('#sleepQuality');
-// const formActivityDate = document.querySelector('#activityDate');
-// const formActivitySteps = document.querySelector('#activitySteps');
-// const formActivityMin = document.querySelector('#activityMin');
-// const formActivityFlights = document.querySelector('#flights');
 const submitButton = document.getElementById('submit');
 const xButton = document.querySelector('#remove');
-
 const formSuccessNotification = document.querySelector('#successNotification');
 const formErrorNotification = document.querySelector('#failureNotification');
 
@@ -63,13 +52,11 @@ function preventInvalidKeys (event) {
   }
 }
 
-
 function showDropDown(event) {
   const navContainer = document.getElementById('navButtonContainer')
-  event.target.className.includes('drop-down') ? addClass(navContainer, 'show') :
-    removeClass(navContainer, 'show')
+  event.target.className.includes('drop-down') ? addClass(navContainer, 'show') 
+   : removeClass(navContainer, 'show');
 }
-
 
 function addClass(element, className) {
   element.classList.add(className || 'hidden');
@@ -108,7 +95,7 @@ function hideAllForms() {
   baseForm.reset()
   removeClass(submitButton, 'disable')
   removeClass(mainBody, 'blur')
-  const elements = [baseForm, hydrationForm,sleepForm, activityForm, 
+  const elements = [baseForm, hydrationForm, sleepForm, activityForm, 
     formSuccessNotification, formErrorNotification];
   elements.forEach(addClass);
 }
@@ -117,6 +104,7 @@ function handlePostRequest(link, body) {
   fetchAPIData.addNewData(link, body)
     .then(() => handlePostSucess())
 }
+
 function handlePostSucess() {
   getFetchedLifeData();
 }
@@ -131,21 +119,18 @@ function grabHydrationInput() {
   checkForCompletion('http://localhost:3001/api/v1/hydration', enteredHydrationInfo);
 }
 
-
-
 function grabSleepInput() {
   const formSleepDate = document.querySelector('#sleepDate');
   const formSleepHours = document.querySelector('#sleepHours');
   const formSleepQuality = document.querySelector('#sleepQuality');
   const enteredSleepInfo = {};
   enteredSleepInfo.userID = userNow.id;
-  enteredSleepInfo.date = formSleepDate.value.replace(/-/g, '/');;
+  enteredSleepInfo.date = formSleepDate.value.replace(/-/g, '/');
   enteredSleepInfo.hoursSlept = parseInt(formSleepHours.value);
-  if(parseInt(formSleepQuality.value) > 5) {
-    
-    formSleepQuality.value = 5
+  if (parseInt(formSleepQuality.value) > 5) {
+    formSleepQuality.value = 5;
   }
-  if(parseInt(formSleepHours.value) > 24){
+  if (parseInt(formSleepHours.value) > 24) {
     formSleepHours.value = 24; 
   }
   enteredSleepInfo.sleepQuality = parseInt(formSleepQuality.value);
@@ -159,7 +144,7 @@ function grabActivityInput() {
   const formActivityMin = document.querySelector('#activityMin');
   const formActivityFlights = document.querySelector('#flights');
   enteredActivityInfo.userID = userNow.id;
-  enteredActivityInfo.date = formActivityDate.value.replace(/-/g, '/');;
+  enteredActivityInfo.date = formActivityDate.value.replace(/-/g, '/');
   enteredActivityInfo.numSteps = parseInt(formActivitySteps.value);
   enteredActivityInfo.minutesActive = parseInt(formActivityMin.value);
   enteredActivityInfo.flightsOfStairs = parseInt(formActivityFlights.value);
@@ -172,7 +157,6 @@ function checkForCompletion(url, composedObject) {
   if (values.includes('' || NaN)) {
     removeClass(formErrorNotification);
     addClass(formSuccessNotification);
-
   } else {
     addClass(submitButton, 'disable');
     handlePostRequest(url, composedObject);
@@ -224,18 +208,14 @@ function handleLifeData(sleepData, activityData, hydrationData) {
   const sleepRepo = new Sleep(sleepData);
   const activityRepo = new Activity(activityData);
   today = makeToday(userRepo, userNow.id, hydrationRepo.dataSet);
-  const randomHistory = makeRandomDate(userRepo, userNow.id, hydrationRepo.dataSet);
-  startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory)
+  startApp(sleepRepo, activityRepo, hydrationRepo, today)
 }
 
-function startApp(sleepRepo, activityRepo, hydrationRepo, today, randomHistory) {
-  const historicalWeek = document.querySelectorAll('.historicalWeek');
-  historicalWeek.forEach(instance => instance.insertAdjacentHTML('afterBegin', `Week of ${randomHistory}`));
+function startApp(sleepRepo, activityRepo, hydrationRepo, today) {
   addInfoToSidebar(userNow, userRepo);
-  addHydrationInfo(userNow.id, hydrationRepo, today, userRepo, randomHistory);
-  addSleepInfo(userNow.id, sleepRepo, today, userRepo, randomHistory);
-  addWalkingStats(today, activityRepo)
-  const winnerNow = makeWinnerID(activityRepo, userNow, today, userRepo);
+  addHydrationInfo(userNow.id, hydrationRepo, today, userRepo);
+  addSleepInfo(sleepRepo);
+  addWalkingStats(today, activityRepo);
   addActivityInfo(userNow.id, activityRepo, userRepo);
 }
 
@@ -258,8 +238,7 @@ function addInfoToSidebar(user, userStorage) {
   headerText.innerText = `${user.getFirstName()}'s Activity Tracker`;
   userAddress.innerText = user.address;
   userEmail.innerText = user.email;
-  friendList.insertAdjacentHTML('afterBegin', makeFriendHTML(user, userStorage))
-  
+  friendList.insertAdjacentHTML('afterBegin', makeFriendHTML(user, userStorage)) 
 }
 
 function addWalkingStats(date, activityRepo) {
@@ -270,16 +249,12 @@ function addWalkingStats(date, activityRepo) {
   userStrideLength.innerText = `${userNow.strideLength}m`;
   stepGoalCard.innerText = `${userNow.dailyStepGoal}`;
   avgStepGoalCard.innerText = `${userRepo.calculateAverageStepGoal()}`;
-  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(userNow.id, date, userNow)}mi`;
+  milesWalked.innerText = `
+    ${activityRepo.getMilesFromStepsByDate(userNow.id, date, userNow)}mi`;
 }
-
 
 function makeFriendHTML(user, userStorage) {
   return user.getFriendsNames(userStorage).map(friendName => `<li class='my-friends'>${friendName}</li>`).join('');
-}
-
-function makeWinnerID(activityInfo, user, dateString, userStorage) {
-  return activityInfo.getWinnerId(user, dateString, userStorage)
 }
 
 function makeToday(userStorage, id, dataSet) {
@@ -291,31 +266,34 @@ function makeToday(userStorage, id, dataSet) {
   }
 }
 
-function makeRandomDate(userStorage, id, dataSet) {
-  const sortedArray = userStorage.makeSortedUserArray(id, dataSet);
-  return sortedArray[Math.floor(Math.random() * sortedArray.length + 1)].date
-}
-
 function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydrationToday = document.getElementById('hydrationToday');
   const hydroChart = document.getElementById('hydroChart');
   const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
-  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), hydroChart, 'Number of Ounces', '#D5260B');
-  hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
-  hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
+  chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), 
+    hydroChart, 'Number of Ounces', '#D5260B');
+  hydrationToday.innerText = `
+    ${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationAverageWeek.innerText = `
+    ${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
 }
 
-function addSleepInfo(id, sleepInfo, dateString, userStorage) {
+function addSleepInfo(sleepInfo) {
   const sleepToday = document.getElementById('sleepToday');
   const sleepQualityToday = document.getElementById('sleepQualityToday');
   const avUserSleepQuality = document.getElementById('avUserSleepQuality');
   const sleepChart = document.getElementById('sleepChart');
   const sleepChartQuality = document.getElementById('sleepChartQuality');
-  sleepToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, 'hoursSlept')}hrs`;
-  sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, dateString, 'sleepQuality')}/5`;
-  avUserSleepQuality.innerText = `${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, 'hoursSlept'), sleepChart, 'Hours of Sleep', '#0BBBD6');
-  chart.makeChart(sleepInfo.calculateWeeklyData(dateString, userNow.id, userRepo, 'sleepQuality'), sleepChartQuality, 'Quality of Sleep', '#8B0BD5')
+  sleepToday.innerText = `
+    ${sleepInfo.calculateDailyData(userNow.id, today, 'hoursSlept')}hrs`;
+  sleepQualityToday.innerText = `
+    ${sleepInfo.calculateDailyData(userNow.id, today, 'sleepQuality')}/5`;
+  avUserSleepQuality.innerText = `
+    ${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
+  chart.makeChart(sleepInfo.calculateWeeklyData(today, userNow.id, userRepo, 'hoursSlept'), 
+    sleepChart, 'Hours of Sleep', '#0BBBD6');
+  chart.makeChart(sleepInfo.calculateWeeklyData(today, userNow.id, userRepo, 'sleepQuality'),
+    sleepChartQuality, 'Quality of Sleep', '#8B0BD5');
 }
 
 function addActivityInfo(id, activityInfo, userStorage) {
@@ -323,14 +301,19 @@ function addActivityInfo(id, activityInfo, userStorage) {
   const flightsOfStairsChart = document.getElementById('flightsOfStairsChart');
   const activeMinutesChart = document.getElementById('activeMinutesChart');
   createBarChart(activityInfo, id, today, 'numSteps', userStorage, stepChart, 'Steps Today');
-  createBarChart(activityInfo, id, today, 'flightsOfStairs', userStorage, flightsOfStairsChart, 'Flights Climbed Today');
-  createBarChart(activityInfo, id, today, 'minutesActive', userStorage, activeMinutesChart, 'Active Minutes Today');
+  createBarChart(activityInfo, id, today, 'flightsOfStairs', userStorage,
+    flightsOfStairsChart, 'Flights Climbed Today');
+  createBarChart(activityInfo, id, today, 'minutesActive', userStorage,
+    activeMinutesChart, 'Active Minutes Today');
   const weeklySteps = document.getElementById('weeklySteps');
   const weeklyMinutesActive = document.getElementById('weeklyMinutesActive');
   const weeklyFlightsClimbed = document.getElementById('weeklyFlightsClimbed');
-  createLineChart(activityInfo, id, today, 'numSteps', userStorage, weeklySteps, 'weekly steps', '#260BD5');
-  createLineChart(activityInfo, id, today, 'minutesActive', userStorage, weeklyMinutesActive, 'weekly minutes active', '#D5260B');
-  createLineChart(activityInfo, id, today, 'flightsOfStairs', userStorage, weeklyFlightsClimbed, 'weekly flights climbed', '#BAD50B');
+  createLineChart(activityInfo, id, today, 'numSteps', userStorage, weeklySteps,
+    'weekly steps', '#260BD5');
+  createLineChart(activityInfo, id, today, 'minutesActive', userStorage, weeklyMinutesActive,
+    'weekly minutes active', '#D5260B');
+  createLineChart(activityInfo, id, today, 'flightsOfStairs', userStorage, weeklyFlightsClimbed,
+    'weekly flights climbed', '#BAD50B');
 }
 
 function createBarChart(activityInfo, id, dateString, property, userStorage, element, chartLabel) {
