@@ -13,15 +13,15 @@ const fetchAPIData = {
 
   fetchLifeData() {
     let dataSet;
-    let sleepData = fetch("http://localhost:3001/api/v1/sleep")
+    let sleepData = fetch("https://refactor-tractor-fitlit.herokuapp.com/api/v1/sleep")
       .then(response => response.json())
       .then(data => data.sleepData)
       .catch(err => console.log(err))
-    let activityData = fetch("http://localhost:3001/api/v1/activity")
+    let activityData = fetch("https://refactor-tractor-fitlit.herokuapp.com/api/v1/activity")
       .then(response => response.json())
       .then(data => data.activityData)
       .catch(err => console.log(err))
-    let hydrationData = fetch("http://localhost:3001/api/v1/hydration")
+    let hydrationData = fetch("https://refactor-tractor-fitlit.herokuapp.com/api/v1/hydration")
       .then(response => response.json())
       .then(data => data.hydrationData)
       .catch(err => console.log(err))

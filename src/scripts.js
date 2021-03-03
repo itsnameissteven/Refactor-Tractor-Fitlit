@@ -116,7 +116,7 @@ function grabHydrationInput() {
   enteredHydrationInfo.userID = userNow.id;
   enteredHydrationInfo.date = formHydrationDate.value.replace(/-/g, '/');
   enteredHydrationInfo.numOunces = parseInt(formHydrationOz.value);
-  checkForCompletion('http://localhost:3001/api/v1/hydration', enteredHydrationInfo);
+  checkForCompletion('https://refactor-tractor-fitlit.herokuapp.com/api/v1/hydration', enteredHydrationInfo);
 }
 
 function grabSleepInput() {
@@ -136,7 +136,7 @@ function grabSleepInput() {
   enteredSleepInfo.hoursSlept = parseInt(formSleepHours.value);
   enteredSleepInfo.sleepQuality = parseInt(formSleepQuality.value);
 
-  checkForCompletion('http://localhost:3001/api/v1/sleep', enteredSleepInfo);
+  checkForCompletion('https://refactor-tractor-fitlit.herokuapp.com/api/v1/sleep', enteredSleepInfo);
 }
 
 function grabActivityInput() {
@@ -150,7 +150,7 @@ function grabActivityInput() {
   enteredActivityInfo.numSteps = parseInt(formActivitySteps.value);
   enteredActivityInfo.minutesActive = parseInt(formActivityMin.value);
   enteredActivityInfo.flightsOfStairs = parseInt(formActivityFlights.value);
-  checkForCompletion('http://localhost:3001/api/v1/activity', enteredActivityInfo);
+  checkForCompletion('https://refactor-tractor-fitlit.herokuapp.com/api/v1/activity', enteredActivityInfo);
 }
 
 function checkForCompletion(url, composedObject) {

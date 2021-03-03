@@ -5,13 +5,17 @@
   "main": "src/index.js",
   "scripts": {
     "start": "webpack-dev-server",
+    "start:app": "node app.js",
     "build": "webpack",
     "test": "mochapack 'test/**/*.js'",
-    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'"
+    "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/turingschool-examples/webpack-starter-kit.git"
+    "url": "git+https://github.com/itsnameissteven/Refactor-Tractor-Fitlit",
+    "homepage": "http://itsnameissteven.github.io/Refactor-Tractor-Fitlit"
   },
   "author": "Turing School of Software and Design",
   "license": "MIT",
@@ -20,6 +24,7 @@
     "css-loader": "^5.0.1",
     "eslint": "^7.17.0",
     "file-loader": "^6.2.0",
+    "gh-pages": "^3.1.0",
     "html-webpack-plugin": "^4.5.1",
     "mocha": "^8.2.1",
     "mochapack": "^2.0.6",
