@@ -137,20 +137,6 @@ describe('Activity', () => {
       expect(activity.calculateActiveAverageForWeek(1, "2019/06/21", userRepo)).to.eql(37.6);
     });
 
-    it('should return true/false if the given user met their step goal on a given day', () => {
-      expect(activity.accomplishStepGoal(4, "2019/06/15", userRepo.users[3])).to.eql(false);
-      expect(activity.accomplishStepGoal(1, "2019/06/16", userRepo.users[0])).to.eql(true);
-    });
-
-    it('should return all days that a given user exceeded their step goal', () => {
-      const daysAchievedGoals = ['2019/06/17', '2019/06/18'];
-      expect(activity.getDaysGoalExceeded(1, userRepo.users[0])).to.eql(daysAchievedGoals);
-    });
-
-    it('should return the highest number of stairs climbed in a day for all time', () => {
-      expect(activity.getStairRecord(3)).to.eql(33);
-    });
-
     it('should return the average flight of stairs for all users on given day', () => {
       expect(activity.getAllUserAverageForDay("2019/06/15", userRepo, "flightsOfStairs")).to.eql(22.8)
     })
@@ -234,11 +220,6 @@ describe('Activity', () => {
     it('should get a users ranked friendslist activity for a chosen week', () => {
       const usersRanked = [{ '2': 4294 }, { '1': 3577 }];
       expect(activity.getFriendsAverageStepsForWeek(user4, "2019/06/15", userRepo)).to.eql(usersRanked);
-    });
-
-    it('should get a users ranked friendslist activity for a chosen week with names', () => {
-      const usersWeeklyRanked = ['Allie McCarthy: 4294', 'Alex Roth: 3577'];
-      expect(activity.showChallengeListAndWinner(user4, "2019/06/15", userRepo)).to.eql(usersWeeklyRanked);
     });
 
     it('should know the ID of the winning friend', () => {

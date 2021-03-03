@@ -20,28 +20,10 @@ class Activity extends Calculation {
     }, 0) / 7).toFixed(1));
   }
 
-  accomplishStepGoal(id, date, userRepo) {
-    const userStepsByDate = this.dataSet.find(data => id === data.userID && date === data.date);
-    if (userStepsByDate.numSteps === userRepo.dailyStepGoal) {
-      return true;
-    }
-    return false
-  }
-
-  getDaysGoalExceeded(id, userRepo) {
-    return this.dataSet.filter(data => id === data.userID && data.numSteps > userRepo.dailyStepGoal).map(data => data.date);
-  }
-
-  getStairRecord(id) {
-    return this.dataSet.filter(data => id === data.userID).reduce((acc, elem) => (elem.flightsOfStairs > acc) ? elem.flightsOfStairs : acc, 0);
-  }
-
   getAllUserAverageForDay(date, userRepo, relevantData) {
     const selectedDayData = userRepo.chooseDayDataForAllUsers(this.dataSet, date);
     return parseFloat((selectedDayData.reduce((acc, elem) => acc += elem[relevantData], 0) / selectedDayData.length).toFixed(1));
   }
-
-  // Friends
 
   getFriendsActivity(user, userRepo) {
     const data = this.dataSet;
@@ -57,16 +39,6 @@ class Activity extends Calculation {
     const friendsActivity = this.getFriendsActivity(user, userRepo);
     const timeline = userRepo.chooseWeekDataForAllUsers(friendsActivity, date);
     return userRepo.combineRankedUserIDsAndAveragedData('numSteps', timeline)
-  }
-
-  showChallengeListAndWinner(user, date, userRepo) {
-    const rankedList = this.getFriendsAverageStepsForWeek(user, date, userRepo);
-
-    return rankedList.map(function (listItem) {
-      const userID = Object.keys(listItem)[0];
-      const userName = userRepo.getUserFromID(parseInt(userID)).name;
-      return `${userName}: ${listItem[userID]}`
-    })
   }
 
   getWinnerId(user, date, userRepo) {
