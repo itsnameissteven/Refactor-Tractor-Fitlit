@@ -1,6 +1,3 @@
-[![Contributors][contributors-shield]][contributors-url] 
-[![Issues][issues-shield]][issues-url]
-
 <h1 align="left">Refactor Tractor</h1>
 
 <p align="center">
@@ -132,7 +129,3 @@ Activity Tracker scores very highly on Wave and received a 100% from Lighthouse 
 [github2]: https://github.com/aemiers
 [linkedin3]: https://www.linkedin.com/in/steven-mancine-13509521/
 [github3]: https://github.com/itsnameissteven
-[issues-shield]: https://img.shields.io/github/issues/joshsevy/VisualFox.svg?style=flat-square
-[issues-url]: https://github.com/itsnameissteven/Refactor-Tractor-Fitlit/issues
-[contributors-shield]: https://img.shields.io/github/contributors/joshsevy/VisualFox.svg?style=flat-square
-[contributors-url]: https://github.com/itsnameissteven/Refactor-Tractor-Fitlit/graphs/contributors
