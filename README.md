@@ -1,7 +1,24 @@
 <h1 align="left">Refactor Tractor</h1>
 
+## Table of Contents
 
-## About
+- [About the Project](#about-the-project)
+  - [Final Product](#final-product)
+  - [Project Before](#project-before)
+- [Project Goals](#project-goals)
+- [Installation](#installation)
+- [Technologies Used](#technologies-used)
+- [Functionality](#functionality)
+  - [General](#general)
+  - [Error Handling](#error-handling)
+  - [Mobile View](#mobile-view)
+  - [Tablet View](#tablet-view)
+  - [Accessibility](#accessibility)
+- [Contributors](#contributors)
+- [Contact](#contact)
+
+
+## About the Project
 
 In this project, our job was to take code that was written by another student and transform it into a beautiful, functional application. 
 
