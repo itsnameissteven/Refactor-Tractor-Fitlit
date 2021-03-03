@@ -168,7 +168,7 @@
   margin-top:5rem;
 
   &__header {
-    @extend .hydration-stats__data__header
+    @extend .hydration-stats__data__header;
   }
 
   &__data {
@@ -194,7 +194,6 @@
 .user-activity-today {
   @include dataBox;
   @include flex;
-  padding: 5rem;
   grid-column: 1/4;
   padding:5rem;
   margin-top: 5rem;
@@ -295,7 +294,7 @@
 
   .submission-notification {
     margin-top: 2rem;
-    width: 35 rem;
+    width: 35rem;
     display: flex;
     justify-content: center;
 

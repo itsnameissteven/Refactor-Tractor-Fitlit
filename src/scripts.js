@@ -249,8 +249,7 @@ function addWalkingStats(date, activityRepo) {
   userStrideLength.innerText = `${userNow.strideLength}m`;
   stepGoalCard.innerText = `${userNow.dailyStepGoal}`;
   avgStepGoalCard.innerText = `${userRepo.calculateAverageStepGoal()}`;
-  milesWalked.innerText = `
-    ${activityRepo.getMilesFromStepsByDate(userNow.id, date, userNow)}mi`;
+  milesWalked.innerText = `${activityRepo.getMilesFromStepsByDate(userNow.id, date, userNow)}mi`;
 }
 
 function makeFriendHTML(user, userStorage) {
@@ -272,10 +271,8 @@ function addHydrationInfo(id, hydrationInfo, dateString, userStorage) {
   const hydrationAverageWeek = document.getElementById('hydrationAverageWeek');
   chart.makeChart(hydrationInfo.calculateFirstWeekOunces(userStorage, id), 
     hydroChart, 'Number of Ounces', '#D5260B');
-  hydrationToday.innerText = `
-    ${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
-  hydrationAverageWeek.innerText = `
-    ${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
+  hydrationToday.innerText = `${hydrationInfo.calculateDailyData(id, dateString, 'numOunces')}oz`;
+  hydrationAverageWeek.innerText = `${hydrationInfo.calculateAverageWater(userStorage, id)}oz`
 }
 
 function addSleepInfo(sleepInfo) {
@@ -284,12 +281,9 @@ function addSleepInfo(sleepInfo) {
   const avUserSleepQuality = document.getElementById('avUserSleepQuality');
   const sleepChart = document.getElementById('sleepChart');
   const sleepChartQuality = document.getElementById('sleepChartQuality');
-  sleepToday.innerText = `
-    ${sleepInfo.calculateDailyData(userNow.id, today, 'hoursSlept')}hrs`;
-  sleepQualityToday.innerText = `
-    ${sleepInfo.calculateDailyData(userNow.id, today, 'sleepQuality')}/5`;
-  avUserSleepQuality.innerText = `
-    ${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
+  sleepToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, today, 'hoursSlept')}hrs`;
+  sleepQualityToday.innerText = `${sleepInfo.calculateDailyData(userNow.id, today, 'sleepQuality')}/5`;
+  avUserSleepQuality.innerText = `${Math.round(sleepInfo.calculateAllUserSleepQuality() * 100) / 100}/5`;
   chart.makeChart(sleepInfo.calculateWeeklyData(today, userNow.id, userRepo, 'hoursSlept'), 
     sleepChart, 'Hours of Sleep', '#0BBBD6');
   chart.makeChart(sleepInfo.calculateWeeklyData(today, userNow.id, userRepo, 'sleepQuality'),
