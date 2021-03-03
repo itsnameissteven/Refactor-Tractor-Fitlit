@@ -5,7 +5,6 @@ class Hydration extends Calculation {
     super(dataSet)
   }
 
-
   calculateFirstWeekOunces(userRepo, id) {
     return userRepo.getFirstWeek(id, this.dataSet).map((data) => {
       return {
@@ -16,10 +15,10 @@ class Hydration extends Calculation {
   }
 
   calculateAverageWater(userRepo, id) {
-    const avg =this.calculateFirstWeekOunces(userRepo, id).reduce((acc, data) => {
+    const avg = this.calculateFirstWeekOunces(userRepo, id).reduce((acc, data) => {
       acc += data.data
       return acc
-    },0) / this.calculateFirstWeekOunces(userRepo, id).length;
+    }, 0) / this.calculateFirstWeekOunces(userRepo, id).length;
 
     return Math.round(avg)
   }

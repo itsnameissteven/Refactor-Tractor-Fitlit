@@ -129,5 +129,9 @@ describe('Hydration', () => {
         }
       ])
     });
+
+    it('should find the average water intake per week for a user', () => {
+      expect(hydration.calculateAverageWater(userRepo, 1)).to.equal(35);
+    });
   });
 });
